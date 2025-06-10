@@ -60,6 +60,41 @@ export default function ContentBlock() {
           </div>
         </div>
       </div>
+
+      {/* content block inverse */}
+      <div
+        className={`${styles.msf} ${styles["content-block"]} ${styles["content-block--inverse"]}`}
+      >
+        <div className={styles.container}>
+          <div className={styles["content-block__wrapper"]}>
+            <article className={styles["l-title"]}>
+              <h2>This is a headline. It should be a max of two lines.</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur. Turpis vulputate gravida
+                ut id dictum aliquam aliquam. Amet fermentum vivamus vestibulum
+                pellentesque. Nec ultricies in fusce pulvinar integer diam
+                tincidunt massa tincidunt.
+              </p>
+              <a className={styles["l-btn"]} href="#" title="Optional button">
+                Optional button
+              </a>
+            </article>
+            <figure className={styles["aspect-box"]}>
+              <img
+                src={
+                  isDarkMode
+                    ? useBaseUrl("/img/placeholder_dark.png")
+                    : useBaseUrl("/img/placeholder.png")
+                }
+                onError={({ currentTarget }) => {
+                  currentTarget.style.display = "none";
+                }}
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

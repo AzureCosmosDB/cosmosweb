@@ -6,7 +6,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import "../../css/component-block.css";
 
 export default function ContentBlock() {
   const [isDarkMode, setIsDarkMode] = useState(false);

@@ -4,15 +4,10 @@
 // External Components
 
 import React, { useEffect, useState } from "react";
-import Layout from "@theme/Layout";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import styles from "./block.module.css";
-import ContentBlock from "../../components/ContentBlock";
-import ContentBlockInverse from "../../components/ContentBlockInverse";
-import CardList from "../../components/CardList";
+import styles from "./styles.module.css";
+import Card from "../../components/Card";
 
-export default function Block() {
-  const { siteConfig } = useDocusaurusContext();
+export default function ContentBlock() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -30,17 +25,18 @@ export default function Block() {
 
     return () => observer.disconnect();
   }, []);
-
   return (
-    <Layout
-      title="Azure Cosmos Block Comopnenet Page"
-      description="Azure Cosmos Block Comopnenet Page"
-    >
-      <main className={styles.mainBlockContainer}>
-        <ContentBlock></ContentBlock>
-        {/* <ContentBlockInverse></ContentBlockInverse> */}
-        <CardList></CardList>
-      </main>
-    </Layout>
+    <section className={`${styles.section} ${styles["section--card-list"]}`}>
+      <div className={styles.container}>
+        <div className={`${styles.msf} ${styles["card-list"]}`}>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+        </div>
+      </div>
+    </section>
   );
 }
