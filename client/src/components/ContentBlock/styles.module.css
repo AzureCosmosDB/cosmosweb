@@ -1,0 +1,210 @@
+.l-title h2 {
+  position: relative;
+  top: 0.0625rem;
+  padding-bottom: clamp(0.75rem, 1.44509vw + 0.386921875rem, 1.6875rem);
+  margin-bottom: 0;
+  color: #0078d4;
+  font-family:
+    Segoe Sans,
+    sans-serif;
+  font-size: 2.25rem;
+  line-height: 122.222%;
+}
+[data-theme="dark"] .l-title h2 {
+  color: #4796e8;
+}
+@media screen and (min-width: 1540px) {
+  .l-title h2 {
+    font-size: 2.5vw;
+  }
+}
+@media screen and (min-width: 1320px) {
+  .l-title h2 {
+    top: 0;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .l-title h2 {
+    padding-bottom: 1.875vw;
+  }
+}
+.l-title a.l-btn {
+  margin-top: 1.5rem;
+  font-family:
+    Segoe Sans,
+    sans-serif;
+}
+.l-title a.l-btn:hover {
+  text-decoration: none;
+}
+@media screen and (min-width: 1441px) {
+  .l-title a.l-btn {
+    margin-top: 1.6666666667vw;
+  }
+}
+.aspect-box {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.aspect-box canvas,
+.aspect-box iframe,
+.aspect-box img,
+.aspect-box svg,
+.aspect-box video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.aspect-box:before {
+  display: block;
+  padding-top: calc(var(--aspect-ratio) * 100%);
+  content: "";
+}
+a.l-btn {
+  display: inline-block;
+  min-width: 9.4375rem;
+  min-height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #0078d4;
+  box-shadow: none;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 120%;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+@media screen and (min-width: 1540px) {
+  a.l-btn {
+    font-size: 1.3888888889vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  a.l-btn {
+    display: inline-block;
+  }
+}
+@media screen and (min-width: 1540px) {
+  a.l-btn {
+    min-width: 10.4861111111vw;
+    min-height: 1.6666666667vw;
+    padding: 0.5555555556vw 0.8333333333vw;
+    border-radius: 0.5555555556vw;
+  }
+}
+a.l-btn:hover {
+  background-color: #104e90;
+  color: #fff;
+}
+a.l-btn:focus-visible {
+  outline: 0.0625rem solid #000;
+  outline-offset: 0.1875rem;
+}
+.msf .container {
+  max-width: 90rem;
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+@media screen and (min-width: 1320px) {
+  .msf .container {
+    padding: 0 8.5rem;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .msf .container {
+    max-width: 100vw;
+    padding: 0 9.4444444444vw;
+  }
+}
+
+/* Common style ends */
+
+.msf.content-block {
+  padding: 1.5rem 0 2.375rem;
+}
+@media screen and (min-width: 991px) {
+  .msf.content-block {
+    padding: 3rem 0;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .msf.content-block {
+    padding: 3.3333333333vw 0;
+  }
+}
+.msf.content-block .content-block__wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2.3125rem;
+}
+@media screen and (min-width: 991px) {
+  .msf.content-block .content-block__wrapper {
+    flex-direction: row;
+    gap: 6.25rem;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .msf.content-block .content-block__wrapper {
+    gap: 6.9444444444vw;
+  }
+}
+.msf.content-block .content-block__wrapper article {
+  margin: auto 0;
+}
+@media screen and (min-width: 991px) {
+  .msf.content-block .content-block__wrapper article {
+    max-width: 31.375rem;
+    flex-basis: 44.5035460993%;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .msf.content-block .content-block__wrapper article {
+    max-width: 44.5035460993%;
+  }
+}
+.msf.content-block .content-block__wrapper article p {
+  color: #000;
+  font-family:
+    Segoe Sans,
+    sans-serif;
+  font-size: 1.25rem;
+  line-height: 140%;
+}
+[data-theme="dark"] .msf.content-block .content-block__wrapper article p {
+  color: #fff;
+}
+@media screen and (min-width: 1540px) {
+  .msf.content-block .content-block__wrapper article p {
+    font-size: 1.3888888889vw;
+  }
+}
+.msf.content-block .content-block__wrapper figure img {
+  border-radius: 0.75rem;
+}
+.msf.content-block .content-block__wrapper figure.aspect-box {
+  --aspect-ratio: 378/566;
+}
+@media screen and (min-width: 991px) {
+  .msf.content-block .content-block__wrapper figure {
+    max-width: 35.375rem;
+    flex-basis: 50.1773049645%;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .msf.content-block .content-block__wrapper figure {
+    max-width: 50.1773049645%;
+  }
+}
+@media screen and (min-width: 991px) {
+  .msf.content-block.content-block--inverse .content-block__wrapper {
+    flex-direction: row-reverse;
+  }
+}

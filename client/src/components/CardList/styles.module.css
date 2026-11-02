@@ -1,0 +1,45 @@
+.container {
+  max-width: 90rem;
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+@media screen and (min-width: 1320px) {
+  .container {
+    padding: 0 8.5rem;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .container {
+    max-width: 100vw;
+    padding: 0 9.4444444444vw;
+  }
+}
+
+.section.section--card-list {
+  padding: 1.5rem 0 2.375rem;
+}
+@media screen and (min-width: 991px) {
+  .section.section--card-list {
+    padding: 3rem 0;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .section.section--card-list {
+    padding: 3.3333333333vw 0;
+  }
+}
+.msf.card-list {
+  display: grid;
+  gap: 1.614375rem;
+}
+@media screen and (min-width: 768px) {
+  .msf.card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 991px) {
+  .msf.card-list {
+    gap: 2.4375rem 2.25rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

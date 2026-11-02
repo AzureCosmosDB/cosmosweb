@@ -1,0 +1,38 @@
+[
+    {
+      "name": "Andrew Evans",
+      "title": "Principal Engineer and Tech Lead",
+      "company": "CarMax",
+      "youtube_url": "https://www.youtube.com/embed/xEwVUAz43QA?list=PLmamF3YkHLoLQhnFsKWhtKu_Tp0uXPFdn",
+      "description": "How CarMax Uses Azure Cosmos DB to Power Vehicle Appraisals"
+    },
+    {
+      "name": "Mike Calvin",
+      "title": "CTO",
+      "company": "Kinectify",
+      "youtube_url": "https://www.youtube.com/embed/4yJN32To8E4?list=PLmamF3YkHLoLQhnFsKWhtKu_Tp0uXPFdn",
+      "description": "Scaling Anti-Money Laundering Compliance with Azure Cosmos DB"
+    },
+    {
+      "name": "Harpreet Gill",
+      "title": "Senior Manager of Research Software Engineering",
+      "company": "Children’s Mercy Research Institute",
+      "youtube_url": "https://www.youtube.com/embed/XdRM8tEpEzU?list=PLmamF3YkHLoLQhnFsKWhtKu_Tp0uXPFdn",
+      "description": "Empowering Health Research with Azure Cosmos DB"
+    },
+    {
+      "name": "Vin Kamat",
+      "title": "Principal Architect",
+      "company": "H&R Block",
+      "youtube_url": "https://www.youtube.com/embed/4pA95rJI85E?list=PLmamF3YkHLoLQhnFsKWhtKu_Tp0uXPFdn",
+      "description": "How H&R Block Uses Azure Cosmos DB to Power AI and Scale for Peak Tax Season"
+    },
+    {
+      "name": "Kunal Mukerjee",
+      "title": "Vice President of Technology Strategy and Architecture",
+      "company": "DocuSign",
+      "youtube_url": "https://www.youtube.com/embed/HS7XgZ2wIUI?list=PLmamF3YkHLoLQhnFsKWhtKu_Tp0uXPFdn",
+      "description": "How DocuSign Uses Azure Cosmos DB to Power Agreement Intelligence at Scale"
+    }
+  ]
+  

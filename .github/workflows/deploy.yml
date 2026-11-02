@@ -1,0 +1,50 @@
+name: Deploy Docusaurus to App Service Slot
+
+on:
+  push:
+    branches:
+      - v2  # Trigger deployment when you push to the v2 branch
+
+permissions:
+  id-token: write  # Required for OIDC authentication
+  contents: read   # Needed for checking out the repo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
+      with:
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: |
+        cd client
+        npm install --legacy-peer-deps
+
+    - name: Build Docusaurus
+      run: |
+        cd client
+        npm run build  # Builds the static site, output is in client/build
+
+    # ✅ Azure Login using OIDC
+    - name: Login to Azure using OIDC
+      uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1.6.1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    # ✅ Deploy to Azure Web App
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@5cfb776471c748b351e1ebf5770e208a54ace016 # v2.2.19
+      with:
+        app-name: cosmos-web
+        package: ./client/build
+      env:
+        DEBUG: true  # Enable debug logging to capture more details
