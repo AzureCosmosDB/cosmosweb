@@ -1,42 +1,94 @@
 [
   {
-    "title": "Thank you from all of us at Azure Cosmos DB Conf 2025!",
-    "date": "April 16, 2025",
-    "content": "That's a wrap for Azure Cosmos DB Conf 2025.  We appreciate your continued support and look forward to sharing more great Azure Cosmos DB content for you in the future.  Please head to the <a href='/agenda' target='_blank' rel='noopener noreferrer'>agenda page</a> to see all of the recorded sessions from the event.  We hope to see you at Azure Cosmos DB Conf 2026!"
+    "title": "Still Open — Skills Challenge Runs Through May 8",
+    "date": "May 1, 2026",
+    "content": "<p class='keynote-intro'>Missed it during the conference? <strong>You still have time.</strong> The <strong>Azure Cosmos DB Conf 2026 Cloud Skills Challenge</strong> is open through <strong>May 8, 2026</strong> — complete the modules and submit your entry to qualify for a <strong>100% discount</strong> on a DP-420 certification exam voucher (one of 500 available).</p><p class='keynote-cta'><a class='keynote-cta-button' href='https://aka.ms/CosmosDBConfChallenge' target='_blank' rel='noopener noreferrer'>Start the Skills Challenge</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'><a href='https://aka.ms/CosmosDBSkillsChallengeSweepstakesEntry' target='_blank' rel='noopener noreferrer'>Submit sweepstakes entry</a> by May 8, 2026</p>",
+    "event_date": "May 8, 2026"
   },
   {
-    "title": "Live and On-Demand Agenda Now Available",
-    "date": "April 10, 2025",
-    "content": "We’re excited to share that our complete live and on-demand agenda is now available! Head over to our <a href='/agenda' target='_blank' rel='noopener noreferrer'>agenda page</a> to browse all the sessions, speaker details, and schedules."
+    "title": "That's a Wrap — Thank You, Cosmos Conf 2026!",
+    "date": "April 28, 2026",
+    "content": "<p class='keynote-intro'>And just like that, <strong>Azure Cosmos DB Conf 2026</strong> is in the books. A huge <strong>thank you</strong> to everyone who tuned in today — and to the <strong>incredible speakers</strong>, the production crew, and the partners who made the show happen.</p><p class='keynote-intro'>A special shout-out to our <strong>community</strong> who showed up in the YouTube live chat and kept the energy going all day long. You make this event what it is.</p><p class='keynote-intro'>Missed something? <strong>Every session is now available on demand.</strong> Browse the <a class='blue' href='#speakers'>speaker cards</a> to find each session embedded next to its speaker, or watch the full <strong>Cosmos Conf 2026 playlist</strong> on YouTube.</p><p class='keynote-cta'><a class='keynote-cta-button' href='https://aka.ms/CosmosConf26Playlist' target='_blank' rel='noopener noreferrer'>Watch the Full Playlist on YouTube</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'><a href='#speakers'>Browse speakers &amp; sessions</a> · <a href='https://aka.ms/CosmosConf2026Survey' target='_blank' rel='noopener noreferrer'>Share your feedback</a></p>",
+    "event_date": "April 28, 2026"
   },
   {
-    "title": "Azure Cosmos DB Conf 2025 Blog Announcement",
-    "date": "March 24, 2025",
-    "content": "The official Azure Cosmos DB blog has published the announcement for Azure Cosmos DB Conf 2025. <a href='https://devblogs.microsoft.com/cosmosdb/azure-cosmos-db-conf-2025-learn-build-and-connect-with-the-community/' target='_blank' rel='noopener noreferrer'>Read the blog post</a> to see what’s planned and how to register for free."
+    "title": "Today Is the Day — Welcome to Azure Cosmos DB Conf 2026!",
+    "date": "April 28, 2026",
+    "content": "<p class='keynote-intro'>It's go time. <strong>Azure Cosmos DB Conf 2026</strong> kicks off today with a <strong>5-hour live broadcast</strong> from <strong>9:00 AM to 2:00 PM PDT</strong>, plus <strong>13 on-demand sessions</strong> ready to watch right after.</p><p class='keynote-intro'>Read the welcome post from the team for everything you need to know about today's show — the keynote, featured guests, what to expect, and how to get the most out of the day.</p><p class='keynote-cta'><a class='keynote-cta-button' href='https://devblogs.microsoft.com/cosmosdb/welcome-to-azure-cosmos-db-conf-2026/' target='_blank' rel='noopener noreferrer'>Read: Welcome to Azure Cosmos DB Conf 2026</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'><a href='#stream'>Jump to the live stream</a> · <a href='#agenda'>View the agenda</a></p>",
+    "event_date": "April 28, 2026"
   },
   {
-    "title": "Our Sizze Reel is Live!",
-    "date": "March 18, 2025",
-    "content": "Hear from the Microsoft team why you should join as at Azure Cosmos DB Conf 2025. <a href='https://youtu.be/eeJzDF9huYU' target='_blank' rel='noopener noreferrer'>Watch the Sizzle Reel</a> to get a sneak peek of what’s in store!"
+    "title": "The Agenda Is Live — See What's Happening on April 28",
+    "date": "April 21, 2026",
+    "content": "<p class='keynote-intro'>The full <strong>Azure Cosmos DB Conf 2026</strong> agenda is here. We've locked in the running order for a packed <strong>5-hour live broadcast</strong> — 9:00 AM to 2:00 PM PDT — plus <strong>13 on-demand sessions</strong> you can watch any time.</p><p class='keynote-intro'>The day kicks off with the keynote featuring <strong>Kirill Gavrylyuk</strong> and guests from <strong>Vercel, OpenAI, Walmart,</strong> and <strong>AMD</strong>, followed by deep-dives on AI agent memory, hybrid search, change feed, query optimization, security, cost engineering, and more.</p><p class='keynote-cta'><a class='keynote-cta-button' href='#agenda'>View the Agenda</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'><a href='https://aka.ms/cosmosconfreg' target='_blank' rel='noopener noreferrer'>Register for free</a> · April 28, 2026</p>",
+    "event_date": "April 28, 2026"
   },
   {
-    "title": "Meet the Speakers",
-    "date": "March 17, 2025",
-    "content": "Get ready to meet the incredible lineup of speakers joining us for Azure Cosmos DB Conf 2025! <a href='/speakers' target='_blank' rel='noopener noreferrer'>Check out the speaker list</a> and see who’s presenting this year."
+    "title": "Take the Cloud Skills Challenge — Earn a Free DP-420 Voucher",
+    "date": "April 20, 2026",
+    "content": "<div style='position:relative;width:100%;padding-bottom:56.25%;height:0;margin-bottom:1rem;border-radius:10px;overflow:hidden;'><iframe style='position:absolute;top:0;left:0;width:100%;height:100%;border:0;' src='https://www.youtube.com/embed/wDFTJWB2Q3U' title='Cosmos Conf Cloud Skills Challenge' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe></div><p class='keynote-intro'>Join <strong>Jay Gordon</strong> and <strong>Patty Chow</strong> for a walkthrough of the <strong>Azure Cosmos DB Conf 2026 Cloud Skills Challenge</strong> — your chance to level up your NoSQL skills, build real-world apps, and qualify for a <strong>100% discount</strong> on a DP-420 certification exam voucher.</p><p class='keynote-intro'>Complete all modules by <strong>May 8, 2026</strong> and submit the entry form to be eligible for one of <strong>500 vouchers</strong>.</p><p class='keynote-cta'><a class='keynote-cta-button' href='https://aka.ms/CosmosDBConfChallenge' target='_blank' rel='noopener noreferrer'>Start the Skills Challenge</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'><a href='https://aka.ms/CosmosDBSkillsChallengeSweepstakesEntry' target='_blank' rel='noopener noreferrer'>Submit sweepstakes entry</a> by May 8, 2026</p>",
+    "event_date": "April 28, 2026"
   },
   {
-    "title": "Session Agenda Coming Soon",
-    "date": "March 15, 2025",
-    "content": "The full session agenda is almost here! Stay tuned for a detailed schedule featuring live and on-demand content. <a href='/agenda' target='_blank' rel='noopener noreferrer'>View the agenda</a> as it updates."
+    "title": "Our Keynote Lineup is Coming Together!",
+    "date": "April 16, 2026",
+    "content": "<p class='keynote-intro'>We've got an incredible keynote lineup for Azure Cosmos DB Conf 2026. The keynote will feature conversations with the builders behind some of today's most impactful platforms — sharing how they're thinking about modern applications, AI, and data at scale.</p><p class='keynote-section-label'>Keynote Speakers</p><div class='keynote-grid'><figure class='keynote-person'><img src='/img/speakers/kirill-g.jpg' alt='Kirill Gavrylyuk'/><figcaption><a class='keynote-name' href='https://www.linkedin.com/in/kirillgavrylyuk/' target='_blank' rel='noopener noreferrer'>Kirill Gavrylyuk</a><span class='keynote-role'>VP, Azure Cosmos DB · Microsoft</span><span class='keynote-role'><strong>Host</strong></span></figcaption></figure><figure class='keynote-person'><img src='/img/speakers/andrew-liu.jpg' alt='Andrew Liu'/><figcaption><a class='keynote-name' href='https://www.linkedin.com/in/aliuy/' target='_blank' rel='noopener noreferrer'>Andrew Liu</a><span class='keynote-role'>Principal Group PM Manager · Azure Cosmos DB</span><span class='keynote-role'><strong>Live Demo</strong></span></figcaption></figure></div><hr class='keynote-divider'/><p class='keynote-section-label'>Featured Guests</p><div class='keynote-grid'><figure class='keynote-person'><img src='/img/speakers/guillermo-rauch.jpg' alt='Guillermo Rauch'/><figcaption><a class='keynote-name' href='https://www.linkedin.com/in/rauchg/' target='_blank' rel='noopener noreferrer'>Guillermo Rauch</a><span class='keynote-role'>CEO · Vercel</span></figcaption></figure><figure class='keynote-person'><img src='/img/speakers/jon-lee.jpg' alt='Jonathan Lee'/><figcaption><a class='keynote-name' href='https://www.linkedin.com/in/jonathan-lee-78824166/' target='_blank' rel='noopener noreferrer'>Jonathan Lee</a><span class='keynote-role'>Member of Technical Staff · OpenAI</span></figcaption></figure><figure class='keynote-person'><img src='/img/speakers/sid-anand.jpg' alt='Sid Anand'/><figcaption><a class='keynote-name' href='https://www.linkedin.com/in/siddharthanand/' target='_blank' rel='noopener noreferrer'>Sid Anand</a><span class='keynote-role'>Technical Fellow · Walmart</span><span class='keynote-role'><strong>Full Session</strong></span></figcaption></figure><figure class='keynote-person'><img src='/img/speakers/steve-berg.jpg' alt='Steve Berg'/><figcaption><a class='keynote-name' href='https://www.linkedin.com/in/berg-steve/' target='_blank' rel='noopener noreferrer'>Steve Berg</a><span class='keynote-role'>CVP &amp; GM, Server CPU Cloud · AMD</span></figcaption></figure></div><p class='keynote-cta'><a class='keynote-cta-button' href='https://aka.ms/cosmosconfreg' target='_blank' rel='noopener noreferrer'>Register for Free</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'>Join us live on April 28, 2026</p>",
+    "event_date": "April 28, 2026"
   },
   {
-    "title": "Keynote Speaker Revealed",
-    "date": "March 10, 2025",
-    "content": "Kirill Gavrylyuk, VP of Azure Cosmos DB, will deliver the keynote, sharing exciting announcements and the future of AI-driven databases."
+    "title": "Skills Challenge 2026: Earn a Free DP-420 Exam Voucher",
+    "date": "April 16, 2026",
+    "content": "<a href='https://aka.ms/CosmosDBConfChallenge' target='_blank' rel='noopener noreferrer'><img class='news-hero-image' src='/img/conf/skilling_01.png' alt='Azure Cosmos DB Conf 2026 Skills Challenge'/></a><p class='keynote-intro'><strong>Azure Cosmos DB Conf 2026 Skills Challenge: Build &amp; Optimize Cloud-Native Apps with Azure Cosmos DB</strong></p><p class='keynote-intro'>Build the skills to design, develop, and optimize globally distributed applications with Azure Cosmos DB. Complete all modules in the Cosmos DB Conf Skills Challenge 2026 to qualify for a <strong>100% discount</strong> on a DP-420 Azure Cosmos DB Developer Specialty certification exam voucher.</p><p class='keynote-intro'>Finish the challenge and enter to win one of <strong>500 vouchers</strong> by submitting the entry form by <strong>May 8, 2026</strong>.</p><p class='keynote-cta'><a class='keynote-cta-button' href='https://aka.ms/CosmosDBConfChallenge' target='_blank' rel='noopener noreferrer'>Start the Skills Challenge</a></p><p class='keynote-cta' style='font-size:13px;opacity:0.75;margin-top:10px;'>Then <a href='https://aka.ms/CosmosDBSkillsChallengeSweepstakesEntry' target='_blank' rel='noopener noreferrer'>submit your entry</a> by May 8, 2026</p>",
+    "event_date": "April 28, 2026"
   },
   {
-    "title": "Azure Cosmos DB Conf 2025 CFP Closed!",
-    "date": "Feb 25, 2025",
-    "content": "Azure Cosmos DB Conf 2025 Call for Papers (CFP) is now closed. Thank you to all who submitted their proposals!"
+    "title": "The Countdown to Azure Cosmos DB Conf 2026 Starts Now",
+    "date": "March 11, 2026",
+    "content": "April 28 is coming fast. We've published a full preview of what to expect — from cutting-edge AI agent architectures to production-hardened data modeling and everything in between. <a href='https://devblogs.microsoft.com/cosmosdb/azure-cosmos-db-conf-2026-preview/' target='_blank' rel='noopener noreferrer'>Read the preview</a>. Also, want in on the action early? The <strong>#nosql</strong> channel on the <a href='https://aka.ms/open-source-discord' target='_blank' rel='noopener noreferrer'>Azure Open Source Discord</a> is live — connect with the community, talk sessions, and get hyped with us.",
+    "event_date": "April 28, 2026"
+  },
+  {
+    "title": "Meet the Speakers for Azure Cosmos DB Conf 2026!",
+    "date": "March 4, 2026",
+    "content": "We're proud to announce our speaker lineup for Azure Cosmos DB Conf 2026, presented in partnership with <strong>AMD</strong>! Thanks to AMD's support, we've expanded the show to a full 5 hours — 9:00 AM to 2:00 PM PDT. This year's roster brings together world-class speakers from across the community — covering AI and RAG architectures, vector search, MCP servers, security, data modeling, distributed systems, and more. <a href='#speakers'>Meet the speakers</a> and see who's joining us on April 28, 2026.",
+    "event_date": "April 28, 2026"
+  },
+  {
+    "title": "Welcome AMD — Our Headline Partner for Azure Cosmos DB Conf 2026!",
+    "date": "February 27, 2026",
+    "content": "We're excited to welcome <strong>AMD</strong> as a partner for Azure Cosmos DB Conf 2026! Thank you, AMD, for your support of the Azure Cosmos DB community. <a href='https://aka.ms/cosmosconfreg' target='_blank' rel='noopener noreferrer'>Register now</a> to join us on April 28, 2026.",
+    "event_date": "April 28, 2026"
+  },
+  {
+    "title": "Azure Cosmos DB Conf 2026 Call for Proposals Has Closed!",
+    "date": "February 23, 2026",
+    "content": "The Azure Cosmos DB Conf 2026 Call for Proposals is now closed. Thank you to everyone who submitted a session proposal! We're reviewing submissions and expect to announce the first wave of speakers within a few weeks. In the meantime, <a href='https://aka.ms/cosmosconfreg' target='_blank' rel='noopener noreferrer'>register now</a> to receive event updates and reminders.",
+    "event_date": "April 28, 2026"
+  },
+  {
+    "title": "Azure Cosmos DB Conf 2026 Call for Proposals Closing Soon!",
+    "date": "February 17, 2026",
+    "content": "The Azure Cosmos DB Conf 2026 Call for Proposals closes soon on February 21, 2026. This is your last chance to submit your session ideas and share your real-world experiences, demos, and lessons with the global Azure Cosmos DB community on April 28, 2026. Don’t miss the opportunity to be part of the lineup. <a href='https://aka.ms/cosmosconfcfp' target='_blank' rel='noopener noreferrer'>Submit your proposal here</a>.",
+    "cfp_url": "https://aka.ms/cosmosconfcfp",
+    "cfp_deadline": "February 21, 2026",
+    "event_date": "April 28, 2026"
+  },
+  {
+    "title": "Azure Cosmos DB Conf 2026 Call for Proposals Now Open!",
+    "date": "January 15, 2026",
+    "content": "The Azure Cosmos DB Conf 2026 Call for Proposals is now open through February 21, 2026. Submit your session ideas and share your real-world experiences, demos, and lessons with the global Azure Cosmos DB community on April 28, 2026. <a href='https://aka.ms/cosmosconfcfp' target='_blank' rel='noopener noreferrer'>Submit a proposal</a>.",
+    "cfp_url": "https://aka.ms/cosmosconfcfp",
+    "cfp_deadline": "February 21, 2026",
+    "event_date": "April 28, 2026"
+  },
+  {
+    "title": "Register today for Azure Cosmos DB Conf 2026",
+    "date": "January 14, 2026",
+    "content": "Registration is open. <a href='https://aka.ms/cosmosconfreg' target='_blank' rel='noopener noreferrer'>Register now</a> to receive event updates and reminders."
+  },
+  {
+    "title": "Coming Soon: Azure Cosmos DB Conf 2026!",
+    "date": "January 5, 2026",
+    "content": "Announcements are on the way, including the Call for Proposals. Save the date for April 28, 2026, and get ready to share, learn, and connect with the Azure Cosmos DB community."
   }
 ]
