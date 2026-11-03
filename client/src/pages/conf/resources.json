@@ -1,27 +1,110 @@
 [
   {
-    "title": "Azure Cosmos DB Conf 2025 Evaluation",
-    "url": "https://aka.ms/EvalCosmosConf2025",
-    "description": "Help us shape next year’s event—take a moment to fill out our conference evaluation form!"
+    "title": "Azure Cosmos DB",
+    "description": "Guidance for building globally distributed apps, tuning performance/cost, and exploring AI + vector search scenarios.",
+    "items": [
+      {
+        "title": "Azure Cosmos DB Documentation",
+        "url": "https://learn.microsoft.com/azure/cosmos-db/",
+        "description": "Read the official docs for guidance, tutorials, and reference material."
+      },
+      {
+        "title": "Azure Cosmos DB Introduction",
+        "url": "https://learn.microsoft.com/azure/cosmos-db/introduction",
+        "description": "High-level overview, core concepts, and when to use Cosmos DB."
+      },
+      {
+        "title": "Azure Cosmos DB Emulator",
+        "url": "https://learn.microsoft.com/azure/cosmos-db/emulator",
+        "description": "Run Cosmos DB locally for development and testing."
+      },
+      {
+        "title": "Vector search in Azure Cosmos DB for NoSQL",
+        "url": "https://learn.microsoft.com/azure/cosmos-db/vector-search",
+        "description": "Learn about vector indexing and vector search for AI/RAG scenarios."
+      },
+      {
+        "title": "Cosmos DB Well-Architected guidance",
+        "url": "https://learn.microsoft.com/azure/well-architected/service-guides/cosmos-db",
+        "description": "Reliability, security, performance, and cost guidance for production apps."
+      },
+      {
+        "title": "Azure Cosmos DB Samples Gallery",
+        "url": "https://azurecosmosdb.github.io/gallery/",
+        "description": "Patterns and sample content for Azure Cosmos DB."
+      },
+      {
+        "title": "Azure Cosmos DB on GitHub",
+        "url": "https://github.com/AzureCosmosDB",
+        "description": "Samples, tools, and community projects from the Cosmos DB team."
+      },
+      {
+        "title": "Azure Cosmos DB on YouTube",
+        "url": "http://aka.ms/AzureCosmosDBYouTube",
+        "description": "Tutorials, use cases, and event recordings."
+      },
+      {
+        "title": "Microsoft Learn Training: Build Generative AI applications with Azure Cosmos DB",
+        "url": "https://aka.ms/CosmosConfGenAIModule",
+        "description": "Hands-on learning module for building AI-driven apps with Cosmos DB for NoSQL."
+      }
+    ]
   },
   {
-    "title": "Microsoft Learn Training: Build Generative AI applications with Azure Cosmos DB",
-    "url": "https://aka.ms/CosmosConfGenAIModule",
-    "description": "Unlock the power of Azure Cosmos DB for NoSQL and learn to build AI-driven applications in this hands-on learning module!"
+    "title": "Azure DocumentDB (with MongoDB compatibility)",
+    "description": "Learn about Azure DocumentDB, how it relates to Cosmos DB, and how to migrate workloads.",
+    "items": [
+      {
+        "title": "Azure DocumentDB (with MongoDB compatibility) overview",
+        "url": "https://learn.microsoft.com/azure/documentdb/overview",
+        "description": "What Azure DocumentDB is, how it scales, and compatibility details."
+      },
+      {
+        "title": "Azure DocumentDB FAQ",
+        "url": "https://learn.microsoft.com/azure/documentdb/faq",
+        "description": "Common questions about features, pricing, and how it relates to Cosmos DB."
+      },
+      {
+        "title": "Azure DocumentDB release notes",
+        "url": "https://learn.microsoft.com/azure/documentdb/release-notes",
+        "description": "Track service updates, new features, and notable changes over time."
+      },
+      {
+        "title": "Azure DocumentDB vs Azure Cosmos DB decision guide",
+        "url": "https://learn.microsoft.com/azure/documentdb/compare-cosmos-db",
+        "description": "Compare scaling model, cost model, global distribution, and query focus."
+      },
+      {
+        "title": "Migrate from Azure Cosmos DB for MongoDB to Azure DocumentDB",
+        "url": "https://learn.microsoft.com/azure/cosmos-db/mongodb/how-to-migrate-documentdb",
+        "description": "Migration guidance for moving from Cosmos DB for MongoDB (vCore) to Azure DocumentDB."
+      }
+    ]
   },
   {
-    "title": "Azure Cosmos DB Documentation",
-    "url": "https://learn.microsoft.com/azure/cosmos-db/",
-    "description": "Read the official docs for guidance, tutorials, and reference material."
-  },
-  {
-    "title": "Azure Cosmos DB Samples Gallery",
-    "url": "https://azurecosmosdb.github.io/gallery/",
-    "description": "Your best source for patterns and content for Azure Cosmos DB"
-  },
-  {
-    "title": "Azure Cosmos DB on YouTube",
-    "url": "http://aka.ms/AzureCosmosDBYouTube",
-    "description": "The Azure Cosmos DB YouTube channel features tutorials, use cases, and event recordings"
+    "title": "DocumentDB (open source)",
+    "description": "Explore and run the open-source DocumentDB engine that powers Azure DocumentDB.",
+    "items": [
+      {
+        "title": "DocumentDB OSS overview (engine powering Azure DocumentDB)",
+        "url": "https://learn.microsoft.com/azure/documentdb/oss",
+        "description": "Overview of the open-source DocumentDB project and how it works."
+      },
+      {
+        "title": "Get started with DocumentDB OSS (Docker)",
+        "url": "https://learn.microsoft.com/azure/documentdb/oss#getting-started-with-documentdb",
+        "description": "Run DocumentDB locally using Docker and connect with psql."
+      },
+      {
+        "title": "DocumentDB open-source repository",
+        "url": "https://github.com/documentdb/documentdb",
+        "description": "The open-source DocumentDB engine source code (MIT-licensed)."
+      },
+      {
+        "title": "DocumentDB project website",
+        "url": "https://documentdb.io/",
+        "description": "Project homepage for the open-source DocumentDB ecosystem."
+      }
+    ]
   }
 ]

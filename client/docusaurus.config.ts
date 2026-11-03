@@ -2,10 +2,32 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+function readBool(envValue: string | undefined, defaultValue: boolean): boolean {
+  if (envValue == null) return defaultValue;
+
+  const normalized = envValue.trim().toLowerCase();
+  if (['1', 'true', 'yes', 'on'].includes(normalized)) return true;
+  if (['0', 'false', 'no', 'off'].includes(normalized)) return false;
+
+  return defaultValue;
+}
+
+function readString(envValue: string | undefined): string | null {
+  const value = envValue?.trim();
+  return value ? value : null;
+}
+
+const showAgendaNav = readBool(process.env.CONF_SHOW_AGENDA, true);
+
 const config: Config = {
   title: 'Azure Cosmos DB Dev Home',
   tagline: 'Infinite Scale, Instant Impact!',
   favicon: 'img/favicon.ico',
+
+  clientModules: [
+    './src/clientModules/confMobileHashActive.ts',
+    './src/clientModules/clientErrorLogger.ts',
+  ],
 
   url: 'https://developer.azurecosmosdb.com',
   baseUrl: '/',
@@ -15,6 +37,9 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+  // `/conf` is a custom TSX page; Docusaurus' anchor checker can't statically detect
+  // anchors rendered by React components, so these are false positives.
+  onBrokenAnchors: 'ignore',
 
   i18n: {
     defaultLocale: 'en',
@@ -25,6 +50,10 @@ const config: Config = {
     [
       'classic',
       {
+        gtag: {
+          trackingID: 'G-06VJPSGDCQ',
+          anonymizeIP: true,
+        },
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl:
@@ -36,8 +65,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -49,28 +76,31 @@ const config: Config = {
     ],
   ],
 
-  plugins: [
-    [
-      '@docusaurus/plugin-ideal-image',
-      {
-        quality: 70,
-        max: 1030,
-        min: 640,
-        steps: 2,
-        disableInDev: false,
-      },
-    ],
-    [
-      '@docusaurus/plugin-google-analytics',
-      {
-        trackingID: 'G-06VJPSGDCQ',
-        anonymizeIP: true,
-      },
-    ],
-  ],
+  plugins: [],
+
+  // Values here are serialized into the client bundle and are safe to read in the browser.
+  // Use these for `/conf` feature toggles so we don't rely on `process` being defined client-side.
+  customFields: (() => {
+    const conf: Record<string, unknown> = {};
+
+    // Only set overrides when the env var is explicitly provided.
+    // Defaults live in `src/pages/conf/confSettings.json`.
+    if (process.env.CONF_SHOW_STREAM !== undefined) {
+      conf.showStream = readBool(process.env.CONF_SHOW_STREAM, true);
+    }
+    if (process.env.CONF_SHOW_AGENDA !== undefined) {
+      conf.showAgenda = readBool(process.env.CONF_SHOW_AGENDA, true);
+    }
+    if (process.env.CONF_STREAM_EMBED_URL !== undefined) {
+      conf.streamEmbedUrl = readString(process.env.CONF_STREAM_EMBED_URL);
+    }
+
+    return { conf };
+  })(),
 
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    // Default social preview image (must exist under /static).
+    image: 'img/conf/AzureCosmosDBConf2026_Hero_Landscape.png',
     navbar: {
       title: 'Developer Home',
       logo: {
@@ -96,59 +126,57 @@ const config: Config = {
               className: 'mobile-only',
             },
             {
-              label: 'About Azure Cosmos DB Conf',
-              to: '/conf#about',
-              activeBaseRegex: '^/conf#about$',
+              label: 'Cloud Skills Challenge',
+              to: '/conf#cloud-skills',
+              activeBaseRegex: '^$',
             },
             {
               label: 'News',
               to: '/conf#news',
-              activeBaseRegex: '^/conf#news$',
+              // Prevent double-highlighting (e.g. Conf Home + News) in the mobile menu.
+              // Docusaurus' active matching is path-based and doesn't handle hash-only routes well.
+              activeBaseRegex: '^$',
             },
-            {
-              label: 'Register',
-              href: 'https://developer.microsoft.com/en-us/reactor/events/24779/',
-              // no activeBaseRegex needed
-            },
-            {
-              label: 'Agenda',
-              to: '/agenda',
-              activeBaseRegex: '^/agenda/?$',
-            },
+            ...(showAgendaNav
+              ? [
+                  {
+                    label: 'Agenda',
+                    to: '/conf#agenda',
+                    activeBaseRegex: '^$',
+                  },
+                ]
+              : []),
             {
               label: 'Speakers',
-              to: '/speakers',
-              activeBaseRegex: '^/speakers/?$',
-            },
-            {
-              label: 'Customer Interviews',
-              to: '/speakers/interviews',
-              activeBaseRegex: '^/speakers/interviews/?$',
+              to: '/conf#speakers',
+              activeBaseRegex: '^$',
             },
             {
               label: 'Resources',
-              to: '/conf/resources',
-              activeBaseRegex: '^/conf/resources/?$',
+              to: '/conf#resources',
+              activeBaseRegex: '^$',
             },
             {
               label: 'Archive',
-              href: '/archive',
-              activeBaseRegex: '^/archive/?$',
+              to: '/conf#archive',
+              activeBaseRegex: '^$',
             },
             {
               label: 'FAQ',
               to: '/conf#faq-section',
-              activeBaseRegex: '^/conf#faq-section$',
+              // Hash-only routes: never mark as active to avoid multiple active links.
+              activeBaseRegex: '^$',
             },
             {
               label: 'Socials',
-              to: '/conf#faq-section',
-              activeBaseRegex: '^/conf#faq-section$',
+              to: '/conf#socials',
+              // Hash-only routes: never mark as active to avoid multiple active links.
+              activeBaseRegex: '^$',
             },
             {
               label: 'Code Of Conduct',
-              to: '/coc',
-              activeBaseRegex: '^/coc/?$',
+              to: '/conf/coc',
+              activeBasePath: '/conf/coc',
             },
           ],
         },
@@ -165,8 +193,16 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: 'https://learn.microsoft.com/en-us/azure/cosmos-db/introduction',
+              label: '📄 Azure Cosmos DB Documentation',
+              href: 'https://learn.microsoft.com/azure/cosmos-db/',
+            },
+            {
+              label: '📄 Azure DocumentDB (with MongoDB compatibility) documentation',
+              href: 'https://learn.microsoft.com/azure/documentdb/',
+            },
+            {
+              label: '📄 Open Source DocumentDB',
+              href: 'https://documentdb.io/',
             },
           ],
         },
@@ -174,20 +210,24 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/azure-cosmos-db',
             },
             {
               label: 'YouTube',
               href: 'http://aka.ms/AzureCosmosDBYouTube',
             },
             {
+              label: 'Discord',
+              href: 'https://aka.ms/open-source-discord',
+            },
+            {
               label: 'X',
               href: 'https://x.com/azurecosmosdb',
             },
             {
-              label: 'LinkedIn',
-              href: 'https://www.linkedin.com/company/azure-cosmos-db',
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
             },
           ],
         },
@@ -195,8 +235,8 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'https://devblogs.microsoft.com/cosmosdb/',
+              label: '📖 Blog',
+              href: 'https://devblogs.microsoft.com/cosmosdb/',
             },
             {
               label: 'GitHub',
@@ -219,7 +259,7 @@ const config: Config = {
     metadata: [
       {
         name: 'twitter:card',
-        content: 'Azure Cosmos DB Dev Home',
+        content: 'summary_large_image',
       },
     ],
   },

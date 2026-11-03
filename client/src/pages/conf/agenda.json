@@ -1,0 +1,206 @@
+{
+  "live": [
+    {
+      "time": "9:00 AM",
+      "title": "Azure Cosmos DB Conf 2026 Keynote",
+      "description": "Kirill hosts a keynote conversation with leaders from Vercel, OpenAI, Walmart, and AMD on building modern applications, AI, and data at planetary scale.",
+      "speakers": [
+        { "name": "Kirill Gavrylyuk", "slug": "kirill-gavrylyuk" },
+        { "name": "Guillermo Rauch", "slug": "guillermo-rauch" },
+        { "name": "Jonathan Lee", "slug": "jonathan-lee" },
+        { "name": "Andrew Liu", "slug": "andrew-liu" },
+        { "name": "Steve Berg", "slug": "steve-berg" }
+      ],
+      "url": "https://youtu.be/lOppojg4QlY"
+    },
+    {
+      "time": "9:48 AM",
+      "title": "Customer Testimonial: The ODP Group (Office Depot) | Mick Feller",
+      "description": "Mick Feller, Distinguished Software Engineer at The ODP Group (Office Depot), on powering an enterprise AI Personal Assistant with Azure Cosmos DB.",
+      "speakers": [{ "name": "Mick Feller", "slug": "mick-feller" }],
+      "url": "https://youtu.be/r8V5PAeD4ME"
+    },
+    {
+      "time": "9:50 AM",
+      "title": "Cosmos DB Best Practices — A Lesson from Spacely Sprockets",
+      "description": "Sid Anand, Technical Fellow at Walmart, uses the Jetsons' Spacely Sprockets as a fun lens for the best practices behind always-on, low-latency, cost-efficient Cosmos DB apps.",
+      "speakers": [{ "name": "Sid Anand", "slug": "sid-anand" }],
+      "url": "https://youtu.be/Yw65J4fRVj0"
+    },
+    {
+      "time": "10:15 AM",
+      "title": "Performance-Boosting Memory Patterns: Save Tokens, Cut Costs, Increase Speed",
+      "description": "Three production-ready memory patterns in Azure Cosmos DB that help AI systems retain context without blowing up token usage.",
+      "speakers": [{ "name": "Chander Dhall", "slug": "chander-dhall" }],
+      "url": "https://youtu.be/IdK3gm-dZ2k"
+    },
+    {
+      "time": "10:45 AM",
+      "title": "Mastering the Azure Cosmos DB Change Feed: Patterns, Scaling, and Real-World Architectures",
+      "description": "A deep dive into Change Feed internals, consumption models, lease management, and how to debug and scale it in production.",
+      "speakers": [{ "name": "Justine Cocchi", "slug": "justine-cocchi" }],
+      "url": "https://youtu.be/kFqcImlqYYs"
+    },
+    {
+      "time": "11:10 AM",
+      "title": "MultiCloudDB: Write Once. Run Anywhere.",
+      "description": "A sneak preview of a portable Java SDK that runs unchanged across Azure Cosmos DB, Amazon DynamoDB, and Google Cloud Spanner.",
+      "speakers": [{ "name": "Theo van Kraay", "slug": "theo-van-kraay" }],
+      "url": "https://youtu.be/j6RgAfwwD30"
+    },
+    {
+      "time": "11:28 AM",
+      "title": "Powering Azure Cosmos DB with AMD EPYC | Andrew Ruffin",
+      "description": "Andrew Ruffin, Senior Product Manager at AMD, on the modern AMD EPYC processors that power Azure Cosmos DB across the globe.",
+      "speakers": [{ "name": "Andrew Ruffin", "slug": "andrew-ruffin" }],
+      "url": "https://youtu.be/yWP5e4-PWwU"
+    },
+    {
+      "time": "11:30 AM",
+      "title": "Cutting AI Agent Costs with Azure Cosmos DB: The Agent Memory Fabric",
+      "description": "How to unify semantic caching, Change Feed coordination, and optimistic concurrency into a single Agent Memory Fabric that slashes multi-agent costs.",
+      "speakers": [{ "name": "Farah Abdou", "slug": "farah-abdou" }],
+      "url": "https://youtu.be/Wo34Trg0Wyg"
+    },
+    {
+      "time": "12:00 PM",
+      "title": "One Codebase, Any Cloud: Building a Retail Database with OSS and Azure",
+      "description": "Build a retail store database once with MongoDB-compatible APIs and deploy it unchanged on-prem via Kubernetes and fully managed on Azure.",
+      "speakers": [{ "name": "Khelan Modi", "slug": "khelan-modi" }],
+      "url": "https://youtu.be/O9bxsV9TeiI"
+    },
+    {
+      "time": "12:23 PM",
+      "title": "Customer Testimonial: SOUTHWORKS | Johnny Halife",
+      "description": "Johnny Halife, Partner at SOUTHWORKS, on using Azure Cosmos DB as the operational backbone for cloud-native, event-driven customer builds.",
+      "speakers": [{ "name": "Johnny Halife", "slug": "johnny-halife" }],
+      "url": "https://youtu.be/Ay1q7mVOx-c"
+    },
+    {
+      "time": "12:25 PM",
+      "title": "Querying and Indexing in Azure Cosmos DB: The Complete Guide",
+      "description": "A complete tour of the Azure Cosmos DB query engine and indexing system — routing, index types, query metrics, and cost-saving optimizations.",
+      "speakers": [{ "name": "James Codella", "slug": "james-codella" }],
+      "url": "https://youtu.be/vJeklofgJEw"
+    },
+    {
+      "time": "12:58 PM",
+      "title": "Community Spotlight: Big Data Energy | Jess Ramos",
+      "description": "Jess Ramos, founder of Big Data Energy Analytics and LinkedIn Top Voice in Data & AI, on building a community for 500,000+ data and tech professionals.",
+      "speakers": [{ "name": "Jess Ramos", "slug": "jess-ramos" }],
+      "url": "https://youtu.be/UOIo6gWJSNk"
+    },
+    {
+      "time": "1:00 PM",
+      "title": "Behind the Scenes: How Azure Cosmos DB Runs Under the Hood",
+      "description": "A whiteboard walkthrough of Azure Cosmos DB's internals — replica sets, consistent hashing, Request Units, and RU pooling across a global fleet.",
+      "speakers": [{ "name": "Andrew Liu", "slug": "andrew-liu" }],
+      "url": "https://youtu.be/A7Q_wZqUmJc"
+    },
+    {
+      "time": "1:30 PM",
+      "title": "Data Modeling Decisions That Make or Break Your Cosmos DB Application",
+      "description": "Strategies for partition keys, schema design, storage estimation, and managing cross-partition queries before the choices become painful to fix.",
+      "speakers": [{ "name": "Hasan Savran", "slug": "hasan-savran" }],
+      "url": "https://youtu.be/FhgewWmQyBM"
+    }
+  ],
+  "onDemand": [
+    {
+      "title": "Keynote Interview: Vercel's Guillermo Rauch on the Agent Era",
+      "description": "Guillermo Rauch, CEO of Vercel and creator of Next.js, joins Kirill Gavrylyuk on building a developer cloud for the AI agent era.",
+      "speakers": [{ "name": "Guillermo Rauch", "slug": "guillermo-rauch" }],
+      "url": "https://youtu.be/LXys8EPan7U"
+    },
+    {
+      "title": "Keynote Interview: OpenAI on Building at Planetary Scale",
+      "description": "Jonathan Lee from OpenAI's online storage team joins Kirill Gavrylyuk on what it takes for a database to keep up with OpenAI.",
+      "speakers": [{ "name": "Jonathan Lee", "slug": "jonathan-lee" }],
+      "url": "https://youtu.be/CU10bYYjqPA"
+    },
+    {
+      "title": "Keynote Interview: AMD's Steve Berg on the Hardware Behind Cosmos DB",
+      "description": "Steve Berg, CVP & GM Server CPU Cloud at AMD, joins Kirill Gavrylyuk on the AMD EPYC silicon powering Azure Cosmos DB across the globe.",
+      "speakers": [{ "name": "Steve Berg", "slug": "steve-berg" }],
+      "url": "https://youtu.be/eL-Wj27FHmM"
+    },
+    {
+      "title": "Distributed Locks, Sagas, and Coordination with Cosmos DB",
+      "description": "Use Cosmos DB as a coordination layer for locks, leases, leader election, and saga orchestration — and understand the consistency tradeoffs at scale.",
+      "speakers": [{ "name": "Eric Boyd", "slug": "eric-boyd" }],
+      "url": "https://youtu.be/wyBJmeXqbg8"
+    },
+    {
+      "title": "From Rising RU Costs to Stable Performance: A Practical Cosmos DB Case Study",
+      "description": "A real-world walkthrough of diagnosing hot partitions, over-indexing, and throughput issues — and the optimizations that restored stable performance.",
+      "speakers": [{ "name": "Anurag Dutt", "slug": "anurag-dutt" }],
+      "url": "https://youtu.be/YyV2gX9nNN4"
+    },
+    {
+      "title": "Know your user: Identity-aware MCP servers with Cosmos DB",
+      "description": "Build a Python MCP server that authenticates users via Entra ID and stores per-user data securely in Azure Cosmos DB.",
+      "speakers": [{ "name": "Pamela Fox", "slug": "pamela-fox" }],
+      "url": "https://youtu.be/YsYzykMRvgA"
+    },
+    {
+      "title": "Securing Azure Cosmos DB: The Right Way",
+      "description": "A cohesive framework for identity-first access, isolation, encryption, and data protection in cloud data workloads — built from real customer scenarios.",
+      "speakers": [{ "name": "Sudhanshu Khera", "slug": "sudhanshu-khera" }],
+      "url": "https://youtu.be/F4EqbcR80TA"
+    },
+    {
+      "title": "Real-Time Fraud Detection at Scale: Event Sourcing with Azure Cosmos DB",
+      "description": "Combine event sourcing, Change Feed, and event-driven integration to build an auditable real-time fraud detection system across heterogeneous data sources.",
+      "speakers": [{ "name": "Divakar Kumar", "slug": "divakar-kumar" }],
+      "url": "https://youtu.be/2x4Gv4GX3Ao"
+    },
+    {
+      "title": "Beyond Vector Search: What RAG Actually Needs",
+      "description": "Extend a working AI agent with agentic RAG using Cosmos DB hybrid search — vector plus full-text — so it retrieves what actually matters.",
+      "speakers": [{ "name": "Yohan Lasorsa", "slug": "yohan-lasorsa" }],
+      "url": "https://youtu.be/nqaUuSoB6I0"
+    },
+    {
+      "title": "From MongoDB to Azure DocumentDB: A Migration Playbook",
+      "description": "A tour of migration options and tradeoffs for moving MongoDB workloads to Azure DocumentDB.",
+      "speakers": [{ "name": "Sandeep Nair", "slug": "sandeep-nair" }],
+      "url": "https://youtu.be/OYtmeH0TSm4"
+    },
+    {
+      "title": "Designing Cost-Efficient, High-Scale Systems with Azure Cosmos DB: Lessons from Production",
+      "description": "Repeatable data-modeling, TTL, Change Feed, and observability patterns that cut Cosmos DB costs without sacrificing performance or velocity.",
+      "speakers": [{ "name": "Patrick Oguaju", "slug": "patrick-oguaju" }],
+      "url": "https://youtu.be/0jKYbTHTJ5A"
+    },
+    {
+      "title": "Setting Up Your Azure Cosmos DB Development Environment (and Supercharging It with AI)",
+      "description": "A complete Cosmos DB dev workflow — emulator, testing, CI/CD — supercharged with context files and prompting techniques for AI coding assistants.",
+      "speakers": [{ "name": "Sajeetharan Sinnathurai", "slug": "sajeetharan-sinnathurai" }],
+      "url": "https://youtu.be/PrO_42ZC_1M"
+    },
+    {
+      "title": "From JOINs to JSON: Migrating a Real-World ASP.NET App to Cosmos DB with GitHub Copilot",
+      "description": "A prompt-by-prompt playbook for migrating AdventureWorks and an ASP.NET EF Core app to .NET 9 on Cosmos DB using GitHub Copilot and Agent Kit.",
+      "speakers": [{ "name": "Sergiy Smyrnov", "slug": "sergiy-smyrnov" }],
+      "url": "https://youtu.be/zx9cBMB6rOg"
+    },
+    {
+      "title": "Designing High-Scale Event-Driven Microservices with Azure Cosmos DB",
+      "description": "Production patterns for building loosely coupled, event-driven microservices with Cosmos DB Change Feed as the domain event backbone.",
+      "speakers": [{ "name": "Tural Suleymani", "slug": "tural-suleymani" }],
+      "url": "https://youtu.be/i4vUJSmFp9U"
+    },
+    {
+      "title": "Memory for Your Agents: Building Chat History and Semantic Caching with Azure Cosmos DB",
+      "description": "Build chat history and semantic cache containers that give AI agents persistent, context-aware memory while cutting tokens and latency.",
+      "speakers": [{ "name": "Lino Tadros", "slug": "lino-tadros" }],
+      "url": "https://youtu.be/atbRswDKruY"
+    },
+    {
+      "title": "Importing Data into Azure Cosmos DB: Tools, Tradeoffs, and Capacity Planning",
+      "description": "A decision framework for choosing between the Data Migration Tool, Azure Data Factory, and the Spark connector — plus capacity planning for bulk loads.",
+      "speakers": [{ "name": "Rakhi Thejraj", "slug": "rakhi-thejraj" }],
+      "url": "https://youtu.be/CTeI9N-LK4Y"
+    }
+  ]
+}
