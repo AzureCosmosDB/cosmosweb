@@ -16,7 +16,7 @@ const developerCommunityData = [
   {
     name: 'Learn more about Azure Cosmos DB',
     imageUrl: '../img/icons/msft.png',
-    link: 'https://learn.microsoft.com/en-us/azure/cosmos-db/',
+    link: 'https://learn.microsoft.com/azure/cosmos-db/',
   },
   {
     name: 'Azure Cosmos DB community',
@@ -51,9 +51,7 @@ export default function Home() {
       const newTheme = document.documentElement.getAttribute('data-theme');
       setIsDarkMode(newTheme === 'dark');
     });
-
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-
     return () => observer.disconnect();
   }, []);
 
@@ -79,6 +77,7 @@ export default function Home() {
             <DeveloperCard key={index} {...developer} />
           ))}
         </div>
+
       </main>
     </Layout>
   );
