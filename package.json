@@ -1,0 +1,13 @@
+{
+  "name": "cosmosweb-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix client run dev",
+    "start": "npm --prefix client run start",
+    "build": "npm --prefix client run build",
+    "typecheck": "npm --prefix client run typecheck"
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}
