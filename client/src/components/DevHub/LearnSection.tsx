@@ -1,64 +1,129 @@
 import React from 'react';
-import {learn} from '@site/src/data/devhub';
+import {learn, offers} from '@site/src/data/devhub';
+import ExtLink from './ExtLink';
+import Section from './Section';
+import {isExpired, useNow} from './useNow';
 import styles from './devhub.module.css';
 
-interface StepProps {
-  step: number;
-  title: string;
-  blurb: string;
-  links: Array<{label: string; href: string}>;
-}
-
-function Step({step, title, blurb, links}: StepProps): React.ReactElement {
-  return (
-    <div className={styles.stepCard}>
-      <span className={styles.stepNumber} aria-hidden="true">
-        {step}
-      </span>
-      <h3>{title}</h3>
-      <p>{blurb}</p>
-      <ul>
-        {links.map((link) => (
-          <li key={link.href}>
-            <a href={link.href}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 export default function LearnSection(): React.ReactElement {
-  const {paths, practice, certification} = learn;
-  return (
-    <section id="learn" className={styles.section} aria-labelledby="learn-heading">
-      <div className={styles.sectionInner}>
-        <h2 id="learn-heading" className={styles.sectionTitle}>
-          Learn &amp; certify
-        </h2>
-        <p className={styles.sectionLead}>From first read to a credential you can show: learn it, build with it, get certified.</p>
+  const now = useNow();
+  const {certification, launchpad, paths, docs, intro} = learn;
+  const activeOffers = offers.filter((offer) => !isExpired(offer.expires, now));
 
-        <div className={styles.stepGrid}>
-          <Step step={1} {...paths} />
-          <Step step={2} {...practice} />
-          <div className={`${styles.stepCard} ${styles.certCard}`}>
-            <span className={styles.stepNumber} aria-hidden="true">
-              3
-            </span>
-            <h3>{certification.title}</h3>
-            <p className={styles.certName}>{certification.name}</p>
-            <p>{certification.blurb}</p>
-            <ul className={styles.certFacts}>
-              {certification.facts.map((fact) => (
-                <li key={fact}>{fact}</li>
-              ))}
-            </ul>
-            <a className={styles.primaryButton} href={certification.href}>
-              View the certification
-            </a>
+  return (
+    <Section
+      id="learn"
+      alt
+      title="Learn & certify"
+      lead="From your first query to a credential you can show: learn it, build with it, get certified.">
+      <p className={styles.introBar}>
+        <span>{intro.label}</span>
+        <ExtLink href={intro.href}>
+          {intro.cta}
+          <span aria-hidden="true"> ↗</span>
+        </ExtLink>
+      </p>
+
+      <div className={styles.certPanel}>
+        <div className={styles.certStory}>
+          <div className={styles.certCode}>
+            <strong>{certification.code}</strong>
+            <small>{certification.meta}</small>
           </div>
+          <p className={styles.eyebrowLight}>{certification.eyebrow}</p>
+          <h3 className={styles.certTitle}>{certification.name}</h3>
+          <p>{certification.blurb}</p>
+          <ExtLink href={certification.href} className={styles.primaryButton}>
+            {certification.cta}
+            <span aria-hidden="true" className={styles.arrow}>
+              ↗
+            </span>
+          </ExtLink>
+          <p className={styles.certFine}>{certification.fine}</p>
+        </div>
+
+        <div className={styles.certPath}>
+          <p className={styles.eyebrowDark}>{launchpad.eyebrow}</p>
+          <h3>{launchpad.title}</h3>
+          <p>{launchpad.blurb}</p>
+          <ol className={styles.launchSteps}>
+            {launchpad.steps.map((step, index) => (
+              <li key={step.href}>
+                <ExtLink href={step.href} className={styles.launchStep}>
+                  <span className={styles.launchNumber} aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <span className={styles.launchText}>
+                    <strong>{step.title}</strong>
+                    <small>{step.meta}</small>
+                  </span>
+                </ExtLink>
+              </li>
+            ))}
+          </ol>
+          <p className={styles.certMeta}>
+            {launchpad.links.map((link) => (
+              <ExtLink key={link.href} href={link.href}>
+                {link.label}
+                <span aria-hidden="true"> ↗</span>
+              </ExtLink>
+            ))}
+          </p>
         </div>
       </div>
-    </section>
+
+      <div className={styles.pathGrid}>
+        {paths.map((path) => (
+          <article key={path.badge} className={styles.pathCard}>
+            <span className={styles.pathBadge}>{path.badge}</span>
+            <h4>{path.title}</h4>
+            <p>{path.blurb}</p>
+            <ExtLink href={path.href} className={styles.cardLink}>
+              Start this learning path
+              <span className={styles.visuallyHidden}>: {path.title}</span>
+              <span aria-hidden="true"> ↗</span>
+            </ExtLink>
+          </article>
+        ))}
+      </div>
+
+      {activeOffers.length > 0 ? (
+        <>
+          <h3 className={styles.subTitle}>Take DP-420 for less</h3>
+          <div className={styles.offerGrid}>
+            {activeOffers.map((offer) => (
+              <article key={offer.id} className={styles.offerCard}>
+                <p className={styles.eyebrowDark}>{offer.eyebrow}</p>
+                <p className={styles.offerDate}>{offer.date}</p>
+                <h4>{offer.title}</h4>
+                <p>{offer.blurb}</p>
+                <ExtLink href={offer.href} className={styles.cardLink}>
+                  {offer.cta}
+                  <span aria-hidden="true"> ↗</span>
+                </ExtLink>
+                <p className={styles.fine}>
+                  {offer.fine}
+                  {offer.fineLink ? (
+                    <>
+                      {' '}
+                      <ExtLink href={offer.fineLink.href}>{offer.fineLink.label}</ExtLink>
+                    </>
+                  ) : null}
+                </p>
+              </article>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      <p className={styles.docsRow}>
+        <span>Documentation:</span>
+        {docs.map((doc) => (
+          <ExtLink key={doc.href} href={doc.href}>
+            {doc.label}
+          </ExtLink>
+        ))}
+      </p>
+    </Section>
   );
 }

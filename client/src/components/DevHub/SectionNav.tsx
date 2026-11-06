@@ -3,29 +3,45 @@ import styles from './devhub.module.css';
 
 const sections = [
   {id: 'develop', label: 'Develop'},
-  {id: 'community', label: 'Community'},
+  {id: 'tools', label: 'Tools'},
+  {id: 'watch', label: 'Watch'},
   {id: 'learn', label: 'Learn & certify'},
+  {id: 'community', label: 'Community'},
+  {id: 'events', label: 'Events & news'},
 ];
+
+// A section counts as current once its top edge has scrolled up past the two sticky bars.
+const OFFSET_PX = 140;
 
 export default function SectionNav(): React.ReactElement {
   const [active, setActive] = useState<string>(sections[0].id);
 
   useEffect(() => {
-    const targets = sections
-      .map((s) => document.getElementById(s.id))
-      .filter((el): el is HTMLElement => el !== null);
-    if (targets.length === 0 || typeof IntersectionObserver === 'undefined') return undefined;
+    let frame = 0;
 
-    // Highlight the section occupying the band just below the sticky bars.
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) setActive(visible[0].target.id);
-      },
-      {rootMargin: '-120px 0px -60% 0px', threshold: 0},
-    );
-    targets.forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    const update = () => {
+      frame = 0;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      let current = sections[0].id;
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (el && el.getBoundingClientRect().top <= OFFSET_PX) current = section.id;
+      }
+      setActive(atBottom ? sections[sections.length - 1].id : current);
+    };
+
+    const onScroll = () => {
+      if (frame === 0) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onScroll, {passive: true});
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame !== 0) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (

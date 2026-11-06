@@ -15,7 +15,13 @@ export interface Language {
   snippet: string;
 }
 
-const PRODUCT_PK = 'gear-surf-surfboards';
+/*
+ * The hero snippet shows agent memory: store a memory with its embedding, then recall the closest
+ * ones with a vector query scoped to one user's partition. The query shape (parameterized
+ * VectorDistance + ORDER BY) and each SDK's call pattern come from the official Learn samples.
+ * embed() stands in for a call to your embedding model.
+ */
+const SETUP = 'container has a vector index on /embedding';
 
 export const languages: Language[] = [
   {
@@ -24,22 +30,25 @@ export const languages: Language[] = [
     prism: 'python',
     packageName: 'azure-cosmos',
     version: '4.17.1',
-    install: 'pip install azure-cosmos azure-identity',
+    install: 'pip install azure-cosmos',
     quickstart: 'https://learn.microsoft.com/azure/cosmos-db/quickstart-python',
     guide: 'https://learn.microsoft.com/azure/cosmos-db/sdk-python',
     api: 'https://learn.microsoft.com/python/api/azure-cosmos/azure.cosmos?view=azure-python',
-    snippet: `from azure.cosmos import CosmosClient
-from azure.identity import DefaultAzureCredential
-
-client = CosmosClient(endpoint, credential=DefaultAzureCredential())
-container = client.get_database_client("cosmicworks").get_container_client("products")
-
+    snippet: `# ${SETUP}
+# embed() calls your embedding model
 container.upsert_item({
-    "id": "70b63682",
-    "categoryId": "${PRODUCT_PK}",
-    "name": "Yamba Surfboard",
+    "id": "m1",
+    "userId": "ava",
+    "text": "Prefers window seats",
+    "embedding": embed("Prefers window seats"),
 })
-item = container.read_item(item="70b63682", partition_key="${PRODUCT_PK}")`,
+
+hits = container.query_items(
+    query="SELECT TOP 3 c.text, VectorDistance(c.embedding, @q) AS score "
+          "FROM c ORDER BY VectorDistance(c.embedding, @q)",
+    parameters=[{"name": "@q", "value": embed("Where should Ava sit?")}],
+    partition_key="ava",
+)`,
   },
   {
     id: 'dotnet',
@@ -47,23 +56,26 @@ item = container.read_item(item="70b63682", partition_key="${PRODUCT_PK}")`,
     prism: 'csharp',
     packageName: 'Microsoft.Azure.Cosmos',
     version: '3.63.4',
-    install: 'dotnet add package Microsoft.Azure.Cosmos\ndotnet add package Azure.Identity',
+    install: 'dotnet add package Microsoft.Azure.Cosmos',
     quickstart: 'https://learn.microsoft.com/azure/cosmos-db/quickstart-dotnet',
     guide: 'https://learn.microsoft.com/azure/cosmos-db/sdk-dotnet-v3',
     api: 'https://learn.microsoft.com/dotnet/api/microsoft.azure.cosmos?view=azure-dotnet',
-    snippet: `using Azure.Identity;
-using Microsoft.Azure.Cosmos;
+    snippet: `// ${SETUP}
+// Embed() calls your embedding model
+PartitionKey pk = new("ava");
+await container.UpsertItemAsync(
+    new Memory("m1", "ava", "Prefers window seats", Embed("Prefers window seats")), pk);
 
-CosmosClient client = new(endpoint, new DefaultAzureCredential());
-Container container = client.GetContainer("cosmicworks", "products");
+QueryDefinition query = new QueryDefinition(
+        "SELECT TOP 3 c.text, VectorDistance(c.embedding, @q) AS score " +
+        "FROM c ORDER BY VectorDistance(c.embedding, @q)")
+    .WithParameter("@q", Embed("Where should Ava sit?"));
 
-PartitionKey pk = new("${PRODUCT_PK}");
-Product product = new("70b63682", "${PRODUCT_PK}", "Yamba Surfboard");
+using FeedIterator<MemoryHit> hits = container.GetItemQueryIterator<MemoryHit>(
+    query, requestOptions: new QueryRequestOptions { PartitionKey = pk });
 
-await container.UpsertItemAsync(product, pk);
-Product item = await container.ReadItemAsync<Product>("70b63682", pk);
-
-record Product(string id, string categoryId, string name);`,
+record Memory(string id, string userId, string text, float[] embedding);
+record MemoryHit(string text, double score);`,
   },
   {
     id: 'java',
@@ -71,23 +83,24 @@ record Product(string id, string categoryId, string name);`,
     prism: 'java',
     packageName: 'com.azure:azure-cosmos',
     version: '4.83.0',
-    install: 'com.azure:azure-cosmos (Maven / Gradle)\ncom.azure:azure-identity',
+    install: 'com.azure:azure-cosmos (Maven / Gradle)',
     quickstart: 'https://learn.microsoft.com/azure/cosmos-db/quickstart-java',
     guide: 'https://learn.microsoft.com/azure/cosmos-db/sdk-java-v4',
     api: 'https://learn.microsoft.com/java/api/com.azure.cosmos?view=azure-java-stable',
-    snippet: `CosmosClient client = new CosmosClientBuilder()
-    .endpoint(endpoint)
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .buildClient();
+    snippet: `// ${SETUP}
+// embed() calls your embedding model
+container.upsertItem(
+    new Memory("m1", "ava", "Prefers window seats", embed("Prefers window seats")));
 
-CosmosContainer container = client.getDatabase("cosmicworks").getContainer("products");
+SqlQuerySpec query = new SqlQuerySpec(
+    "SELECT TOP 3 c.text, VectorDistance(c.embedding, @q) AS score "
+        + "FROM c ORDER BY VectorDistance(c.embedding, @q)",
+    new SqlParameter("@q", embed("Where should Ava sit?")));
 
-Product product = new Product("70b63682", "${PRODUCT_PK}", "Yamba Surfboard");
-container.upsertItem(product);
-
-Product item = container
-    .readItem("70b63682", new PartitionKey("${PRODUCT_PK}"), Product.class)
-    .getItem();`,
+CosmosPagedIterable<MemoryHit> hits = container.queryItems(
+    query,
+    new CosmosQueryRequestOptions().setPartitionKey(new PartitionKey("ava")),
+    MemoryHit.class);`,
   },
   {
     id: 'javascript',
@@ -95,27 +108,30 @@ Product item = container
     prism: 'javascript',
     packageName: '@azure/cosmos',
     version: '4.10.1',
-    install: 'npm install @azure/cosmos @azure/identity',
+    install: 'npm install @azure/cosmos',
     quickstart: 'https://learn.microsoft.com/azure/cosmos-db/quickstart-nodejs',
     guide: 'https://learn.microsoft.com/azure/cosmos-db/sdk-nodejs',
     api: 'https://learn.microsoft.com/javascript/api/@azure/cosmos/?view=azure-node-latest',
-    snippet: `import { CosmosClient } from "@azure/cosmos";
-import { DefaultAzureCredential } from "@azure/identity";
-
-const client = new CosmosClient({
-  endpoint,
-  aadCredentials: new DefaultAzureCredential(),
-});
-const container = client.database("cosmicworks").container("products");
-
+    snippet: `// ${SETUP}
+// embed() calls your embedding model
 await container.items.upsert({
-  id: "70b63682",
-  categoryId: "${PRODUCT_PK}",
-  name: "Yamba Surfboard",
+  id: "m1",
+  userId: "ava",
+  text: "Prefers window seats",
+  embedding: await embed("Prefers window seats"),
 });
 
-const item = container.item("70b63682", "${PRODUCT_PK}");
-const { resource } = await item.read();`,
+const { resources: hits } = await container.items
+  .query(
+    {
+      query:
+        "SELECT TOP 3 c.text, VectorDistance(c.embedding, @q) AS score " +
+        "FROM c ORDER BY VectorDistance(c.embedding, @q)",
+      parameters: [{ name: "@q", value: await embed("Where should Ava sit?") }],
+    },
+    { partitionKey: "ava" },
+  )
+  .fetchAll();`,
   },
   {
     id: 'go',
@@ -123,26 +139,28 @@ const { resource } = await item.read();`,
     prism: 'go',
     packageName: 'azcosmos',
     version: '1.5.0',
-    install:
-      'go get github.com/Azure/azure-sdk-for-go/sdk/data/azcosmos\ngo get github.com/Azure/azure-sdk-for-go/sdk/azidentity',
+    install: 'go get github.com/Azure/azure-sdk-for-go/sdk/data/azcosmos',
     quickstart: 'https://learn.microsoft.com/azure/cosmos-db/quickstart-go',
     guide: 'https://learn.microsoft.com/azure/cosmos-db/sdk-go',
     api: 'https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/data/azcosmos',
-    snippet: `// error handling omitted for brevity
-cred, _ := azidentity.NewDefaultAzureCredential(nil)
-client, _ := azcosmos.NewClient(endpoint, cred, nil)
-container, _ := client.NewContainer("cosmicworks", "products")
-
-pk := azcosmos.NewPartitionKeyString("${PRODUCT_PK}")
-item := map[string]string{
-    "id":         "70b63682",
-    "categoryId": "${PRODUCT_PK}",
-    "name":       "Yamba Surfboard",
-}
-body, _ := json.Marshal(item)
-
+    snippet: `// ${SETUP}
+// embed() calls your embedding model
+// error handling omitted for brevity
+pk := azcosmos.NewPartitionKeyString("ava")
+body, _ := json.Marshal(map[string]any{
+    "id": "m1", "userId": "ava", "text": "Prefers window seats",
+    "embedding": embed("Prefers window seats"),
+})
 _, _ = container.UpsertItem(ctx, pk, body, nil)
-resp, _ := container.ReadItem(ctx, pk, "70b63682", nil)`,
+
+pager := container.NewQueryItemsPager(
+    "SELECT TOP 3 c.text, VectorDistance(c.embedding, @q) AS score "+
+        "FROM c ORDER BY VectorDistance(c.embedding, @q)",
+    pk,
+    &azcosmos.QueryOptions{QueryParameters: []azcosmos.QueryParameter{
+        {Name: "@q", Value: embed("Where should Ava sit?")}, // []float64
+    }},
+)`,
   },
 ];
 
@@ -196,15 +214,355 @@ export const guideGroups: GuideGroup[] = [
     blurb: 'Trade latency, availability and consistency on purpose.',
     links: [{ label: 'Consistency levels', href: 'https://learn.microsoft.com/azure/cosmos-db/consistency-levels' }],
   },
+];
+
+export interface Scenario {
+  id: string;
+  tags: string;
+  title: string;
+  blurb: string;
+  cta: string;
+  href: string;
+}
+
+export const scenarios: Scenario[] = [
   {
-    id: 'tools',
-    title: 'Samples & tools',
-    blurb: 'Run it locally and start from working code.',
-    links: [
-      { label: 'Samples Gallery', href: 'https://azurecosmosdb.github.io/gallery/' },
-      { label: 'Local emulator', href: 'https://learn.microsoft.com/azure/cosmos-db/emulator' },
-      { label: 'GitHub: AzureCosmosDB', href: 'https://github.com/AzureCosmosDB' },
+    id: 'agents',
+    tags: 'Python / LangGraph / Agents',
+    title: 'Give your agents a memory.',
+    blurb: 'Build a multi-agent travel planner with persistent memory. Start with an existing hands-on workshop.',
+    cta: 'Open the workshop',
+    href: 'https://github.com/AzureCosmosDB/travel-multi-agent-workshop',
+  },
+  {
+    id: 'rag',
+    tags: 'Vector / Hybrid search / RAG',
+    title: 'Ground AI in your own data.',
+    blurb: 'Explore patterns for retrieval and AI-powered applications, with code samples and community demos.',
+    cta: 'Explore the sample gallery',
+    href: 'https://azurecosmosdb.github.io/gallery/',
+  },
+  {
+    id: 'production',
+    tags: 'Prototype / Evaluate / Operate',
+    title: 'Take a build toward production.',
+    blurb: 'Follow the four-part Code with Cosmos series, from AI-assisted development to production operations.',
+    cta: 'Explore Code with Cosmos',
+    href: 'https://devblogs.microsoft.com/cosmosdb/code-with-cosmos/',
+  },
+];
+
+export type ToolIconId = 'vscode' | 'emulator' | 'explorer' | 'agentKit' | 'mcpServer' | 'mcpToolkit' | 'capacity' | 'migrate' | 'assistant';
+
+export interface Tool {
+  id: string;
+  icon: ToolIconId;
+  name: string;
+  blurb: string;
+  href: string;
+  /** Only claims the docs support: GA, Preview, Open source. */
+  badge?: string;
+  secondary?: LinkItem;
+}
+
+export interface ToolGroup {
+  id: string;
+  title: string;
+  blurb: string;
+  tools: Tool[];
+}
+
+export const toolGroups: ToolGroup[] = [
+  {
+    id: 'build',
+    title: 'Build & debug',
+    blurb: 'Write, run and inspect your data from the editor, the browser or your laptop.',
+    tools: [
+      {
+        id: 'vscode',
+        icon: 'vscode',
+        name: 'VS Code extension',
+        blurb: 'Connect to your accounts, browse containers and run queries without leaving the editor.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/vscode-extension/overview',
+        secondary: {
+          label: 'Get it on the Marketplace',
+          href: 'https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-cosmosdb',
+        },
+      },
+      {
+        id: 'emulator',
+        icon: 'emulator',
+        name: 'Local emulator',
+        blurb: 'Develop and test offline, with no Azure subscription and no service costs.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/emulator',
+      },
+      {
+        id: 'explorer',
+        icon: 'explorer',
+        name: 'Data Explorer',
+        blurb: 'A web interface to browse data, run queries and inspect results, full screen.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/data-explorer',
+        secondary: { label: 'Open cosmos.azure.com', href: 'https://cosmos.azure.com' },
+      },
     ],
+  },
+  {
+    id: 'ai',
+    title: 'AI-assisted development',
+    blurb: 'Let coding assistants and agents work with Cosmos DB, with the right guardrails.',
+    tools: [
+      {
+        id: 'agent-kit',
+        icon: 'agentKit',
+        name: 'Agent Kit',
+        blurb:
+          'Best-practice skills that help AI coding assistants avoid costly Cosmos DB mistakes in modeling, partitioning and queries.',
+        href: 'https://github.com/AzureCosmosDB/cosmosdb-agent-kit',
+        badge: 'GA',
+        secondary: {
+          label: 'Read the docs',
+          href: 'https://learn.microsoft.com/azure/cosmos-db/gen-ai/agent-kit/overview',
+        },
+      },
+      {
+        id: 'mcp-server',
+        icon: 'mcpServer',
+        name: 'Azure MCP Server',
+        blurb:
+          'Manage accounts, databases and containers with natural language: query items, search by text or vector similarity, infer schemas.',
+        href: 'https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/azure-cosmos-db',
+      },
+      {
+        id: 'mcp-toolkit',
+        icon: 'mcpToolkit',
+        name: 'MCP toolkit',
+        blurb: 'An open-source Model Context Protocol toolkit that lets AI agents interact with Cosmos DB securely.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/gen-ai/model-context-protocol-toolkit',
+        badge: 'Open source',
+        secondary: { label: 'View on GitHub', href: 'https://github.com/AzureCosmosDB/MCPToolKit' },
+      },
+    ],
+  },
+  {
+    id: 'plan',
+    title: 'Plan & migrate',
+    blurb: 'Size your workload, then move your data in.',
+    tools: [
+      {
+        id: 'capacity',
+        icon: 'capacity',
+        name: 'Capacity planner',
+        blurb: 'Estimate the request units your workload needs before you provision.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/estimate-ru-with-capacity-planner',
+        secondary: { label: 'Open the planner', href: 'https://cosmos.azure.com/capacitycalculator/' },
+      },
+      {
+        id: 'migrate',
+        icon: 'migrate',
+        name: 'Data Migration Tool',
+        blurb: 'An open-source command-line app to import data into, or export it from, Azure Cosmos DB.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/how-to-migrate-desktop-tool',
+        badge: 'Open source',
+        secondary: { label: 'View on GitHub', href: 'https://github.com/AzureCosmosDB/data-migration-desktop-tool' },
+      },
+      {
+        id: 'assistant',
+        icon: 'assistant',
+        name: 'Migration Assistant',
+        blurb: 'An AI-guided workflow in VS Code for moving from relational databases to NoSQL data models.',
+        href: 'https://learn.microsoft.com/azure/cosmos-db/vscode-extension/cosmos-db-migration-assistant',
+        badge: 'Preview',
+      },
+    ],
+  },
+];
+
+export type VideoKind = 'short' | 'deep';
+
+export interface Video {
+  id: string;
+  kind: VideoKind;
+  label: string;
+  source: string;
+  title: string;
+  blurb: string;
+  note?: string;
+  href: string;
+}
+
+export const videos: Video[] = [
+  {
+    id: 'agent-kit-setup',
+    kind: 'short',
+    label: 'Short',
+    source: 'Azure Cosmos DB',
+    title: 'What Is Azure Cosmos DB Agent Kit? Setup in 45 Seconds',
+    blurb: 'A quick introduction to the Agent Kit.',
+    href: 'https://www.youtube.com/shorts/FyCK7rzq_Gc',
+  },
+  {
+    id: 'idea-to-prototype',
+    kind: 'short',
+    label: 'Short',
+    source: 'Azure Cosmos DB',
+    title: 'From Idea to Working Prototype with AI + Azure Cosmos DB',
+    blurb: 'See what a first build can look like.',
+    href: 'https://www.youtube.com/shorts/0jmey3s5eSE',
+  },
+  {
+    id: 'agent-kit-ga',
+    kind: 'short',
+    label: 'Short',
+    source: 'Azure Cosmos DB',
+    title: 'Azure Cosmos DB Agent Kit is GA',
+    blurb: 'Get the quick update on Agent Kit availability.',
+    href: 'https://www.youtube.com/shorts/St-Ahjhy8vc',
+  },
+  {
+    id: 'code-with-cosmos-4',
+    kind: 'deep',
+    label: 'Code with Cosmos',
+    source: 'Azure Cosmos DB / Episode 4',
+    title: 'Operating AI Agents in Production',
+    blurb: 'Keep learning beyond the prototype.',
+    href: 'https://www.youtube.com/watch?v=NNw_VdIL18o',
+  },
+  {
+    id: 'savill-optimization',
+    kind: 'deep',
+    label: 'Creator perspective',
+    source: 'John Savill',
+    title: 'Cosmos DB Optimization',
+    blurb: 'A creator-led technical deep dive.',
+    note: 'On demand. Not current DP-420 exam prep.',
+    href: 'https://www.youtube.com/watch?v=RbH5F_3w47E',
+  },
+];
+
+export interface Offer {
+  id: string;
+  eyebrow: string;
+  title: string;
+  date: string;
+  blurb: string;
+  cta: string;
+  href: string;
+  fine: string;
+  fineLink?: LinkItem;
+  /** Last day the offer is shown (Pacific time). The page hides it afterwards. */
+  expires: string;
+}
+
+export const offers: Offer[] = [
+  {
+    id: 'ignite',
+    eyebrow: 'Microsoft Ignite / In person',
+    title: 'Ignite is your launchpad.',
+    date: 'November 17-20, 2026 / San Francisco',
+    blurb:
+      "Meet the developer community, explore Cosmos DB sessions, and take DP-420 onsite at no charge if you're a registered in-person attendee.",
+    cta: 'Explore onsite certification',
+    href: 'https://learn.microsoft.com/en-us/training/topics/ignite/microsoft-ignite-2026-certification-registration',
+    fine: 'Testing: November 16-20. One Microsoft or one GitHub exam per eligible attendee. Registration, available seats, and official terms apply.',
+    expires: '2026-11-20',
+  },
+  {
+    id: 'data-days',
+    eyebrow: 'Data Days: AI @ Work / Online',
+    title: 'Keep the momentum going, wherever you are.',
+    date: '50% exam discount request opportunity',
+    blurb:
+      'DP-420 is included in the Data Days certification offer. Join Fabric Community, watch two Data Days sessions, then submit a discount request.',
+    cta: 'Explore Data Days',
+    href: 'https://aka.ms/datadays',
+    fine: 'November 2-December 15. Request by December 10, 2026, while supplies last. Eligibility and offer terms apply; issuance is not guaranteed.',
+    fineLink: { label: 'Offer terms', href: 'https://aka.ms/dd/cert50/terms' },
+    expires: '2026-12-10',
+  },
+];
+
+export interface EventItem {
+  id: string;
+  month: string;
+  day: string;
+  title: string;
+  where: string;
+  blurb: string;
+  cta: string;
+  href: string;
+  /** ISO dates (Pacific time). Items without dates are always shown. */
+  start?: string;
+  end?: string;
+}
+
+export const events: EventItem[] = [
+  {
+    id: 'ignite',
+    month: 'NOV 2026',
+    day: '17-20',
+    title: 'Microsoft Ignite',
+    where: 'San Francisco',
+    blurb: 'Explore Cosmos DB sessions and meet the developer community. Onsite exam testing runs November 16-20.',
+    cta: 'Explore sessions',
+    href: 'https://ignite.microsoft.com/en-US/sessions',
+    start: '2026-11-17',
+    end: '2026-11-20',
+  },
+  {
+    id: 'data-days',
+    month: 'NOV - DEC',
+    day: '2-15',
+    title: 'Data Days: AI @ Work',
+    where: 'Online',
+    blurb: 'Live and on-demand learning with a DP-420 discount request opportunity.',
+    cta: 'Join Data Days',
+    href: 'https://aka.ms/datadays',
+    start: '2026-11-02',
+    end: '2026-12-15',
+  },
+  {
+    id: 'user-group',
+    month: 'COMMUNITY',
+    day: 'Live',
+    title: 'Azure Cosmos DB Global User Group',
+    where: 'Check the current schedule',
+    blurb: 'Community-led sessions and meetups. Dates vary; check the group calendar for current announcements.',
+    cta: 'Visit the group',
+    href: 'https://www.meetup.com/azure-cosmos-db-global-user-group/events/',
+  },
+];
+
+export interface Post {
+  id: string;
+  date: string;
+  dateLabel: string;
+  topic: string;
+  title: string;
+  blurb: string;
+  cta: string;
+  href: string;
+}
+
+export const posts: Post[] = [
+  {
+    id: 'chatgpt',
+    date: '2026-11-03',
+    dateLabel: 'November 3, 2026',
+    topic: 'Certification',
+    title: "ChatGPT runs on Azure Cosmos DB. Prove you can build what's next.",
+    blurb: 'Explore the refreshed DP-420 exam and current Ignite and Data Days opportunities.',
+    cta: 'Read the article',
+    href: 'https://devblogs.microsoft.com/cosmosdb/chatgpt-runs-on-azure-cosmos-db-prove-you-can-build-whats-next/',
+  },
+  {
+    id: 'code-with-cosmos',
+    date: '2026-10-23',
+    dateLabel: 'October 23, 2026',
+    topic: 'Hands-on development',
+    title: 'Code with Cosmos: Build a Production-Ready AI App in Four Episodes',
+    blurb: 'Follow a practical series connecting AI-assisted development, retrieval, agents, and production.',
+    cta: 'Read and build along',
+    href: 'https://devblogs.microsoft.com/cosmosdb/code-with-cosmos/',
   },
 ];
 
@@ -216,22 +574,38 @@ export interface CommunityItem {
 }
 
 export const communityItems: CommunityItem[] = [
-  { id: 'discord', name: 'Discord', blurb: 'Chat with other developers.', href: 'https://aka.ms/open-source-discord' },
-  { id: 'github', name: 'GitHub', blurb: 'Samples, SDKs and open source.', href: 'https://github.com/AzureCosmosDB' },
-  { id: 'youtube', name: 'YouTube', blurb: 'Videos and live sessions.', href: 'https://www.youtube.com/@AzureCosmosDB' },
   {
     id: 'meetup',
     name: 'Global user group',
-    blurb: 'Virtual meetups with the community.',
-    href: 'https://www.meetup.com/azure-cosmos-db-global-user-group',
+    blurb: 'Meet other Cosmos DB developers and check the latest community event calendar.',
+    href: 'https://www.meetup.com/azure-cosmos-db-global-user-group/',
   },
-  { id: 'blog', name: 'Blog', blurb: 'Announcements and deep dives.', href: 'https://devblogs.microsoft.com/cosmosdb/' },
+  {
+    id: 'discord',
+    name: 'Microsoft Open Source Discord',
+    blurb: 'Connect in the wider Microsoft developer community. Not a Cosmos-only server.',
+    href: 'https://aka.ms/open-source-discord',
+  },
+  {
+    id: 'reddit',
+    name: 'r/CosmosDB',
+    blurb: 'Talk with other Cosmos DB users in an independently moderated community.',
+    href: 'https://www.reddit.com/r/CosmosDB/',
+  },
+  {
+    id: 'github',
+    name: 'GitHub',
+    blurb: 'Find SDKs, samples, workshops and places to contribute to the Cosmos ecosystem.',
+    href: 'https://github.com/AzureCosmosDB',
+  },
   {
     id: 'stackoverflow',
     name: 'Stack Overflow',
-    blurb: 'Ask and answer questions.',
+    blurb: 'Find technical questions and answers under the Azure Cosmos DB tag.',
     href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
   },
+  { id: 'youtube', name: 'YouTube', blurb: 'Videos, Shorts and live sessions.', href: 'https://www.youtube.com/@AzureCosmosDB' },
+  { id: 'blog', name: 'Blog', blurb: 'Announcements and deep dives.', href: 'https://devblogs.microsoft.com/cosmosdb/' },
   { id: 'x', name: 'X', blurb: 'Follow @AzureCosmosDB.', href: 'https://x.com/AzureCosmosDB' },
   {
     id: 'linkedin',
@@ -241,30 +615,101 @@ export const communityItems: CommunityItem[] = [
   },
 ];
 
+export const growth = {
+  eyebrow: 'From learner to community leader',
+  title: 'Plot your path toward Cosmonaut recognition and Microsoft MVP.',
+  blurb: "Start by making a meaningful contribution. Grow expertise, help others, and build a body of work you're proud to share.",
+  cta: { label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/en-US/faq?section=mvp' },
+  steps: [
+    {
+      title: 'Build real expertise.',
+      text: 'Create with Cosmos DB. DP-420 can validate your skills; it is not a stated requirement for either recognition.',
+    },
+    {
+      title: 'Contribute consistently.',
+      text: 'Share useful projects, explain what you learned, answer questions, speak, and mentor.',
+    },
+    {
+      title: 'Connect with the Cosmos DB community.',
+      text: 'Participate and share your work. Ask the community team about current Cosmonaut recognition criteria and opportunities.',
+    },
+    {
+      title: 'Explore Microsoft MVP nomination.',
+      text: 'Document impactful, verifiable contributions from the last 12 months. A current MVP or Microsoft employee must nominate you before the application and review.',
+    },
+  ],
+  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420, participating, or being nominated does not guarantee either. No public Cosmonaut application process was verified.',
+};
+
 export const learn = {
-  paths: {
-    title: 'Learn',
-    blurb: 'Documentation and self-paced training on Microsoft Learn.',
-    links: [
-      { label: 'Azure Cosmos DB documentation', href: 'https://learn.microsoft.com/azure/cosmos-db/' },
-      { label: 'Azure DocumentDB documentation', href: 'https://learn.microsoft.com/azure/documentdb/' },
-      { label: 'Open-source DocumentDB', href: 'https://documentdb.io/' },
-    ],
-  },
-  practice: {
-    title: 'Practice',
-    blurb: 'Start from working samples and run them on the local emulator.',
-    links: [
-      { label: 'Samples Gallery', href: 'https://azurecosmosdb.github.io/gallery/' },
-      { label: 'Local emulator', href: 'https://learn.microsoft.com/azure/cosmos-db/emulator' },
-    ],
+  intro: {
+    label: 'New to Cosmos DB? Start small. Run your first NoSQL queries.',
+    cta: 'Try the introductory module on AI Skills Navigator',
+    href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
   },
   certification: {
-    title: 'Get certified',
-    name: 'Microsoft Certified: Azure Cosmos DB AI Developer Associate',
+    code: 'DP-420',
+    meta: 'AI-focused / Updated October 2026',
+    eyebrow: 'Build confidence. Prove your skills.',
+    name: 'Azure Cosmos DB AI Developer Associate',
     blurb:
-      'Validate that you can design, build and optimize high-performance, scalable applications on Azure Cosmos DB, including AI retrieval and agent memory scenarios.',
-    facts: ['Associate level', '100-minute proctored exam', 'Renews every 12 months'],
-    href: 'https://learn.microsoft.com/credentials/certifications/azure-cosmos-db-developer-specialty/',
+      'Design, build, and optimize scalable AI applications with Azure Cosmos DB. Bring your database fundamentals together with RAG, agent memory, and conversation state.',
+    cta: 'Explore the certification',
+    href: 'https://aiskillsnavigator.microsoft.com/en-us/credentials/cert-9dd56fc8edb3e7187b5b95c643f6587c81e088731a6e96b3e64e3a94d324df47',
+    fine: 'Microsoft Certified: Azure Cosmos DB AI Developer Associate. Opens in AI Skills Navigator.',
   },
+  launchpad: {
+    eyebrow: 'Your learning launchpad',
+    title: 'A clear path from curious to ready.',
+    blurb: 'Certification and training links open in AI Skills Navigator. Choose your starting point.',
+    steps: [
+      {
+        title: 'New here? Try Azure Cosmos DB for NoSQL.',
+        meta: 'Introductory module / Get hands-on with the basics',
+        href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
+      },
+      {
+        title: 'Build AI applications with Azure Cosmos DB.',
+        meta: 'DP-420 course / Follow the full learning journey',
+        href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/course-0bb289fa6910b0c5559747dd066872aedfb982d05b6821ee509ed39cd9a058fa',
+      },
+      {
+        title: 'Develop AI solutions with Azure Cosmos DB.',
+        meta: 'Learning path / Put AI capabilities into practice',
+        href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
+      },
+    ],
+    links: [
+      { label: 'Current study guide', href: 'https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-420' },
+      {
+        label: 'Practice & exam scheduling on Learn',
+        href: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-cosmos-db-developer-specialty/?practice-assessment-type=certification',
+      },
+    ],
+  },
+  paths: [
+    {
+      badge: 'Database foundations',
+      title: 'Design and develop database solutions.',
+      blurb: 'Build your foundation in models, partitioning, queries, and application development.',
+      href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-0c1b1e98d692b7f327d355e3834672949eab6cb5dbbc169103aaedbdf44c559e',
+    },
+    {
+      badge: 'Production readiness',
+      title: 'Secure, optimize, and deploy.',
+      blurb: 'Strengthen performance, security, and deployment skills for real applications.',
+      href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-470f1633f45687f7c3534f03d8cf15117aae9a271f453db4afe5f3cd08117d8a',
+    },
+    {
+      badge: 'AI capabilities',
+      title: 'Develop AI solutions for NoSQL.',
+      blurb: 'Bring retrieval and generative AI patterns into your Cosmos DB applications.',
+      href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
+    },
+  ],
+  docs: [
+    { label: 'Azure Cosmos DB documentation', href: 'https://learn.microsoft.com/azure/cosmos-db/' },
+    { label: 'Azure DocumentDB documentation', href: 'https://learn.microsoft.com/azure/documentdb/' },
+    { label: 'Open-source DocumentDB', href: 'https://documentdb.io/' },
+  ],
 };

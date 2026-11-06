@@ -2,6 +2,16 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Highlight, themes} from 'prism-react-renderer';
 import styles from './devhub.module.css';
 
+// Dracula's comment color (#6272a4) is 3.0:1 on its background, below the 4.5:1 AA minimum.
+const COMMENT_COLOR = '#8b98c9';
+
+const theme = {
+  ...themes.dracula,
+  styles: themes.dracula.styles.map((entry) =>
+    entry.types.includes('comment') ? {...entry, style: {...entry.style, color: COMMENT_COLOR}} : entry,
+  ),
+};
+
 interface CodeSnippetProps {
   code: string;
   language: string;
@@ -36,7 +46,7 @@ export default function CodeSnippet({code, language, label}: CodeSnippetProps): 
       <span className={styles.visuallyHidden} role="status" aria-live="polite">
         {copied ? 'Copied to clipboard' : ''}
       </span>
-      <Highlight theme={themes.dracula} code={code} language={language}>
+      <Highlight theme={theme} code={code} language={language}>
         {({style, tokens, getLineProps, getTokenProps}) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- scrollable region must be keyboard reachable
           <pre className={styles.snippetPre} style={style} tabIndex={0} aria-label={label}>

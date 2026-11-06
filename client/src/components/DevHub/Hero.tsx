@@ -34,8 +34,8 @@ export default function Hero(): React.ReactElement {
           </p>
           <h1 className={styles.heroTitle}>Build with Azure Cosmos DB</h1>
           <p className={styles.heroLead}>
-            SDKs, guides and samples for building apps on a globally distributed database, plus the community and
-            training to go with them.
+            Build apps and AI agents on a globally distributed database. SDKs, tools and samples, plus the community
+            and training to go with them.
           </p>
           <div className={styles.heroActions}>
             <a className={styles.primaryButton} href="#develop">
@@ -48,6 +48,12 @@ export default function Hero(): React.ReactElement {
               </span>
             </a>
           </div>
+          <ul className={styles.heroTags} aria-label="Highlights">
+            <li>5 SDKs</li>
+            <li>AI apps &amp; agents</li>
+            <li>Free local emulator</li>
+            <li>Certification path</li>
+          </ul>
         </div>
 
         <div className={styles.codeCard}>
@@ -76,12 +82,25 @@ export default function Hero(): React.ReactElement {
             })}
           </div>
           <div role="tabpanel" id="hero-tabpanel" aria-labelledby={`hero-tab-${language.id}`}>
-            <div className={styles.install}>
-              <span className={styles.installLabel}>Install</span>
-              <CodeSnippet code={language.install} language="bash" label={`${language.name} install command`} />
-            </div>
-            <div className={styles.example}>
-              <CodeSnippet code={language.snippet} language={language.prism} label={`${language.name} example`} />
+            <p className={styles.codeCaption}>Give an AI agent a memory: store it, then recall it by meaning.</p>
+            {/*
+              Every language is rendered in the same grid cell and only the active one is visible, so
+              the panel is always as tall as the longest snippet and switching never shifts the page.
+            */}
+            <div className={styles.panelStack}>
+              {languages.map((lang) => (
+                <div
+                  key={lang.id}
+                  className={lang.id === language.id ? `${styles.panelItem} ${styles.panelItemActive}` : styles.panelItem}>
+                  <div className={styles.install}>
+                    <span className={styles.installLabel}>Install</span>
+                    <CodeSnippet code={lang.install} language="bash" label={`${lang.name} install command`} />
+                  </div>
+                  <div className={styles.example}>
+                    <CodeSnippet code={lang.snippet} language={lang.prism} label={`${lang.name} example`} />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
