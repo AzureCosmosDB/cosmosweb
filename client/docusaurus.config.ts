@@ -250,6 +250,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'csharp', 'java'],
     },
     colorMode: {
       defaultMode: 'light',
