@@ -7,9 +7,21 @@ const SECTION_IDS = ['develop', 'tools', 'watch', 'learn', 'cosmonauts', 'commun
 const OFFSET_PX = 100;
 
 const ACTIVE_CLASS = 'navbar__link--active';
+const DROPDOWN_ACTIVE_CLASS = 'dropdown__link--active';
 
 function navLinks(id: string): HTMLAnchorElement[] {
   return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href="/#${id}"]`));
+}
+
+// Entries inside a dropdown use the dropdown link class, and their menu's trigger shows the group as current.
+function mark(a: HTMLAnchorElement, on: boolean): void {
+  const inDropdown = a.classList.contains('dropdown__link');
+  a.classList.toggle(inDropdown ? DROPDOWN_ACTIVE_CLASS : ACTIVE_CLASS, on);
+  if (on) a.setAttribute('aria-current', 'location');
+  else a.removeAttribute('aria-current');
+  if (inDropdown) {
+    a.closest('.dropdown')?.querySelector(':scope > .navbar__link')?.classList.toggle(ACTIVE_CLASS, on);
+  }
 }
 
 /**
@@ -23,18 +35,8 @@ export default function NavSpy(): null {
 
     const apply = (next: string | null) => {
       if (next === current) return;
-      if (current) {
-        navLinks(current).forEach((a) => {
-          a.classList.remove(ACTIVE_CLASS);
-          a.removeAttribute('aria-current');
-        });
-      }
-      if (next) {
-        navLinks(next).forEach((a) => {
-          a.classList.add(ACTIVE_CLASS);
-          a.setAttribute('aria-current', 'location');
-        });
-      }
+      if (current) navLinks(current).forEach((a) => mark(a, false));
+      if (next) navLinks(next).forEach((a) => mark(a, true));
       current = next;
     };
 

@@ -108,15 +108,36 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        // Developer hub sections (home page). Hash-only routes never mark as active by path;
-        // the home page highlights the section in view itself (see DevHub/NavSpy).
-        {label: 'Develop', position: 'left', to: '/#develop', activeBaseRegex: '^$'},
-        {label: 'Tools', position: 'left', to: '/#tools', activeBaseRegex: '^$'},
-        {label: 'Watch', position: 'left', to: '/#watch', activeBaseRegex: '^$'},
-        {label: 'Learn', position: 'left', to: '/#learn', activeBaseRegex: '^$'},
-        {label: 'Cosmonauts', position: 'left', to: '/#cosmonauts', activeBaseRegex: '^$'},
-        {label: 'Community', position: 'left', to: '/#community', activeBaseRegex: '^$'},
-        {label: 'Events', position: 'left', to: '/#events', activeBaseRegex: '^$'},
+        // Developer hub sections (home page), grouped so the bar stays short. Hash-only routes never
+        // mark as active by path; the home page highlights the section in view itself (DevHub/NavSpy).
+        {
+          label: 'Build',
+          type: 'dropdown',
+          position: 'left',
+          items: [
+            {label: 'Develop', to: '/#develop', activeBaseRegex: '^$'},
+            {label: 'Tools', to: '/#tools', activeBaseRegex: '^$'},
+            {label: 'Watch', to: '/#watch', activeBaseRegex: '^$'},
+          ],
+        },
+        {
+          label: 'Learn',
+          type: 'dropdown',
+          position: 'left',
+          items: [
+            {label: 'Learn & certify', to: '/#learn', activeBaseRegex: '^$'},
+            {label: 'Cosmonauts', to: '/#cosmonauts', activeBaseRegex: '^$'},
+          ],
+        },
+        {
+          label: 'Community',
+          type: 'dropdown',
+          position: 'left',
+          items: [
+            {label: 'Community', to: '/#community', activeBaseRegex: '^$'},
+            {label: 'Events & news', to: '/#events', activeBaseRegex: '^$'},
+          ],
+        },
         {
           label: 'Gallery',
           position: 'left',
