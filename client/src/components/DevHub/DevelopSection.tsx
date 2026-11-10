@@ -31,9 +31,9 @@ export default function DevelopSection(): React.ReactElement {
                 </span>
               </button>
               <div className={styles.langLinks}>
-                <a href={lang.guide}>Developer guide</a>
+                <ExtLink href={lang.guide}>Developer guide</ExtLink>
                 <span aria-hidden="true" className={styles.divider} />
-                <a href={lang.api}>API reference</a>
+                <ExtLink href={lang.api}>API reference</ExtLink>
               </div>
             </article>
           );
@@ -47,13 +47,13 @@ export default function DevelopSection(): React.ReactElement {
           <p>Install the SDK, connect to your account and run your first query.</p>
           <ul>
             <li>
-              <a href={language.quickstart}>{language.name} quickstart</a>
+              <ExtLink href={language.quickstart}>{language.name} quickstart</ExtLink>
             </li>
             <li>
-              <a href={language.guide}>{language.name} SDK guide</a>
+              <ExtLink href={language.guide}>{language.name} SDK guide</ExtLink>
             </li>
             <li>
-              <a href={language.api}>{language.name} API reference</a>
+              <ExtLink href={language.api}>{language.name} API reference</ExtLink>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@ export default function DevelopSection(): React.ReactElement {
             <ul>
               {group.links.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}>{link.label}</a>
+                  <ExtLink href={link.href}>{link.label}</ExtLink>
                 </li>
               ))}
             </ul>

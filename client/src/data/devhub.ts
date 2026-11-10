@@ -1,4 +1,4 @@
-export type LanguageId = 'python' | 'dotnet' | 'java' | 'javascript' | 'go';
+export type LanguageId = 'python' | 'dotnet' | 'java' | 'javascript' | 'go' | 'rust';
 
 export interface Language {
   id: LanguageId;
@@ -161,6 +161,39 @@ pager := container.NewQueryItemsPager(
         {Name: "@q", Value: embed("Where should Ava sit?")}, // []float64
     }},
 )`,
+  },
+  {
+    id: 'rust',
+    name: 'Rust',
+    prism: 'rust',
+    packageName: 'azure_data_cosmos',
+    version: '1.0.0',
+    install: 'cargo add azure_data_cosmos futures',
+    quickstart: 'https://learn.microsoft.com/azure/cosmos-db/quickstart-rust',
+    guide: 'https://github.com/Azure/azure-sdk-for-rust/tree/main/sdk/cosmos/azure_data_cosmos',
+    api: 'https://docs.rs/azure_data_cosmos/latest/azure_data_cosmos/',
+    snippet: `// ${SETUP}
+// embed() calls your embedding model
+let memory = Memory {
+    id: "m1".into(),
+    user_id: "ava".into(),
+    text: "Prefers window seats".into(),
+    embedding: embed("Prefers window seats"),
+};
+container.upsert_item("ava", "m1", memory, None).await?;
+
+let query = Query::from(
+    "SELECT TOP 3 c.text, VectorDistance(c.embedding, @q) AS score \\
+     FROM c ORDER BY VectorDistance(c.embedding, @q)",
+)
+.with_parameter("@q", embed("Where should Ava sit?"))?;
+
+let mut hits = container
+    .query_items::<MemoryHit>(query, FeedScope::partition("ava"), None)
+    .await?;
+while let Some(hit) = hits.try_next().await? {
+    println!("{} ({})", hit.text, hit.score);
+}`,
   },
 ];
 
@@ -615,56 +648,85 @@ export const communityItems: CommunityItem[] = [
   },
 ];
 
+export interface Person {
+  id: string;
+  badge: string;
+  name: string;
+  role: string;
+  blurb: string;
+  cta: string;
+  href: string;
+  /** Photo already shipped with the site (static/img/speakers). */
+  image: string;
+}
+
+/* All three are Azure Cosmos DB Cosmonauts and Microsoft MVPs; each card links to their MVP profile. */
+export const people: Person[] = [
+  {
+    id: 'chander',
+    badge: 'Cosmonaut & MVP',
+    name: 'Chander Dhall',
+    role: 'Azure Cosmos DB Cosmonaut / Microsoft AI MVP',
+    blurb: 'Shares practical guidance on AI memory patterns, token usage, and costs with Azure Cosmos DB.',
+    cta: "View Chander's MVP profile",
+    href: 'https://mvp.microsoft.com/MVP/profile/4dbc70c0-3c9a-e411-93f2-9cb65495d3c4',
+    image: '/img/speakers/chander-dhall.jpg',
+  },
+  {
+    id: 'hasan',
+    badge: 'Cosmonaut & MVP',
+    name: 'Hasan Savran',
+    role: 'Azure Cosmos DB Cosmonaut / Microsoft Data Platform MVP',
+    blurb: 'A community perspective on making better Cosmos DB data-modeling decisions.',
+    cta: "View Hasan's MVP profile",
+    href: 'https://mvp.microsoft.com/MVP/profile/20773cee-6250-e911-a987-000d3a1378f6',
+    image: '/img/speakers/hasan-savran.jpg',
+  },
+  {
+    id: 'eric',
+    badge: 'Cosmonaut & MVP',
+    name: 'Eric Boyd',
+    role: 'Azure Cosmos DB Cosmonaut / Microsoft Azure & AI MVP',
+    blurb: 'Shares distributed locks, sagas, and coordination patterns with Cosmos DB.',
+    cta: "View Eric's MVP profile",
+    href: 'https://mvp.microsoft.com/MVP/profile/77e968c6-3c9a-e411-93f2-9cb65495d3c4',
+    image: '/img/speakers/eric-boyd.jpg',
+  },
+];
+
 export const growth = {
+  sectionTitle: 'Cosmonauts & community voices',
+  sectionLead:
+    'Meet the people behind the possibility. Get inspired by the people who build, teach, and share, then find your own path from learner to community leader.',
   eyebrow: 'From learner to community leader',
-  title: 'Grow with the community',
-  lead: "Start by making a meaningful contribution. Grow expertise, help others, and build a body of work you're proud to share. Two recognitions can follow, and they are separate.",
+  title: 'Plot your path toward Cosmonaut recognition and Microsoft MVP.',
+  blurb: "Start by making a meaningful contribution. Grow expertise, help others, and build a body of work you're proud to share.",
+  cta: {label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/en-US/faq?section=mvp'},
   steps: [
     {
-      title: 'Build real expertise',
+      title: 'Build real expertise.',
       text: 'Create with Cosmos DB. DP-420 can validate your skills; it is not a stated requirement for either recognition.',
-      cta: {label: 'Start with the learning paths', href: '#learn'},
     },
     {
-      title: 'Contribute consistently',
+      title: 'Contribute consistently.',
       text: 'Share useful projects, explain what you learned, answer questions, speak, and mentor.',
-      cta: {label: 'Find a place to contribute', href: 'https://github.com/AzureCosmosDB'},
     },
     {
-      title: 'Connect with the community',
-      text: 'Participate and share your work with other Cosmos DB developers.',
-      cta: {label: 'Join the global user group', href: 'https://www.meetup.com/azure-cosmos-db-global-user-group/'},
+      title: 'Connect with the Cosmos DB community.',
+      text: 'Participate and share your work. Ask the community team about current Cosmonaut recognition criteria and opportunities.',
     },
     {
-      title: 'Document your impact',
-      text: 'Keep a record of your talks, posts, answers and projects, with links. Verifiable work from the last 12 months is what matters.',
+      title: 'Explore Microsoft MVP nomination.',
+      text: 'Document impactful, verifiable contributions from the last 12 months. A current MVP or Microsoft employee must nominate you before the application and review.',
     },
   ],
-  tracks: [
-    {
-      id: 'cosmonaut',
-      name: 'Azure Cosmos DB Cosmonaut',
-      status: 'No public application',
-      blurb:
-        'Cosmonauts are community members recognized for their work with Azure Cosmos DB. There is no public application process, so the way in is to contribute, connect with the community, and ask the community team about current criteria and opportunities.',
-      links: [
-        {label: 'Join the Microsoft Open Source Discord', href: 'https://aka.ms/open-source-discord'},
-        {label: 'Explore the community channels', href: '#community'},
-      ],
-    },
-    {
-      id: 'mvp',
-      name: 'Microsoft MVP',
-      status: 'Nomination required',
-      blurb:
-        'The Microsoft MVP award recognizes sustained, impactful community contributions. A current MVP or a Microsoft employee must nominate you, then your nomination is reviewed. Document your contributions from the last 12 months.',
-      links: [
-        {label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/en-US/faq?section=mvp'},
-        {label: 'Microsoft MVP program', href: 'https://mvp.microsoft.com/'},
-      ],
-    },
-  ],
-  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420, participating, or being nominated does not guarantee either.',
+  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420, participating, or being nominated does not guarantee either. There is no public Cosmonaut application process.',
+};
+
+export const closing = {
+  title: "Your next step can be small. Your impact doesn't have to be.",
+  blurb: 'Find your people. Build something useful. Share what you learn.',
+  cta: {label: 'Find your orbit', href: '#community'},
 };
 
 export const learn = {

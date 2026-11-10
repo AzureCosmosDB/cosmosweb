@@ -54,19 +54,19 @@
 .heroInner {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 4.5rem 2rem 4rem;
+  padding: 2.75rem 2rem 2.5rem;
 }
 
 .eyebrow {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
+  margin: 0 0 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -79,18 +79,18 @@
 }
 
 .heroTitle {
-  margin: 0 0 1rem;
-  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
-  line-height: 1.08;
+  margin: 0 0 0.8rem;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 .heroLead {
   max-width: 34rem;
-  margin: 0 0 2rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
+  margin: 0 0 1.4rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.86);
 }
 
@@ -149,25 +149,53 @@
 .heroTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1.6rem 0 0;
+  gap: 0.4rem;
+  margin: 1.4rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .heroTags li {
-  padding: 0.25rem 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  margin: 0;
+}
+
+.heroTags a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.3rem 0.62rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.heroTags a:hover {
+  border-color: var(--cosmos-cyan);
+  background: rgba(80, 230, 255, 0.16);
+  color: #fff;
+  text-decoration: none;
+}
+
+.heroTags a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.heroTags a::after {
+  content: '↓';
+  font-size: 0.8em;
+  color: var(--cosmos-cyan);
 }
 
 .codeCaption {
   margin: 0;
-  padding: 0.75rem 1rem 0;
-  font-size: 0.9rem;
+  padding: 0.6rem 0.9rem 0;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--cosmos-cyan);
 }
@@ -195,7 +223,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.55rem 0.85rem;
+  padding: 0.45rem 0.8rem;
   border: 0;
   border-radius: 8px 8px 0 0;
   background: transparent;
@@ -232,17 +260,18 @@
 }
 
 .install {
-  padding: 0.9rem 1rem 0;
+  padding: 0.55rem 0.8rem 0;
 }
 
-.installLabel {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+/* The install command is a single slim row; the pre carries its own accessible name. */
+.install .snippetPre {
+  padding: 0.4rem 4.5rem 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.install .copyButton {
+  top: 0.28rem;
 }
 
 .snippet {
@@ -255,8 +284,8 @@
   border-radius: 8px;
   overflow-x: auto;
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.85rem;
-  line-height: 1.55;
+  font-size: 0.8rem;
+  line-height: 1.5;
   tab-size: 4;
 }
 
@@ -306,62 +335,23 @@
 }
 
 .example {
-  padding: 0.9rem 1rem 1rem;
+  padding: 0.55rem 0.8rem 0.8rem;
 }
 
-/* ---------- Sticky section nav ---------- */
-
-.sectionNav {
-  position: sticky;
-  top: var(--ifm-navbar-height);
-  z-index: 10;
-  background: var(--ifm-background-color);
-  border-bottom: 1px solid var(--hub-border);
-}
-
-.sectionNavInner {
-  display: flex;
-  gap: 0.25rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.sectionLink {
-  position: relative;
-  padding: 0.95rem 1rem;
-  font-weight: 600;
-  white-space: nowrap;
-  color: var(--ifm-font-color-base);
-  text-decoration: none;
-}
-
-.sectionLink:hover {
-  color: var(--hub-link);
-  text-decoration: none;
-}
-
-.sectionLinkActive {
-  color: var(--hub-link);
-}
-
-.sectionLinkActive::after {
-  content: '';
-  position: absolute;
-  left: 0.75rem;
-  right: 0.75rem;
-  bottom: -1px;
-  height: 3px;
-  border-radius: 3px 3px 0 0;
-  background: var(--hub-link);
+/*
+ * The example scrolls inside a fixed-height window, so the hero stays compact however long the
+ * snippet is. The pre is focusable (tabindex) so keyboard users can scroll it too.
+ */
+.example .snippetPre {
+  max-height: 19rem;
+  overflow-y: auto;
+  padding-right: 4.5rem;
 }
 
 /* ---------- Sections ---------- */
 
 .section {
-  scroll-margin-top: calc(var(--ifm-navbar-height) + 3.4rem);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
   padding: 4rem 0;
   background: var(--ifm-background-color);
 }
@@ -399,8 +389,20 @@
 
 .langGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+}
+
+@media (max-width: 996px) {
+  .langGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .langGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .langCard {
@@ -634,14 +636,15 @@
   font-weight: 600;
 }
 
-.example .snippetPre {
-  padding-top: 2.4rem;
-}
-
 /* Tools */
 
 .toolGroup {
   margin-top: 2.5rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.toolCard {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1.5rem);
 }
 
 .toolGroup:first-of-type {
@@ -1073,123 +1076,152 @@
   color: var(--hub-text-muted);
 }
 
-/* Grow: ladder and recognition tracks */
+/* Cosmonauts: people */
 
-.ladder {
+.peopleGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: ladder;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.ladderStep {
-  position: relative;
-  padding: 1.4rem 1.3rem 1.3rem;
-  border: 1px solid var(--hub-border);
-  border-radius: 12px;
-  background: var(--hub-surface);
-  box-shadow: var(--hub-shadow);
-}
-
-/* Connector between steps on wide screens. */
-.ladderStep:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 2.4rem;
-  right: -1.25rem;
-  width: 1.25rem;
-  height: 2px;
-  background: var(--hub-border);
-}
-
-.ladderNumber {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 0.7rem;
-  border-radius: 50%;
-  background: var(--cosmos-blue);
-  color: #fff;
-  font-weight: 700;
-}
-
-[data-theme='dark'] .ladderNumber {
-  color: #04213f;
-}
-
-.ladderStep h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1.1rem;
-}
-
-.ladderStep p {
-  margin: 0 0 0.8rem;
-  color: var(--hub-text-muted);
-  font-size: 0.95rem;
-}
-
-.trackGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.25rem;
-}
-
-.trackCard {
-  padding: 1.5rem;
-  border: 1px solid var(--hub-border);
-  border-top: 4px solid var(--cosmos-blue);
-  border-radius: 12px;
-  background: var(--hub-surface);
-  box-shadow: var(--hub-shadow);
-}
-
-.trackHead {
+/* Every person gets the same card, border and photo size. */
+.personCard {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
-  margin-bottom: 0.7rem;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
 }
 
-.trackHead h4 {
-  margin: 0;
-  font-size: 1.2rem;
+.personPhoto {
+  display: block;
+  width: 100%;
+  height: 248px;
+  object-fit: cover;
+  object-position: center 25%;
+  background: var(--ifm-color-emphasis-200);
 }
 
-.trackStatus {
-  padding: 0.15rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(0, 120, 212, 0.12);
-  color: var(--hub-link);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.personBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.4rem;
 }
 
-.trackCard p {
+.personBody h3 {
+  margin: 0.2rem 0 0;
+  font-size: 1.3rem;
+}
+
+.personBody p {
   margin: 0 0 0.9rem;
   color: var(--hub-text-muted);
 }
 
-.trackLinks {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.trackLinks li {
-  margin: 0.3rem 0;
-}
-
-.trackLinks a {
-  color: var(--hub-link);
+.personBody .personRole {
+  margin: 0.4rem 0 0.7rem;
+  font-size: 0.85rem;
   font-weight: 600;
+  color: var(--hub-link);
+}
+
+/* Keeps the link on the same baseline across cards of different text length. */
+.personBody .cardLink {
+  margin-top: auto;
+}
+
+/* Cosmonauts: leadership card (matches the community draft) */
+
+.leadership {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 16px;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.leadership h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.leadership p {
+  margin: 0 0 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.leadershipSteps {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.leadershipSteps li {
+  margin: 0 0 0.9rem;
+  padding-left: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--hub-text-muted);
+}
+
+.leadershipSteps li::marker {
+  color: var(--hub-link);
+  font-weight: 700;
+}
+
+.leadershipSteps strong {
+  color: var(--ifm-font-color-base);
+}
+
+.leadership .leadershipFine {
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--hub-border);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* Closing band */
+
+.closing {
+  padding: 3.5rem 0;
+  color: #fff;
+  background:
+    radial-gradient(40rem 18rem at 90% -20%, rgba(80, 230, 255, 0.22), transparent 60%),
+    linear-gradient(135deg, #07182f 0%, #0b2f5c 100%);
+}
+
+.closingInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.closing h2 {
+  max-width: 42rem;
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.2;
+  color: #fff;
+}
+
+.closing p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.closing .primaryButton {
+  flex: none;
 }
 
 /* Events & news */
@@ -1281,6 +1313,14 @@
 /* ---------- Responsive ---------- */
 
 @media (max-width: 996px) {
+  .peopleGrid {
+    gap: 1rem;
+  }
+
+  .personPhoto {
+    height: 200px;
+  }
+
   .heroInner {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
@@ -1295,16 +1335,15 @@
     padding: 3rem 0;
   }
 
-  .certPanel {
+  .certPanel,
+  .leadership {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .ladder {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .ladderStep::after {
-    display: none;
+  .closingInner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1.25rem;
   }
 
   .certStory,
@@ -1323,9 +1362,16 @@
   }
 }
 
-@media (max-width: 600px) {
-  .ladder {
+@media (max-width: 700px) {
+  /* One column; every card keeps the same layout and size. */
+  .peopleGrid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .leadership {
+    padding: 1.4rem;
   }
 }
 

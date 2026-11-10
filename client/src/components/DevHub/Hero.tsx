@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import {languages} from '@site/src/data/devhub';
 import CodeSnippet from './CodeSnippet';
+import ExtLink from './ExtLink';
 import {useLanguage} from './LanguageContext';
 import {languageIcons} from './icons';
 import styles from './devhub.module.css';
@@ -41,18 +42,26 @@ export default function Hero(): React.ReactElement {
             <a className={styles.primaryButton} href="#develop">
               Start building
             </a>
-            <a className={styles.secondaryButton} href={language.quickstart}>
+            <ExtLink className={styles.secondaryButton} href={language.quickstart}>
               {language.name} quickstart
               <span aria-hidden="true" className={styles.arrow}>
                 →
               </span>
-            </a>
+            </ExtLink>
           </div>
-          <ul className={styles.heroTags} aria-label="Highlights">
-            <li>5 SDKs</li>
-            <li>AI apps &amp; agents</li>
-            <li>Free local emulator</li>
-            <li>Certification path</li>
+          <ul className={styles.heroTags} aria-label="Jump to">
+            <li>
+              <a href="#develop">{languages.length} SDKs</a>
+            </li>
+            <li>
+              <a href="#tools-ai">AI apps &amp; agents</a>
+            </li>
+            <li>
+              <a href="#tool-emulator">Free local emulator</a>
+            </li>
+            <li>
+              <a href="#learn">Certification path</a>
+            </li>
           </ul>
         </div>
 
@@ -93,7 +102,6 @@ export default function Hero(): React.ReactElement {
                   key={lang.id}
                   className={lang.id === language.id ? `${styles.panelItem} ${styles.panelItemActive}` : styles.panelItem}>
                   <div className={styles.install}>
-                    <span className={styles.installLabel}>Install</span>
                     <CodeSnippet code={lang.install} language="bash" label={`${lang.name} install command`} />
                   </div>
                   <div className={styles.example}>

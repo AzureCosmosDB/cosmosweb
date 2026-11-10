@@ -7,12 +7,12 @@ interface ExtLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement
 }
 
 /**
- * Microsoft Learn pages open in the same tab (they are the docs). Everything else opens in a new
- * tab and says so for screen readers.
+ * Every external link opens in a new tab and says so for screen readers. In-page and relative
+ * links stay in the same tab.
  */
 export default function ExtLink({href, children, className, ...rest}: ExtLinkProps): React.ReactElement {
-  const sameTab = href.startsWith('https://learn.microsoft.com') || href.startsWith('#');
-  if (sameTab) {
+  const external = /^https?:\/\//i.test(href);
+  if (!external) {
     return (
       <a href={href} className={className} {...rest}>
         {children}

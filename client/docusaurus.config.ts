@@ -108,6 +108,15 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
+        // Developer hub sections (home page). Hash-only routes never mark as active by path;
+        // the home page highlights the section in view itself (see DevHub/NavSpy).
+        {label: 'Develop', position: 'left', to: '/#develop', activeBaseRegex: '^$'},
+        {label: 'Tools', position: 'left', to: '/#tools', activeBaseRegex: '^$'},
+        {label: 'Watch', position: 'left', to: '/#watch', activeBaseRegex: '^$'},
+        {label: 'Learn & certify', position: 'left', to: '/#learn', activeBaseRegex: '^$'},
+        {label: 'Community', position: 'left', to: '/#community', activeBaseRegex: '^$'},
+        {label: 'Events & news', position: 'left', to: '/#events', activeBaseRegex: '^$'},
+        {label: 'Cosmonauts', position: 'left', to: '/#cosmonauts', activeBaseRegex: '^$'},
         {
           label: 'Gallery',
           position: 'left',
@@ -179,11 +188,6 @@ const config: Config = {
               activeBasePath: '/conf/coc',
             },
           ],
-        },
-        {
-          label: 'Community',
-          position: 'left',
-          to: '/community',
         },
       ],
     },

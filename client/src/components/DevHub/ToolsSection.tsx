@@ -13,12 +13,12 @@ export default function ToolsSection(): React.ReactElement {
       title="Tools"
       lead="Everything around the SDK: write and debug in your editor, let AI assistants work with your data, and plan and migrate your workload.">
       {toolGroups.map((group) => (
-        <div key={group.id} className={styles.toolGroup}>
+        <div key={group.id} id={`tools-${group.id}`} className={styles.toolGroup}>
           <h3 className={styles.subTitle}>{group.title}</h3>
           <p className={styles.toolGroupBlurb}>{group.blurb}</p>
           <div className={styles.toolGrid}>
             {group.tools.map((tool) => (
-              <article key={tool.id} className={styles.toolCard}>
+              <article key={tool.id} id={`tool-${tool.id}`} className={styles.toolCard}>
                 <div className={styles.toolHead}>
                   <span className={styles.toolIcon}>{toolIcons[tool.icon]}</span>
                   <h4 className={styles.toolName}>{tool.name}</h4>

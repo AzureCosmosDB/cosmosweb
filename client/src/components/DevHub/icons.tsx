@@ -22,6 +22,7 @@ import {
   SiOpenjdk,
   SiPython,
   SiReddit,
+  SiRust,
   SiStackoverflow,
   SiX,
   SiYoutube,
@@ -35,6 +36,7 @@ export const languageIcons: Record<string, React.ReactElement> = {
   java: <SiOpenjdk {...iconProps} />,
   javascript: <SiJavascript {...iconProps} />,
   go: <SiGo {...iconProps} />,
+  rust: <SiRust {...iconProps} />,
 };
 
 export const communityIcons: Record<string, React.ReactElement> = {

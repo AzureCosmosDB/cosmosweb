@@ -1,13 +1,14 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import ClosingBand from '@site/src/components/DevHub/ClosingBand';
 import CommunitySection from '@site/src/components/DevHub/CommunitySection';
+import CosmonautsSection from '@site/src/components/DevHub/CosmonautsSection';
 import DevelopSection from '@site/src/components/DevHub/DevelopSection';
 import EventsSection from '@site/src/components/DevHub/EventsSection';
-import GrowSection from '@site/src/components/DevHub/GrowSection';
 import Hero from '@site/src/components/DevHub/Hero';
 import {LanguageProvider} from '@site/src/components/DevHub/LanguageContext';
 import LearnSection from '@site/src/components/DevHub/LearnSection';
-import SectionNav from '@site/src/components/DevHub/SectionNav';
+import NavSpy from '@site/src/components/DevHub/NavSpy';
 import ToolsSection from '@site/src/components/DevHub/ToolsSection';
 import WatchSection from '@site/src/components/DevHub/WatchSection';
 import styles from '@site/src/components/DevHub/devhub.module.css';
@@ -22,18 +23,19 @@ export default function Home(): React.ReactElement {
       title="Azure Cosmos DB Developer Hub"
       description="SDKs, tools, developer guides, community and certification for building applications with Azure Cosmos DB.">
       <LanguageProvider>
+        <NavSpy />
         <div className={styles.hub}>
           <Hero />
-          <SectionNav />
           <main>
             <DevelopSection />
             <ToolsSection />
             <WatchSection />
             <LearnSection />
             <CommunitySection />
-            <GrowSection />
             <EventsSection />
+            <CosmonautsSection />
           </main>
+          <ClosingBand />
         </div>
       </LanguageProvider>
     </Layout>
