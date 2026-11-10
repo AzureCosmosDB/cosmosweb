@@ -9,7 +9,7 @@ import styles from './devhub.module.css';
 
 export default function LearnSection(): React.ReactElement {
   const now = useNow();
-  const {certification, launchpad, paths, intro} = learn;
+  const {certification, launchpad, intro} = learn;
   const activeOffers = offers.filter((offer) => !isExpired(offer.expires, now));
 
   return (
@@ -72,21 +72,6 @@ export default function LearnSection(): React.ReactElement {
             ))}
           </p>
         </div>
-      </div>
-
-      <div className={styles.pathGrid}>
-        {paths.map((path) => (
-          <article key={path.badge} className={styles.pathCard}>
-            <span className={styles.pathBadge}>{path.badge}</span>
-            <h4>{path.title}</h4>
-            <p>{path.blurb}</p>
-            <ExtLink href={path.href} className={styles.cardLink}>
-              Start this learning path
-              <span className={styles.visuallyHidden}>: {path.title}</span>
-              <span aria-hidden="true"> ↗</span>
-            </ExtLink>
-          </article>
-        ))}
       </div>
 
       {activeOffers.length > 0 ? (

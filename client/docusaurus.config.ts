@@ -171,7 +171,7 @@ const config: Config = {
     ],
   ],
 
-  plugins: ['./plugins/devblog-feed'],
+  plugins: ['./plugins/devblog-feed', './plugins/youtube-feed'],
 
   // Values here are serialized into the client bundle and are safe to read in the browser.
   // Use these for `/conf` feature toggles so we don't rely on `process` being defined client-side.

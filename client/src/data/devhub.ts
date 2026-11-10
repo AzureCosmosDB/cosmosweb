@@ -422,15 +422,21 @@ export interface Video {
   id: string;
   kind: VideoKind;
   label: string;
-  source: string;
+  /** Curated videos name their source; videos from the channel feed show their publish date instead. */
+  source?: string;
   title: string;
-  blurb: string;
-  note?: string;
+  blurb?: string;
+  date?: string;
+  dateLabel?: string;
   href: string;
-  /** Preview image shipped in static/img/hub. */
+  /** Preview image: shipped in static/img/hub, or an absolute URL for videos read from the channel feed. */
   image: string;
 }
 
+/**
+ * Curated videos. The page shows the latest videos from the YouTube channel feed instead when the build can
+ * reach it (see plugins/youtube-feed); these are the fallback.
+ */
 export const videos: Video[] = [
   {
     id: 'agent-kit-setup',
@@ -479,7 +485,6 @@ export const videos: Video[] = [
     source: 'John Savill',
     title: 'Cosmos DB Optimization',
     blurb: 'A creator-led technical deep dive.',
-    note: 'On demand. Not current DP-420 exam prep.',
     href: 'https://www.youtube.com/watch?v=RbH5F_3w47E',
     image: '/img/hub/video-RbH5F_3w47E.jpg',
   },
@@ -648,8 +653,6 @@ export const communityItems: CommunityItem[] = [
     blurb: 'Find technical questions and answers under the Azure Cosmos DB tag.',
     href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
   },
-  { id: 'youtube', name: 'YouTube', blurb: 'Videos, Shorts and live sessions.', href: 'https://www.youtube.com/@AzureCosmosDB' },
-  { id: 'blog', name: 'Blog', blurb: 'Announcements and deep dives.', href: 'https://devblogs.microsoft.com/cosmosdb/' },
   { id: 'x', name: 'X', blurb: 'Follow @AzureCosmosDB.', href: 'https://x.com/AzureCosmosDB' },
   {
     id: 'linkedin',
@@ -755,12 +758,12 @@ export const learn = {
       'Design, build, and optimize scalable AI applications with Azure Cosmos DB. Bring your database fundamentals together with RAG, agent memory, and conversation state.',
     cta: 'Explore the certification',
     href: 'https://aiskillsnavigator.microsoft.com/credentials/cert-9dd56fc8edb3e7187b5b95c643f6587c81e088731a6e96b3e64e3a94d324df47',
-    fine: 'Microsoft Certified: Azure Cosmos DB AI Developer Associate. Opens in AI Skills Navigator.',
+    fine: 'Microsoft Certified: Azure Cosmos DB AI Developer Associate.',
   },
   launchpad: {
     eyebrow: 'Your learning launchpad',
     title: 'A clear path from curious to ready.',
-    blurb: 'Certification and training links open in AI Skills Navigator. Choose your starting point.',
+    blurb: 'Start with a short module, follow the full course, or work through a learning path.',
     steps: [
       {
         title: 'New here? Try Azure Cosmos DB.',
@@ -786,24 +789,4 @@ export const learn = {
       },
     ],
   },
-  paths: [
-    {
-      badge: 'Database foundations',
-      title: 'Design and develop database solutions.',
-      blurb: 'Build your foundation in models, partitioning, queries, and application development.',
-      href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-0c1b1e98d692b7f327d355e3834672949eab6cb5dbbc169103aaedbdf44c559e',
-    },
-    {
-      badge: 'Production readiness',
-      title: 'Secure, optimize, and deploy.',
-      blurb: 'Strengthen performance, security, and deployment skills for real applications.',
-      href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-470f1633f45687f7c3534f03d8cf15117aae9a271f453db4afe5f3cd08117d8a',
-    },
-    {
-      badge: 'AI capabilities',
-      title: 'Develop AI solutions on Azure Cosmos DB.',
-      blurb: 'Bring retrieval and generative AI patterns into your Cosmos DB applications.',
-      href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
-    },
-  ],
 };

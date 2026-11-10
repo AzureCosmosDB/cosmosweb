@@ -866,6 +866,11 @@
   transform: none;
 }
 
+/* YouTube thumbnails from the channel feed: cropping to 16:9 already trims the black bars. */
+.videoThumbFeed img {
+  transform: none;
+}
+
 .videoBody {
   display: flex;
   flex: 1;

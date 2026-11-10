@@ -13,7 +13,7 @@ export default function DevelopSection(): React.ReactElement {
     <Section
       id="develop"
       title="Develop"
-      lead="Pick your language. The quickstart, SDK guide and API reference below follow your choice, and so does the code at the top of the page.">
+      lead="Pick your language to see its quickstart, SDK guide and API reference.">
       <div className={styles.langGrid} role="group" aria-label="Azure Cosmos DB SDKs">
         {languages.map((lang) => {
           const selected = lang.id === language.id;
