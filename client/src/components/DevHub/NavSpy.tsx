@@ -14,7 +14,8 @@ const DROPDOWN_ACTIVE_CLASS = 'dropdown__link--active';
 
 function navLinks(id: string): HTMLAnchorElement[] {
   const target = NAV_TARGET[id] ?? id;
-  return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href="/#${target}"]`)).filter(
+  // `$=` so the match also holds when the site is served from a sub-path (e.g. /cosmosweb/#develop).
+  return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href$="/#${target}"]`)).filter(
     (a) => !a.classList.contains('navbar-cta'),
   );
 }

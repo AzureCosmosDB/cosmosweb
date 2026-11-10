@@ -124,8 +124,9 @@ const config: Config = {
     './src/clientModules/gtagGuard.ts',
   ],
 
-  url: 'https://developer.azurecosmosdb.com',
-  baseUrl: '/',
+  // Overridable so a preview build can be served from a sub-path (see .github/workflows/pages-preview.yml).
+  url: process.env.DOCUSAURUS_URL || 'https://developer.azurecosmosdb.com',
+  baseUrl: process.env.DOCUSAURUS_BASE_URL || '/',
 
   organizationName: 'azurecosmosdb',
   projectName: 'azurecosmosdbconf',
@@ -145,10 +146,15 @@ const config: Config = {
     [
       'classic',
       {
-        gtag: {
-          trackingID: 'G-06VJPSGDCQ',
-          anonymizeIP: true,
-        },
+        // Preview builds set DISABLE_ANALYTICS so they don't report to the production Google Analytics property.
+        ...(process.env.DISABLE_ANALYTICS
+          ? {}
+          : {
+              gtag: {
+                trackingID: 'G-06VJPSGDCQ',
+                anonymizeIP: true,
+              },
+            }),
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl:
