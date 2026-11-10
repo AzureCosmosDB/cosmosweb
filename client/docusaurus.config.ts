@@ -19,6 +19,100 @@ function readString(envValue: string | undefined): string | null {
 
 const showAgendaNav = readBool(process.env.CONF_SHOW_AGENDA, true);
 
+// Pages of the Azure Cosmos DB Conf site. Used by the conf navbar and by the hub's Events menu.
+const confPageItems = [
+  {
+    label: 'Cloud Skills Challenge',
+    to: '/conf#cloud-skills',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'News',
+    to: '/conf#news',
+    // Prevent double-highlighting (e.g. Conf Home + News) in the mobile menu.
+    // Docusaurus' active matching is path-based and doesn't handle hash-only routes well.
+    activeBaseRegex: '^$',
+  },
+  ...(showAgendaNav
+    ? [
+        {
+          label: 'Agenda',
+          to: '/conf#agenda',
+          activeBaseRegex: '^$',
+        },
+      ]
+    : []),
+  {
+    label: 'Speakers',
+    to: '/conf#speakers',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Resources',
+    to: '/conf#resources',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Archive',
+    to: '/conf#archive',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'FAQ',
+    to: '/conf#faq-section',
+    // Hash-only routes: never mark as active to avoid multiple active links.
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Socials',
+    to: '/conf#socials',
+    // Hash-only routes: never mark as active to avoid multiple active links.
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Code Of Conduct',
+    to: '/conf/coc',
+    activeBasePath: '/conf/coc',
+  },
+];
+
+// The original site navbar. `src/theme/Root.tsx` swaps it in on every /conf page; the rest of the
+// site uses `themeConfig.navbar` (the developer hub navbar).
+const confNavbar = {
+  title: 'Developer Home',
+  logo: {
+    alt: 'Azure Cosmos DB Dev Home',
+    src: 'img/logo.svg',
+  },
+  items: [
+    {
+      label: 'Gallery',
+      position: 'left',
+      href: 'https://azurecosmosdb.github.io/gallery/',
+    },
+    {
+      to: '/conf',
+      type: 'dropdown',
+      label: 'Azure Cosmos DB Conf',
+      position: 'left',
+      items: [
+        {
+          label: 'Conf Home',
+          to: '/conf',
+          activeBaseRegex: '^/conf/?$',
+          className: 'mobile-only',
+        },
+        ...confPageItems,
+      ],
+    },
+    {
+      label: 'Community',
+      position: 'left',
+      to: '/community',
+    },
+  ],
+};
+
 const config: Config = {
   title: 'Azure Cosmos DB Dev Home',
   tagline: 'Infinite Scale, Instant Impact!',
@@ -95,7 +189,7 @@ const config: Config = {
       conf.streamEmbedUrl = readString(process.env.CONF_STREAM_EMBED_URL);
     }
 
-    return { conf };
+    return {conf, confNavbar};
   })(),
 
   themeConfig: {
@@ -139,59 +233,7 @@ const config: Config = {
               to: '/conf',
               activeBaseRegex: '^/conf/?$',
             },
-            {
-              label: 'Cloud Skills Challenge',
-              to: '/conf#cloud-skills',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'News',
-              to: '/conf#news',
-              // Prevent double-highlighting (e.g. Conf Home + News) in the mobile menu.
-              // Docusaurus' active matching is path-based and doesn't handle hash-only routes well.
-              activeBaseRegex: '^$',
-            },
-            ...(showAgendaNav
-              ? [
-                  {
-                    label: 'Agenda',
-                    to: '/conf#agenda',
-                    activeBaseRegex: '^$',
-                  },
-                ]
-              : []),
-            {
-              label: 'Speakers',
-              to: '/conf#speakers',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Resources',
-              to: '/conf#resources',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Archive',
-              to: '/conf#archive',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'FAQ',
-              to: '/conf#faq-section',
-              // Hash-only routes: never mark as active to avoid multiple active links.
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Socials',
-              to: '/conf#socials',
-              // Hash-only routes: never mark as active to avoid multiple active links.
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Code Of Conduct',
-              to: '/conf/coc',
-              activeBasePath: '/conf/coc',
-            },
+            ...confPageItems,
           ],
         },
         // Call to action, like the draft's "Explore DP-420" button.
