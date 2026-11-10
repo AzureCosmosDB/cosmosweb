@@ -1357,6 +1357,10 @@
   padding: 1.25rem 1.4rem;
 }
 
+.postBody .cardLink {
+  margin-top: auto;
+}
+
 .postDate {
   display: block;
   margin-bottom: 0.5rem;

@@ -572,15 +572,19 @@ export interface Post {
   id: string;
   date: string;
   dateLabel: string;
-  topic: string;
+  topic?: string;
   title: string;
   blurb: string;
   cta: string;
   href: string;
-  /** Preview image shipped in static/img/hub. */
-  image: string;
+  /** Preview image: shipped in static/img/hub, or an absolute URL for posts read from the feed. */
+  image?: string | null;
 }
 
+/**
+ * Curated posts. The page shows the latest posts from the dev blog feed instead when the build can reach it
+ * (see plugins/devblog-feed); these are the fallback.
+ */
 export const posts: Post[] = [
   {
     id: 'chatgpt',
