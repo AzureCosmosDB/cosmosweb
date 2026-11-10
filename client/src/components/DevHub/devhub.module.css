@@ -1231,13 +1231,18 @@
 
 /* Closing band */
 
-/* Try-it banner under the hero: a slimmer band in a brighter blue so it reads as separate from the hero above. */
+/*
+ * Try-it banner under the hero: a slim band in the page's own surface colour with a soft Azure Cosmos DB blue
+ * tint (the same tint as the featured guide card), so it sits between the dark hero and the page content
+ * instead of competing with either.
+ */
 .closing {
-  padding: 1.6rem 0;
-  color: #fff;
+  padding: 1.5rem 0;
+  color: var(--ifm-font-color-base);
+  border-bottom: 1px solid var(--hub-border);
   background:
-    radial-gradient(30rem 12rem at 8% -40%, rgba(80, 230, 255, 0.3), transparent 60%),
-    linear-gradient(90deg, #0b4f9a 0%, #0078d4 100%);
+    linear-gradient(90deg, rgba(0, 120, 212, 0.12), rgba(80, 230, 255, 0.1)),
+    var(--hub-surface);
 }
 
 .closingInner {
@@ -1255,16 +1260,41 @@
   margin: 0 0 0.3rem;
   font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   line-height: 1.2;
-  color: #fff;
+  color: inherit;
 }
 
 .closing p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--hub-text-muted);
 }
 
 .closing .primaryButton {
   flex: none;
+  border-color: #0067b8;
+  background: #0067b8;
+  color: #fff;
+}
+
+.closing .primaryButton:hover {
+  border-color: #005a9e;
+  background: #005a9e;
+  color: #fff;
+}
+
+.closing .primaryButton:focus-visible {
+  outline-color: var(--cosmos-blue);
+}
+
+[data-theme='dark'] .closing .primaryButton {
+  border-color: var(--cosmos-cyan);
+  background: var(--cosmos-cyan);
+  color: #04213f;
+}
+
+[data-theme='dark'] .closing .primaryButton:hover {
+  border-color: #8cf0ff;
+  background: #8cf0ff;
+  color: #04213f;
 }
 
 /* Events & updates */
