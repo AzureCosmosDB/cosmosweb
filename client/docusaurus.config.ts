@@ -121,6 +121,7 @@ const config: Config = {
   clientModules: [
     './src/clientModules/confMobileHashActive.ts',
     './src/clientModules/clientErrorLogger.ts',
+    './src/clientModules/gtagGuard.ts',
   ],
 
   url: 'https://developer.azurecosmosdb.com',
