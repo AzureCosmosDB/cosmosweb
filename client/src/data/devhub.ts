@@ -713,14 +713,14 @@ export const growth = {
     },
     {
       title: 'Connect with the Cosmos DB community.',
-      text: 'Participate and share your work. Ask the community team about current Cosmonaut recognition criteria and opportunities.',
+      text: 'Participate and share your work. Cosmonauts are nominated, so visible, consistent contributions are how you get noticed.',
     },
     {
       title: 'Explore Microsoft MVP nomination.',
       text: 'Document impactful, verifiable contributions from the last 12 months. A current MVP or Microsoft employee must nominate you before the application and review.',
     },
   ],
-  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420, participating, or being nominated does not guarantee either. There is no public Cosmonaut application process.',
+  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420 or participating does not guarantee either. Cosmonauts are nominated; there is no public Cosmonaut application process.',
 };
 
 export const closing = {
