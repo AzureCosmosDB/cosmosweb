@@ -127,6 +127,35 @@ html {
   }
 }
 
+/* Desktop nav: compact type so the hub sections, Gallery and Conf fit on one row. */
+@media (min-width: 997px) {
+  .navbar__items {
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .navbar__link,
+  .navbar__title {
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .navbar__link {
+    padding: 4px 8px;
+  }
+
+  .navbar__title {
+    font-weight: 700;
+  }
+}
+
+/* Below ~1200px the brand text would crowd out the links; the logo alone is enough. */
+@media (min-width: 997px) and (max-width: 1199px) {
+  .navbar__brand .navbar__title {
+    display: none;
+  }
+}
+
 /* Mobile nav: only the active link should change color. */
 @media (max-width: 996px) {
   .menu__link:hover,

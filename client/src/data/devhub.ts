@@ -502,7 +502,7 @@ export const offers: Offer[] = [
     blurb:
       "Meet the developer community, explore Cosmos DB sessions, and take DP-420 onsite at no charge if you're a registered in-person attendee.",
     cta: 'Explore onsite certification',
-    href: 'https://learn.microsoft.com/en-us/training/topics/ignite/microsoft-ignite-2026-certification-registration',
+    href: 'https://learn.microsoft.com/training/topics/ignite/microsoft-ignite-2026-certification-registration',
     fine: 'Testing: November 16-20. One Microsoft or one GitHub exam per eligible attendee. Registration, available seats, and official terms apply.',
     expires: '2026-11-20',
   },
@@ -544,7 +544,7 @@ export const events: EventItem[] = [
     where: 'San Francisco',
     blurb: 'Explore Cosmos DB sessions and meet the developer community. Onsite exam testing runs November 16-20.',
     cta: 'Explore sessions',
-    href: 'https://ignite.microsoft.com/en-US/sessions',
+    href: 'https://ignite.microsoft.com/sessions',
     start: '2026-11-17',
     end: '2026-11-20',
   },
@@ -702,7 +702,7 @@ export const growth = {
   eyebrow: 'From learner to community leader',
   title: 'Plot your path toward Cosmonaut recognition and Microsoft MVP.',
   blurb: "Start by making a meaningful contribution. Grow expertise, help others, and build a body of work you're proud to share.",
-  cta: {label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/en-US/faq?section=mvp'},
+  cta: {label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/faq?section=mvp'},
   steps: [
     {
       title: 'Build real expertise.',
@@ -734,7 +734,7 @@ export const learn = {
   intro: {
     label: 'New to Cosmos DB? Start small. Run your first NoSQL queries.',
     cta: 'Try the introductory module on AI Skills Navigator',
-    href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
+    href: 'https://aiskillsnavigator.microsoft.com/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
   },
   certification: {
     code: 'DP-420',
@@ -744,7 +744,7 @@ export const learn = {
     blurb:
       'Design, build, and optimize scalable AI applications with Azure Cosmos DB. Bring your database fundamentals together with RAG, agent memory, and conversation state.',
     cta: 'Explore the certification',
-    href: 'https://aiskillsnavigator.microsoft.com/en-us/credentials/cert-9dd56fc8edb3e7187b5b95c643f6587c81e088731a6e96b3e64e3a94d324df47',
+    href: 'https://aiskillsnavigator.microsoft.com/credentials/cert-9dd56fc8edb3e7187b5b95c643f6587c81e088731a6e96b3e64e3a94d324df47',
     fine: 'Microsoft Certified: Azure Cosmos DB AI Developer Associate. Opens in AI Skills Navigator.',
   },
   launchpad: {
@@ -755,24 +755,24 @@ export const learn = {
       {
         title: 'New here? Try Azure Cosmos DB.',
         meta: 'Introductory module / Get hands-on with the basics',
-        href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
+        href: 'https://aiskillsnavigator.microsoft.com/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
       },
       {
         title: 'Build AI applications with Azure Cosmos DB.',
         meta: 'DP-420 course / Follow the full learning journey',
-        href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/course-0bb289fa6910b0c5559747dd066872aedfb982d05b6821ee509ed39cd9a058fa',
+        href: 'https://aiskillsnavigator.microsoft.com/explore/search/course-0bb289fa6910b0c5559747dd066872aedfb982d05b6821ee509ed39cd9a058fa',
       },
       {
         title: 'Develop AI solutions with Azure Cosmos DB.',
         meta: 'Learning path / Put AI capabilities into practice',
-        href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
+        href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
       },
     ],
     links: [
-      { label: 'Current study guide', href: 'https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-420' },
+      { label: 'Current study guide', href: 'https://learn.microsoft.com/credentials/certifications/resources/study-guides/dp-420' },
       {
         label: 'Practice & exam scheduling on Learn',
-        href: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-cosmos-db-developer-specialty/?practice-assessment-type=certification',
+        href: 'https://learn.microsoft.com/credentials/certifications/azure-cosmos-db-developer-specialty/?practice-assessment-type=certification',
       },
     ],
   },
@@ -781,19 +781,19 @@ export const learn = {
       badge: 'Database foundations',
       title: 'Design and develop database solutions.',
       blurb: 'Build your foundation in models, partitioning, queries, and application development.',
-      href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-0c1b1e98d692b7f327d355e3834672949eab6cb5dbbc169103aaedbdf44c559e',
+      href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-0c1b1e98d692b7f327d355e3834672949eab6cb5dbbc169103aaedbdf44c559e',
     },
     {
       badge: 'Production readiness',
       title: 'Secure, optimize, and deploy.',
       blurb: 'Strengthen performance, security, and deployment skills for real applications.',
-      href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-470f1633f45687f7c3534f03d8cf15117aae9a271f453db4afe5f3cd08117d8a',
+      href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-470f1633f45687f7c3534f03d8cf15117aae9a271f453db4afe5f3cd08117d8a',
     },
     {
       badge: 'AI capabilities',
       title: 'Develop AI solutions on Azure Cosmos DB.',
       blurb: 'Bring retrieval and generative AI patterns into your Cosmos DB applications.',
-      href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
+      href: 'https://aiskillsnavigator.microsoft.com/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
     },
   ],
 };

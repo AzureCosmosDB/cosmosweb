@@ -113,10 +113,10 @@ const config: Config = {
         {label: 'Develop', position: 'left', to: '/#develop', activeBaseRegex: '^$'},
         {label: 'Tools', position: 'left', to: '/#tools', activeBaseRegex: '^$'},
         {label: 'Watch', position: 'left', to: '/#watch', activeBaseRegex: '^$'},
-        {label: 'Learn & certify', position: 'left', to: '/#learn', activeBaseRegex: '^$'},
+        {label: 'Learn', position: 'left', to: '/#learn', activeBaseRegex: '^$'},
         {label: 'Cosmonauts', position: 'left', to: '/#cosmonauts', activeBaseRegex: '^$'},
         {label: 'Community', position: 'left', to: '/#community', activeBaseRegex: '^$'},
-        {label: 'Events & news', position: 'left', to: '/#events', activeBaseRegex: '^$'},
+        {label: 'Events', position: 'left', to: '/#events', activeBaseRegex: '^$'},
         {
           label: 'Gallery',
           position: 'left',
