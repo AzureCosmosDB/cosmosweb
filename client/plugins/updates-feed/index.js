@@ -11,7 +11,7 @@ const API_URL =
   'https://www.microsoft.com/releasecommunications/api/v2/azure?' +
     new URLSearchParams({
       $filter: "products/any(f:f eq 'Azure Cosmos DB')",
-      $orderby: 'created desc',
+      $orderby: 'modified desc',
       $top: '12',
     }).toString();
 const ITEM_URL = 'https://azure.microsoft.com/updates?id=';
@@ -67,7 +67,7 @@ module.exports = function updatesFeedPlugin() {
         return (json.value ?? [])
           .filter((item) => item.id && item.title && Array.isArray(item.products) && item.products.includes('Azure Cosmos DB'))
           .map((item) => {
-            const created = new Date(item.created);
+            const created = new Date(item.modified || item.created);
             if (Number.isNaN(created.getTime())) return null;
             const {stage, title} = splitTitle(decodeEntities(stripTags(item.title)));
             return {
