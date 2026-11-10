@@ -114,9 +114,9 @@ const config: Config = {
         {label: 'Tools', position: 'left', to: '/#tools', activeBaseRegex: '^$'},
         {label: 'Watch', position: 'left', to: '/#watch', activeBaseRegex: '^$'},
         {label: 'Learn & certify', position: 'left', to: '/#learn', activeBaseRegex: '^$'},
+        {label: 'Cosmonauts', position: 'left', to: '/#cosmonauts', activeBaseRegex: '^$'},
         {label: 'Community', position: 'left', to: '/#community', activeBaseRegex: '^$'},
         {label: 'Events & news', position: 'left', to: '/#events', activeBaseRegex: '^$'},
-        {label: 'Cosmonauts', position: 'left', to: '/#cosmonauts', activeBaseRegex: '^$'},
         {
           label: 'Gallery',
           position: 'left',

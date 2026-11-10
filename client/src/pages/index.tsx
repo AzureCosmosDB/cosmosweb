@@ -31,9 +31,9 @@ export default function Home(): React.ReactElement {
             <ToolsSection />
             <WatchSection />
             <LearnSection />
+            <CosmonautsSection />
             <CommunitySection />
             <EventsSection />
-            <CosmonautsSection />
           </main>
           <ClosingBand />
         </div>

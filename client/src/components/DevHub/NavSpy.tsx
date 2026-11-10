@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 
 /** Section ids, in page order. Each has a matching `/#id` entry in the site navbar. */
-const SECTION_IDS = ['develop', 'tools', 'watch', 'learn', 'community', 'events', 'cosmonauts'];
+const SECTION_IDS = ['develop', 'tools', 'watch', 'learn', 'cosmonauts', 'community', 'events'];
 
 // A section counts as current once its top edge has scrolled up past the navbar.
 const OFFSET_PX = 100;
