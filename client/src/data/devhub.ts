@@ -271,9 +271,9 @@ export const scenarios: Scenario[] = [
     id: 'rag',
     tags: 'Vector / Hybrid search / RAG',
     title: 'Ground AI in your own data.',
-    blurb: 'Explore patterns for retrieval and AI-powered applications, with code samples and community demos.',
-    cta: 'Explore the sample gallery',
-    href: 'https://azurecosmosdb.github.io/gallery/',
+    blurb: 'Explore retrieval-augmented generation patterns and vector search for AI-powered applications.',
+    cta: 'Explore RAG patterns',
+    href: 'https://learn.microsoft.com/azure/cosmos-db/gen-ai/rag',
   },
   {
     id: 'production',
@@ -284,6 +284,12 @@ export const scenarios: Scenario[] = [
     href: 'https://devblogs.microsoft.com/cosmosdb/code-with-cosmos/',
   },
 ];
+
+export const gallery = {
+  label: 'Looking for working code? Start from a ready-made sample.',
+  cta: 'Browse the sample gallery',
+  href: 'https://azurecosmosdb.github.io/gallery/',
+};
 
 export type ToolIconId = 'vscode' | 'emulator' | 'explorer' | 'agentKit' | 'mcpServer' | 'mcpToolkit' | 'capacity' | 'migrate' | 'assistant';
 

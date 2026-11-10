@@ -1,5 +1,5 @@
 import React from 'react';
-import {guideGroups, languages, scenarios} from '@site/src/data/devhub';
+import {gallery, guideGroups, languages, scenarios} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
 import {useLanguage} from './LanguageContext';
 import Section from './Section';
@@ -82,6 +82,14 @@ export default function DevelopSection(): React.ReactElement {
           </article>
         ))}
       </div>
+
+      <p className={`${styles.introBar} ${styles.galleryBar}`}>
+        <span>{gallery.label}</span>
+        <ExtLink href={gallery.href}>
+          {gallery.cta}
+          <span aria-hidden="true"> ↗</span>
+        </ExtLink>
+      </p>
     </Section>
   );
 }
