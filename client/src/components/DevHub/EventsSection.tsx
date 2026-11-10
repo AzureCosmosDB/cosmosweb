@@ -33,11 +33,11 @@ export default function EventsSection(): React.ReactElement {
                 </h3>
                 <p className={styles.eventWhere}>{event.where}</p>
                 <p>{event.blurb}</p>
+                <ExtLink href={event.href} className={styles.cardLink}>
+                  {event.cta}
+                  <span aria-hidden="true"> ↗</span>
+                </ExtLink>
               </div>
-              <ExtLink href={event.href} className={styles.cardLink}>
-                {event.cta}
-                <span aria-hidden="true"> ↗</span>
-              </ExtLink>
             </article>
           );
         })}

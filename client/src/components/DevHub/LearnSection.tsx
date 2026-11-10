@@ -87,10 +87,6 @@ export default function LearnSection(): React.ReactElement {
                 <p className={styles.offerDate}>{offer.date}</p>
                 <h4>{offer.title}</h4>
                 <p>{offer.blurb}</p>
-                <ExtLink href={offer.href} className={styles.cardLink}>
-                  {offer.cta}
-                  <span aria-hidden="true"> ↗</span>
-                </ExtLink>
                 <p className={styles.fine}>
                   {offer.fine}
                   {offer.fineLink ? (
@@ -100,6 +96,10 @@ export default function LearnSection(): React.ReactElement {
                     </>
                   ) : null}
                 </p>
+                <ExtLink href={offer.href} className={styles.cardLink}>
+                  {offer.cta}
+                  <span aria-hidden="true"> ↗</span>
+                </ExtLink>
               </article>
             ))}
           </div>

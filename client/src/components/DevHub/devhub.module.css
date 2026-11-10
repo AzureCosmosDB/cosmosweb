@@ -494,6 +494,8 @@
 }
 
 .guideCard {
+  display: flex;
+  flex-direction: column;
   padding: 1.25rem 1.4rem;
   border: 1px solid var(--hub-border);
   border-radius: 12px;
@@ -520,12 +522,17 @@
 }
 
 .guideCard ul {
-  margin: 0;
+  margin: auto 0 0;
   padding-left: 1.1rem;
+}
+
+.guideCard li:last-child {
+  margin-bottom: 0;
 }
 
 .guideCard li {
   margin: 0.3rem 0;
+  line-height: 1.2;
 }
 
 .guideCard a {
@@ -1145,7 +1152,7 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1.4rem;
+  padding: 1.25rem 1.4rem;
 }
 
 .personBody h4 {
@@ -1274,10 +1281,10 @@
 
 .eventRow {
   display: grid;
-  grid-template-columns: 110px minmax(0, 1fr) auto;
+  grid-template-columns: 110px minmax(0, 1fr);
   align-items: center;
   gap: 1.25rem;
-  padding: 1.1rem 1.4rem;
+  padding: 1.25rem 1.4rem;
   border: 1px solid var(--hub-border);
   border-radius: 12px;
   background: var(--hub-surface);
@@ -1359,6 +1366,42 @@
 
 .postBody .cardLink {
   margin-top: auto;
+}
+
+/*
+ * Uniform CTA placement: in every card, the call to action sits bottom-left, the same distance from the
+ * card edge (the card padding), whatever the text length above it.
+ */
+.toolCard,
+.scenarioCard,
+.offerCard,
+.updateCard,
+.eventBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.scenarioCard .cardLink,
+.offerCard .cardLink,
+.eventBody .cardLink,
+.updateCard .cardLink {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.toolLinks {
+  margin-top: auto;
+}
+
+.scenarioCard > p:last-of-type,
+.offerCard > p:last-of-type,
+.toolCard > p:last-of-type,
+.updateCard > p:last-of-type {
+  margin-bottom: 0.9rem;
+}
+
+.eventBody .cardLink {
+  margin-top: 0.7rem;
 }
 
 .postDate {
