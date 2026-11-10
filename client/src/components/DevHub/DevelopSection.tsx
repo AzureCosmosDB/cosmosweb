@@ -30,11 +30,6 @@ export default function DevelopSection(): React.ReactElement {
                   v{lang.version}
                 </span>
               </button>
-              <div className={styles.langLinks}>
-                <ExtLink href={lang.guide}>Developer guide</ExtLink>
-                <span aria-hidden="true" className={styles.divider} />
-                <ExtLink href={lang.api}>API reference</ExtLink>
-              </div>
             </article>
           );
         })}

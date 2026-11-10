@@ -425,7 +425,7 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  padding: 1rem 1rem 0.8rem;
+  padding: 1rem;
   border: 0;
   background: transparent;
   color: inherit;
@@ -458,27 +458,6 @@
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--ifm-font-color-base);
-}
-
-.langLinks {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.8rem 1rem 1rem;
-  border-top: 1px solid var(--hub-border);
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.langLinks a {
-  color: var(--hub-link);
-}
-
-.divider {
-  width: 1px;
-  align-self: stretch;
-  background: var(--hub-border);
 }
 
 /* Guide groups */
