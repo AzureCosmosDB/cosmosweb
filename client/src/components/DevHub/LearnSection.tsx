@@ -7,7 +7,7 @@ import styles from './devhub.module.css';
 
 export default function LearnSection(): React.ReactElement {
   const now = useNow();
-  const {certification, launchpad, paths, docs, intro} = learn;
+  const {certification, launchpad, paths, intro} = learn;
   const activeOffers = offers.filter((offer) => !isExpired(offer.expires, now));
 
   return (
@@ -115,15 +115,6 @@ export default function LearnSection(): React.ReactElement {
           </div>
         </>
       ) : null}
-
-      <p className={styles.docsRow}>
-        <span>Documentation:</span>
-        {docs.map((doc) => (
-          <ExtLink key={doc.href} href={doc.href}>
-            {doc.label}
-          </ExtLink>
-        ))}
-      </p>
     </Section>
   );
 }

@@ -628,7 +628,6 @@
 }
 
 .sectionFoot a,
-.docsRow a,
 .certMeta a,
 .introBar a,
 .fine a {
@@ -1066,14 +1065,6 @@
   margin: 0 0 0.4rem !important;
   font-weight: 700;
   color: var(--ifm-font-color-base) !important;
-}
-
-.docsRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.4rem;
-  margin: 2rem 0 0;
-  color: var(--hub-text-muted);
 }
 
 /* Cosmonauts: people */

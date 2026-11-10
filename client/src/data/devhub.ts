@@ -795,9 +795,4 @@ export const learn = {
       href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
     },
   ],
-  docs: [
-    { label: 'Azure Cosmos DB documentation', href: 'https://learn.microsoft.com/azure/cosmos-db/' },
-    { label: 'Azure DocumentDB documentation', href: 'https://learn.microsoft.com/azure/documentdb/' },
-    { label: 'Open-source DocumentDB', href: 'https://documentdb.io/' },
-  ],
 };
