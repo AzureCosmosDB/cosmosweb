@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {videos, type VideoKind} from '@site/src/data/devhub';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import {videos, type Video, type VideoKind} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
 import Section from './Section';
 import {playIcon} from './icons';
@@ -12,6 +13,25 @@ const filters: Array<{id: Filter; label: string}> = [
   {id: 'short', label: 'YouTube Shorts'},
   {id: 'deep', label: 'Deep dives'},
 ];
+
+function VideoCard({video}: {video: Video}): React.ReactElement {
+  const image = useBaseUrl(video.image);
+  return (
+    <ExtLink href={video.href} className={styles.videoCard}>
+      <span className={video.kind === 'short' ? `${styles.videoThumb} ${styles.videoThumbShort}` : styles.videoThumb}>
+        <img src={image} alt="" width={480} height={360} loading="lazy" />
+        <span className={styles.videoType}>{video.label}</span>
+        <span className={styles.videoPlay}>{playIcon}</span>
+      </span>
+      <span className={styles.videoBody}>
+        <span className={styles.videoSource}>{video.source}</span>
+        <span className={styles.videoTitle}>{video.title}</span>
+        <span className={styles.videoBlurb}>{video.blurb}</span>
+        {video.note ? <span className={styles.videoNote}>{video.note}</span> : null}
+      </span>
+    </ExtLink>
+  );
+}
 
 export default function WatchSection(): React.ReactElement {
   const [filter, setFilter] = useState<Filter>('all');
@@ -42,14 +62,7 @@ export default function WatchSection(): React.ReactElement {
 
       <div className={styles.videoGrid}>
         {visible.map((video) => (
-          <ExtLink key={video.id} href={video.href} className={styles.videoCard}>
-            <span className={styles.videoPlay}>{playIcon}</span>
-            <span className={styles.videoType}>{video.label}</span>
-            <span className={styles.videoSource}>{video.source}</span>
-            <span className={styles.videoTitle}>{video.title}</span>
-            <span className={styles.videoBlurb}>{video.blurb}</span>
-            {video.note ? <span className={styles.videoNote}>{video.note}</span> : null}
-          </ExtLink>
+          <VideoCard key={video.id} video={video} />
         ))}
       </div>
 

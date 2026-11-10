@@ -421,6 +421,8 @@ export interface Video {
   blurb: string;
   note?: string;
   href: string;
+  /** Preview image shipped in static/img/hub. */
+  image: string;
 }
 
 export const videos: Video[] = [
@@ -432,6 +434,7 @@ export const videos: Video[] = [
     title: 'What Is Azure Cosmos DB Agent Kit? Setup in 45 Seconds',
     blurb: 'A quick introduction to the Agent Kit.',
     href: 'https://www.youtube.com/shorts/FyCK7rzq_Gc',
+    image: '/img/hub/video-FyCK7rzq_Gc.jpg',
   },
   {
     id: 'idea-to-prototype',
@@ -441,6 +444,7 @@ export const videos: Video[] = [
     title: 'From Idea to Working Prototype with AI + Azure Cosmos DB',
     blurb: 'See what a first build can look like.',
     href: 'https://www.youtube.com/shorts/0jmey3s5eSE',
+    image: '/img/hub/video-0jmey3s5eSE.jpg',
   },
   {
     id: 'agent-kit-ga',
@@ -450,6 +454,7 @@ export const videos: Video[] = [
     title: 'Azure Cosmos DB Agent Kit is GA',
     blurb: 'Get the quick update on Agent Kit availability.',
     href: 'https://www.youtube.com/shorts/St-Ahjhy8vc',
+    image: '/img/hub/video-St-Ahjhy8vc.jpg',
   },
   {
     id: 'code-with-cosmos-4',
@@ -459,6 +464,7 @@ export const videos: Video[] = [
     title: 'Operating AI Agents in Production',
     blurb: 'Keep learning beyond the prototype.',
     href: 'https://www.youtube.com/watch?v=NNw_VdIL18o',
+    image: '/img/hub/video-NNw_VdIL18o.jpg',
   },
   {
     id: 'savill-optimization',
@@ -469,6 +475,7 @@ export const videos: Video[] = [
     blurb: 'A creator-led technical deep dive.',
     note: 'On demand. Not current DP-420 exam prep.',
     href: 'https://www.youtube.com/watch?v=RbH5F_3w47E',
+    image: '/img/hub/video-RbH5F_3w47E.jpg',
   },
 ];
 
@@ -564,6 +571,8 @@ export interface Post {
   blurb: string;
   cta: string;
   href: string;
+  /** Preview image shipped in static/img/hub. */
+  image: string;
 }
 
 export const posts: Post[] = [
@@ -576,6 +585,7 @@ export const posts: Post[] = [
     blurb: 'Explore the refreshed DP-420 exam and current Ignite and Data Days opportunities.',
     cta: 'Read the article',
     href: 'https://devblogs.microsoft.com/cosmosdb/chatgpt-runs-on-azure-cosmos-db-prove-you-can-build-whats-next/',
+    image: '/img/hub/post-chatgpt.jpg',
   },
   {
     id: 'code-with-cosmos',
@@ -586,6 +596,7 @@ export const posts: Post[] = [
     blurb: 'Follow a practical series connecting AI-assisted development, retrieval, agents, and production.',
     cta: 'Read and build along',
     href: 'https://devblogs.microsoft.com/cosmosdb/code-with-cosmos/',
+    image: '/img/hub/post-code-with-cosmos.jpg',
   },
 ];
 
@@ -742,7 +753,7 @@ export const learn = {
     blurb: 'Certification and training links open in AI Skills Navigator. Choose your starting point.',
     steps: [
       {
-        title: 'New here? Try Azure Cosmos DB for NoSQL.',
+        title: 'New here? Try Azure Cosmos DB.',
         meta: 'Introductory module / Get hands-on with the basics',
         href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
       },
@@ -780,7 +791,7 @@ export const learn = {
     },
     {
       badge: 'AI capabilities',
-      title: 'Develop AI solutions for NoSQL.',
+      title: 'Develop AI solutions on Azure Cosmos DB.',
       blurb: 'Bring retrieval and generative AI patterns into your Cosmos DB applications.',
       href: 'https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-a5bf75de10502246182745eabf16eb1cf168970f2c5fd72fc1c84f4928a4702a',
     },

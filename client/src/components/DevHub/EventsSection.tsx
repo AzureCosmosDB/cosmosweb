@@ -1,11 +1,32 @@
 import React from 'react';
-import {events, posts} from '@site/src/data/devhub';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import {events, posts, type Post} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
 import Section from './Section';
 import {eventStatus, isExpired, useNow} from './useNow';
 import styles from './devhub.module.css';
 
 const statusLabel = {upcoming: 'Upcoming', underway: 'Underway'} as const;
+
+function PostCard({post}: {post: Post}): React.ReactElement {
+  const image = useBaseUrl(post.image);
+  return (
+    <article className={styles.postCard}>
+      <img className={styles.postImage} src={image} alt="" width={960} height={540} loading="lazy" />
+      <div className={styles.postBody}>
+        <time dateTime={post.date} className={styles.postDate}>
+          {post.dateLabel} / {post.topic}
+        </time>
+        <h4>{post.title}</h4>
+        <p>{post.blurb}</p>
+        <ExtLink href={post.href} className={styles.cardLink}>
+          {post.cta}
+          <span aria-hidden="true"> ↗</span>
+        </ExtLink>
+      </div>
+    </article>
+  );
+}
 
 export default function EventsSection(): React.ReactElement {
   const now = useNow();
@@ -46,17 +67,7 @@ export default function EventsSection(): React.ReactElement {
       <h3 className={styles.subTitle}>From the blog</h3>
       <div className={styles.postGrid}>
         {posts.map((post) => (
-          <article key={post.id} className={styles.postCard}>
-            <time dateTime={post.date} className={styles.postDate}>
-              {post.dateLabel} / {post.topic}
-            </time>
-            <h4>{post.title}</h4>
-            <p>{post.blurb}</p>
-            <ExtLink href={post.href} className={styles.cardLink}>
-              {post.cta}
-              <span aria-hidden="true"> ↗</span>
-            </ExtLink>
-          </article>
+          <PostCard key={post.id} post={post} />
         ))}
       </div>
 
