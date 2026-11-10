@@ -1,4 +1,6 @@
 import React from 'react';
+import Head from '@docusaurus/Head';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import ClosingBand from '@site/src/components/DevHub/ClosingBand';
 import CommunitySection from '@site/src/components/DevHub/CommunitySection';
@@ -15,12 +17,33 @@ import styles from '@site/src/components/DevHub/devhub.module.css';
 // until the rest of the site no longer depends on them.
 import './index.module.css';
 
+const TITLE = 'Azure Cosmos DB Developer Hub';
+const DESCRIPTION =
+  'SDKs, tools, developer guides, community and certification for building applications with Azure Cosmos DB.';
+
 export default function Home(): React.ReactElement {
+  // Link-preview image for social networks and chat apps; they need an absolute URL.
+  const shareImage = useBaseUrl('/img/social/cosmos-dev-hub.png', {absolute: true});
+  const pageUrl = useBaseUrl('/', {absolute: true});
+
   return (
-    <Layout
-      title="Azure Cosmos DB Developer Hub"
-      description="SDKs, tools, developer guides, community and certification for building applications with Azure Cosmos DB.">
-      <LanguageProvider>
+    <Layout title={TITLE} description={DESCRIPTION}>
+      <Head>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={shareImage} />
+        <meta property="og:image:alt" content="Azure Cosmos DB Developer Hub" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        <meta name="twitter:image" content={shareImage} />
+        <meta name="twitter:image:alt" content="Azure Cosmos DB Developer Hub" />
+      </Head>      <LanguageProvider>
         <NavSpy />
         <div className={styles.hub}>
           <Hero />
