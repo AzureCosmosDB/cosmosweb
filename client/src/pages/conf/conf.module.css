@@ -1970,7 +1970,7 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.18);
-  background-image: url('/img/conf/about_bg.png');
+  background-image: url('../../../static/img/conf/about_bg.png');
   background-color: #0d2e42;
   background-size: cover;
   background-position: center;
@@ -1984,7 +1984,7 @@
 
 /* Dark mode override (so we can clearly differentiate later). */
 [data-theme='dark'] .aboutCard {
-  background-image: url('/img/conf/about_bg_dark.png');
+  background-image: url('../../../static/img/conf/about_bg_dark.png');
   background-color: #0d2e42;
   background-size: cover;
   background-position: center;

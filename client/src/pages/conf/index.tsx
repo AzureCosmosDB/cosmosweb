@@ -154,6 +154,7 @@ const archiveTimelineData = [
 
 const ConfPage = () => {
   const { siteConfig } = useDocusaurusContext();
+  const planet = useBaseUrl("/img/planet-1.png");
   const { showAgenda, showStream, streamEmbedUrl } = getConfSettings(siteConfig);
   const streamLive = useStreamReleased();
 
@@ -367,7 +368,7 @@ const ConfPage = () => {
           <div className={styles.resourcesContainer}>
             <h2 id="resources-heading" className={styles.resourcesTitle}>
               <img
-                src="/img/planet-1.png"
+                src={planet}
                 alt=""
                 aria-hidden="true"
                 className={styles.resourcesIcon}
@@ -399,7 +400,7 @@ const ConfPage = () => {
                                 <li key={res.url} className={styles.resourcesListItem}>
                                   <div className={styles.resourcesLinkRow}>
                                     <img
-                                      src="/img/planet-1.png"
+                                      src={planet}
                                       alt=""
                                       aria-hidden="true"
                                       className={styles.resourcesBulletIcon}
@@ -433,7 +434,7 @@ const ConfPage = () => {
                             <li key={res.url} className={styles.resourcesListItem}>
                               <div className={styles.resourcesLinkRow}>
                                 <img
-                                  src="/img/planet-1.png"
+                                  src={planet}
                                   alt=""
                                   aria-hidden="true"
                                   className={styles.resourcesBulletIcon}
@@ -467,7 +468,7 @@ const ConfPage = () => {
           <div className={styles.archiveContainer}>
             <h2 id="archive-heading" className={styles.archiveTitle}>
               <img
-                src="/img/planet-1.png"
+                src={planet}
                 alt=""
                 aria-hidden="true"
                 className={styles.archiveIcon}

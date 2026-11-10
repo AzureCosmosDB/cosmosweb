@@ -234,16 +234,7 @@ const config: Config = {
             {label: 'From the blog', to: '/#blog', activeBaseRegex: '^$'},
           ],
         },
-        {
-          label: 'Community',
-          type: 'dropdown',
-          position: 'right',
-          to: '/#community',
-          items: [
-            {label: 'Community', to: '/#community', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
-            {label: 'Cosmonauts', to: '/#cosmonauts', activeBaseRegex: '^$'},
-          ],
-        },
+        {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
         // Events also holds the existing Azure Cosmos DB Conf pages, so the bar stays as short as the draft's.
         {
           to: '/#events',

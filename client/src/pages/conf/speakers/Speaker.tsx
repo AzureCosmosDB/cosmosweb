@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
+import { useBaseUrlUtils } from '@docusaurus/useBaseUrl';
 import speakersData from '../speakers2026.json';
 import styles from './Speaker.module.css';
 
@@ -38,6 +39,7 @@ const getSessionLabel = (duration: string): string => {
 
 export default function SpeakerDetail() {
   const location = useLocation();
+  const { withBaseUrl } = useBaseUrlUtils();
   const [isDark, setIsDark] = useState(false);
   const [speaker, setSpeaker] = useState<Speaker | null | undefined>(undefined);
 
@@ -94,12 +96,11 @@ export default function SpeakerDetail() {
             <div className={styles.profile}>
               <div className={styles.imgWrap}>
                 <img
-                  src={speaker.img}
+                  src={withBaseUrl(speaker.img)}
                   alt={speaker.name}
                   className={styles.img}
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src =
-                      '/img/speakers/placeholder.jpg';
+                    (e.currentTarget as HTMLImageElement).src = withBaseUrl('/img/speakers/placeholder.jpg');
                   }}
                 />
               </div>
@@ -117,7 +118,7 @@ export default function SpeakerDetail() {
                       >
                         <img
                           className={styles.socialIcon}
-                          src={isDark ? xLogoDark : xLogoLight}
+                          src={withBaseUrl(isDark ? xLogoDark : xLogoLight)}
                           alt="X"
                         />
                       </a>
@@ -131,7 +132,7 @@ export default function SpeakerDetail() {
                       >
                         <img
                           className={styles.socialIcon}
-                          src={isDark ? linkedinLogoDark : linkedinLogoLight}
+                          src={withBaseUrl(isDark ? linkedinLogoDark : linkedinLogoLight)}
                           alt="LinkedIn"
                         />
                       </a>

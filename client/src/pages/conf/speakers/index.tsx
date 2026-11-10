@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import { useBaseUrlUtils } from '@docusaurus/useBaseUrl';
 import styles from './speakers.module.css';
 import speakersData from '../speakers2026.json';
 
@@ -22,6 +23,8 @@ interface Speaker {
 }
 
 export default function Speakers() {
+  const { withBaseUrl } = useBaseUrlUtils();
+  const placeholderImg = withBaseUrl('/img/speakers/placeholder.jpg');
   const speakers: Speaker[] = speakersData as unknown as Speaker[];
 
   return (
@@ -60,13 +63,12 @@ export default function Speakers() {
               >
                 <div className={styles.imgWrap}>
                   <img
-                    src={speaker.img}
+                    src={withBaseUrl(speaker.img)}
                     alt={speaker.name}
                     className={styles.img}
                     loading="lazy"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src =
-                        '/img/speakers/placeholder.jpg';
+                      (e.currentTarget as HTMLImageElement).src = placeholderImg;
                     }}
                   />
                 </div>

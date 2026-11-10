@@ -3,8 +3,8 @@ import {useEffect} from 'react';
 /** Section ids, in page order. Each has a matching `/#id` entry in the site navbar, unless mapped below. */
 const SECTION_IDS = ['develop', 'tools', 'learn', 'certify', 'watch', 'blog', 'community', 'cosmonauts', 'events'];
 
-/** Entries that do not have their own navbar link; none right now, but keep the lookup for future subsections. */
-const NAV_TARGET: Record<string, string> = {};
+/** Subsections without their own navbar entry keep their parent's entry highlighted. */
+const NAV_TARGET: Record<string, string> = {cosmonauts: 'community'};
 
 // A section counts as current once its top edge has scrolled up past the navbar.
 const OFFSET_PX = 100;

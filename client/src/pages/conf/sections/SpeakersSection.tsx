@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import styles from "../conf.module.css";
 import speakersData from "../speakers2026.json";
 import {
@@ -59,6 +60,9 @@ const getTopicEmoji = (title: string | undefined): string => {
 };
 
 const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
+  const { withBaseUrl } = useBaseUrlUtils();
+  const placeholderImg = withBaseUrl("/img/speakers/placeholder.avif");
+  const microsoftIcon = withBaseUrl("/assets/icons/microsoft.svg");
   const allSpeakers: Speaker[] = speakersData as unknown as Speaker[];
   const speakers = allSpeakers.filter((s) => s.confirmed !== false);
   const [selected, setSelected] = useState<Speaker | null>(null);
@@ -126,12 +130,12 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
                 >
                   <div className={styles.speakerCardImgWrap}>
                     <img
-                      src={speaker.img || "/img/speakers/placeholder.avif"}
+                      src={speaker.img ? withBaseUrl(speaker.img) : placeholderImg}
                       alt={speaker.name}
                       className={styles.speakerCardImg}
                       loading="lazy"
                       onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = "/img/speakers/placeholder.avif";
+                        (e.currentTarget as HTMLImageElement).src = placeholderImg;
                       }}
                     />
                   </div>
@@ -147,7 +151,7 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
                       )}
                       {speaker.company === "Microsoft" && (
                         <img
-                          src="/assets/icons/microsoft.svg"
+                          src={microsoftIcon}
                           alt="Microsoft"
                           className={styles.msBadge}
                         />
@@ -189,11 +193,11 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
             <div className={styles.speakerModalProfile}>
               <div className={styles.speakerModalImgWrap}>
                 <img
-                  src={selected.img || "/img/speakers/placeholder.avif"}
+                  src={selected.img ? withBaseUrl(selected.img) : placeholderImg}
                   alt={selected.name}
                   className={styles.speakerModalImg}
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = "/img/speakers/placeholder.avif";
+                    (e.currentTarget as HTMLImageElement).src = placeholderImg;
                   }}
                 />
               </div>
@@ -215,7 +219,7 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
                     )}
                     {selected.company === "Microsoft" && (
                       <img
-                        src="/assets/icons/microsoft.svg"
+                        src={microsoftIcon}
                         alt="Microsoft"
                         className={styles.msBadgeModal}
                         title="Microsoft"
