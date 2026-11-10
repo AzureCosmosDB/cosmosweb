@@ -35,10 +35,14 @@ async function fetchJson(url) {
   throw lastError;
 }
 
+// Open source projects are labeled as such instead of with a general availability stage.
+const OPEN_SOURCE_TITLE = /\bagent kit\b/i;
+
 /** "Generally Available: Foo" becomes {stage: "Generally Available", title: "Foo"}. */
 function splitTitle(raw) {
   const match = /^\s*(Generally Available|Public Preview|Private Preview|Retirement|Update)\s*:\s*(.+)$/i.exec(raw);
-  return match ? {stage: match[1], title: match[2].trim()} : {stage: '', title: raw.trim()};
+  const {stage, title} = match ? {stage: match[1], title: match[2].trim()} : {stage: '', title: raw.trim()};
+  return {stage: OPEN_SOURCE_TITLE.test(title) ? 'Open source' : stage, title};
 }
 
 function summarize(descriptionHtml) {
