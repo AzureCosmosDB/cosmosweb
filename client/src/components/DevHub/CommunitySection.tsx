@@ -10,6 +10,7 @@ export default function CommunitySection(): React.ReactElement {
   return (
     <Section
       id="community"
+      alt
       title="Community"
       lead="Ask a question. Share a build. Join a conversation. Choose the community that works for you.">
       <div className={styles.communityGrid}>

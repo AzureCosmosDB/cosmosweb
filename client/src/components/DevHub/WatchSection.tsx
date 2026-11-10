@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import {videos, type Video, type VideoKind} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
-import Section from './Section';
 import {playIcon} from './icons';
 import styles from './devhub.module.css';
 
@@ -38,10 +37,11 @@ export default function WatchSection(): React.ReactElement {
   const visible = filter === 'all' ? videos : videos.filter((v) => v.kind === filter);
 
   return (
-    <Section
-      id="watch"
-      title="Watch"
-      lead="Catch a quick idea, then go behind the build with Cosmos DB experts and community voices.">
+    <div id="watch" className={styles.subsection}>
+      <h3 className={styles.subTitle}>Watch</h3>
+      <p className={styles.toolGroupBlurb}>
+        Catch a quick idea, then go behind the build with Cosmos DB experts and community voices.
+      </p>
       <div className={styles.videoToolbar}>
         <div role="group" aria-label="Filter videos" className={styles.filterGroup}>
           {filters.map((f) => (
@@ -69,6 +69,6 @@ export default function WatchSection(): React.ReactElement {
       <p className={styles.sectionFoot}>
         <ExtLink href="https://www.youtube.com/@AzureCosmosDB">Visit Azure Cosmos DB on YouTube</ExtLink>
       </p>
-    </Section>
+    </div>
   );
 }

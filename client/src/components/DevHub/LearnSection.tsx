@@ -1,7 +1,9 @@
 import React from 'react';
 import {learn, offers} from '@site/src/data/devhub';
+import BlogSection from './BlogSection';
 import ExtLink from './ExtLink';
 import Section from './Section';
+import WatchSection from './WatchSection';
 import {isExpired, useNow} from './useNow';
 import styles from './devhub.module.css';
 
@@ -13,9 +15,8 @@ export default function LearnSection(): React.ReactElement {
   return (
     <Section
       id="learn"
-      alt
-      title="Learn & certify"
-      lead="From your first query to a credential you can show: learn it, build with it, get certified.">
+      title="Learn"
+      lead="From your first query to a credential you can show: watch it, read it, build with it, get certified.">
       <p className={styles.introBar}>
         <span>{intro.label}</span>
         <ExtLink href={intro.href}>
@@ -24,6 +25,7 @@ export default function LearnSection(): React.ReactElement {
         </ExtLink>
       </p>
 
+      <h3 className={`${styles.subTitle} ${styles.firstSubTitle}`}>Get certified</h3>
       <div className={styles.certPanel}>
         <div className={styles.certStory}>
           <div className={styles.certCode}>
@@ -31,7 +33,7 @@ export default function LearnSection(): React.ReactElement {
             <small>{certification.meta}</small>
           </div>
           <p className={styles.eyebrowLight}>{certification.eyebrow}</p>
-          <h3 className={styles.certTitle}>{certification.name}</h3>
+          <h4 className={styles.certTitle}>{certification.name}</h4>
           <p>{certification.blurb}</p>
           <ExtLink href={certification.href} className={styles.primaryButton}>
             {certification.cta}
@@ -44,7 +46,7 @@ export default function LearnSection(): React.ReactElement {
 
         <div className={styles.certPath}>
           <p className={styles.eyebrowDark}>{launchpad.eyebrow}</p>
-          <h3>{launchpad.title}</h3>
+          <h4>{launchpad.title}</h4>
           <p>{launchpad.blurb}</p>
           <ol className={styles.launchSteps}>
             {launchpad.steps.map((step, index) => (
@@ -89,7 +91,7 @@ export default function LearnSection(): React.ReactElement {
 
       {activeOffers.length > 0 ? (
         <>
-          <h3 className={styles.subTitle}>Take DP-420 for less</h3>
+          <h4 className={styles.subTitle}>Take DP-420 for less</h4>
           <div className={styles.offerGrid}>
             {activeOffers.map((offer) => (
               <article key={offer.id} className={styles.offerCard}>
@@ -115,6 +117,9 @@ export default function LearnSection(): React.ReactElement {
           </div>
         </>
       ) : null}
+
+      <WatchSection />
+      <BlogSection />
     </Section>
   );
 }

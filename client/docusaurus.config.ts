@@ -216,7 +216,6 @@ const config: Config = {
             {label: 'Sample gallery', href: 'https://azurecosmosdb.github.io/gallery/'},
           ],
         },
-        {label: 'Watch', position: 'right', to: '/#watch', activeBaseRegex: '^$'},
         {label: 'Learn', position: 'right', to: '/#learn', activeBaseRegex: '^$'},
         {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
         // Events also holds the existing Azure Cosmos DB Conf pages, so the bar stays as short as the draft's.

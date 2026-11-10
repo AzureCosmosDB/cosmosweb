@@ -9,7 +9,6 @@ import {LanguageProvider} from '@site/src/components/DevHub/LanguageContext';
 import LearnSection from '@site/src/components/DevHub/LearnSection';
 import NavSpy from '@site/src/components/DevHub/NavSpy';
 import ToolsSection from '@site/src/components/DevHub/ToolsSection';
-import WatchSection from '@site/src/components/DevHub/WatchSection';
 import styles from '@site/src/components/DevHub/devhub.module.css';
 
 // Legacy landing-page stylesheet. Its global rules are shared site-wide, so it stays imported
@@ -28,7 +27,6 @@ export default function Home(): React.ReactElement {
           <main>
             <DevelopSection />
             <ToolsSection />
-            <WatchSection />
             <LearnSection />
             <CommunitySection />
             <EventsSection />
