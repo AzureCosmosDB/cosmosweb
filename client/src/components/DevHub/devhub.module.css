@@ -385,6 +385,16 @@
   font-size: 1.5rem;
 }
 
+/* Cosmonauts: a subsection of Community. */
+.cosmonauts {
+  margin-top: 3.5rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.cosmonauts .subTitle {
+  margin-top: 0;
+}
+
 /* Language cards */
 
 .langGrid {
@@ -1124,7 +1134,7 @@
   padding: 1.4rem;
 }
 
-.personBody h3 {
+.personBody h4 {
   margin: 0.2rem 0 0;
   font-size: 1.3rem;
 }
@@ -1158,7 +1168,7 @@
   background: var(--ifm-color-emphasis-100);
 }
 
-.leadership h3 {
+.leadership h4 {
   margin: 0 0 0.6rem;
   font-size: 1.6rem;
   line-height: 1.25;

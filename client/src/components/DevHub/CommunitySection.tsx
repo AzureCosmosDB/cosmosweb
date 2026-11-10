@@ -1,5 +1,6 @@
 import React from 'react';
 import {communityItems} from '@site/src/data/devhub';
+import CosmonautsSection from './CosmonautsSection';
 import ExtLink from './ExtLink';
 import Section from './Section';
 import {communityIcons} from './icons';
@@ -9,7 +10,6 @@ export default function CommunitySection(): React.ReactElement {
   return (
     <Section
       id="community"
-      alt
       title="Community"
       lead="Ask a question. Share a build. Join a conversation. Choose the community that works for you.">
       <div className={styles.communityGrid}>
@@ -23,6 +23,8 @@ export default function CommunitySection(): React.ReactElement {
           </ExtLink>
         ))}
       </div>
+
+      <CosmonautsSection />
     </Section>
   );
 }

@@ -218,7 +218,6 @@ const config: Config = {
         },
         {label: 'Watch', position: 'right', to: '/#watch', activeBaseRegex: '^$'},
         {label: 'Learn', position: 'right', to: '/#learn', activeBaseRegex: '^$'},
-        {label: 'Cosmonauts', position: 'right', to: '/#cosmonauts', activeBaseRegex: '^$'},
         {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
         // Events also holds the existing Azure Cosmos DB Conf pages, so the bar stays as short as the draft's.
         {

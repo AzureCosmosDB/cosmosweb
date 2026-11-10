@@ -35,6 +35,7 @@ export default function EventsSection(): React.ReactElement {
   return (
     <Section
       id="events"
+      alt
       title="Events & news"
       lead="Get together, keep growing, and stay current with what the product team is shipping.">
       <h3 className={styles.subTitle}>What&apos;s happening</h3>

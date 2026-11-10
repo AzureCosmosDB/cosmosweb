@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import ClosingBand from '@site/src/components/DevHub/ClosingBand';
 import CommunitySection from '@site/src/components/DevHub/CommunitySection';
-import CosmonautsSection from '@site/src/components/DevHub/CosmonautsSection';
 import DevelopSection from '@site/src/components/DevHub/DevelopSection';
 import EventsSection from '@site/src/components/DevHub/EventsSection';
 import Hero from '@site/src/components/DevHub/Hero';
@@ -31,7 +30,6 @@ export default function Home(): React.ReactElement {
             <ToolsSection />
             <WatchSection />
             <LearnSection />
-            <CosmonautsSection />
             <CommunitySection />
             <EventsSection />
           </main>

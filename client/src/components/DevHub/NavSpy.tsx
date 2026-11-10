@@ -1,7 +1,10 @@
 import {useEffect} from 'react';
 
-/** Section ids, in page order. Each has a matching `/#id` entry in the site navbar. */
-const SECTION_IDS = ['develop', 'tools', 'watch', 'learn', 'cosmonauts', 'community', 'events'];
+/** Section ids, in page order. Each has a matching `/#id` entry in the site navbar, unless mapped below. */
+const SECTION_IDS = ['develop', 'tools', 'watch', 'learn', 'community', 'cosmonauts', 'events'];
+
+/** Cosmonauts is a subsection of Community, so Community stays highlighted while it is in view. */
+const NAV_TARGET: Record<string, string> = {cosmonauts: 'community'};
 
 // A section counts as current once its top edge has scrolled up past the navbar.
 const OFFSET_PX = 100;
@@ -10,7 +13,8 @@ const ACTIVE_CLASS = 'navbar__link--active';
 const DROPDOWN_ACTIVE_CLASS = 'dropdown__link--active';
 
 function navLinks(id: string): HTMLAnchorElement[] {
-  return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href="/#${id}"]`)).filter(
+  const target = NAV_TARGET[id] ?? id;
+  return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href="/#${target}"]`)).filter(
     (a) => !a.classList.contains('navbar-cta'),
   );
 }

@@ -702,7 +702,7 @@ export const people: Person[] = [
 ];
 
 export const growth = {
-  sectionTitle: 'Cosmonauts & community voices',
+  sectionTitle: 'Cosmonauts',
   sectionLead:
     'Meet the people behind the possibility. Get inspired by the people who build, teach, and share, then find your own path from learner to community leader.',
   eyebrow: 'From learner to community leader',
