@@ -5,10 +5,10 @@ import {
   FaDatabase,
   FaDesktop,
   FaExchangeAlt,
+  FaLinkedin,
   FaPlay,
   FaPlug,
   FaRobot,
-  FaRss,
   FaTools,
 } from 'react-icons/fa';
 import {
@@ -17,14 +17,12 @@ import {
   SiGithub,
   SiGo,
   SiJavascript,
-  SiLinkedin,
   SiOpenjdk,
   SiPython,
   SiReddit,
   SiRust,
   SiStackoverflow,
   SiX,
-  SiYoutube,
 } from 'react-icons/si';
 
 const iconProps = {'aria-hidden': true, focusable: false} as const;
@@ -41,12 +39,10 @@ export const languageIcons: Record<string, React.ReactElement> = {
 export const communityIcons: Record<string, React.ReactElement> = {
   discord: <SiDiscord {...iconProps} />,
   github: <SiGithub {...iconProps} />,
-  youtube: <SiYoutube {...iconProps} />,
   reddit: <SiReddit {...iconProps} />,
-  blog: <FaRss {...iconProps} />,
   stackoverflow: <SiStackoverflow {...iconProps} />,
   x: <SiX {...iconProps} />,
-  linkedin: <SiLinkedin {...iconProps} />,
+  linkedin: <FaLinkedin {...iconProps} />,
 };
 
 export const toolIcons: Record<string, React.ReactElement> = {
