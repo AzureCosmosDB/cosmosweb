@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 
 /** Section ids, in page order. Each has a matching `/#id` entry in the site navbar, unless mapped below. */
-const SECTION_IDS = ['develop', 'tools', 'learn', 'certify', 'watch', 'blog', 'community', 'cosmonauts', 'events', 'updates'];
+const SECTION_IDS = ['develop', 'learn', 'certify', 'watch', 'blog', 'tools', 'community', 'cosmonauts', 'events', 'updates'];
 
 /** Subsections without their own navbar entry keep their parent's entry highlighted. */
 const NAV_TARGET: Record<string, string> = {cosmonauts: 'community'};

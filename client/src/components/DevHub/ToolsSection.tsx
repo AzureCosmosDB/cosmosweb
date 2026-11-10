@@ -9,7 +9,6 @@ export default function ToolsSection(): React.ReactElement {
   return (
     <Section
       id="tools"
-      alt
       title="Tools"
       lead="Everything around the SDK: write and debug in your editor, let AI assistants work with your data, and plan and migrate your workload.">
       {toolGroups.map((group) => (

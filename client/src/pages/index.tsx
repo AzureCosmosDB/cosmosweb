@@ -26,8 +26,8 @@ export default function Home(): React.ReactElement {
           <Hero />
           <main>
             <DevelopSection />
-            <ToolsSection />
             <LearnSection />
+            <ToolsSection />
             <CommunitySection />
             <EventsSection />
           </main>
