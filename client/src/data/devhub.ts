@@ -731,9 +731,9 @@ export const growth = {
 };
 
 export const closing = {
-  title: "Your next step can be small. Your impact doesn't have to be.",
-  blurb: 'Find your people. Build something useful. Share what you learn.',
-  cta: {label: 'Find your orbit', href: '#community'},
+  title: 'Ready to try Azure Cosmos DB?',
+  blurb: 'Get started for free, run your first queries, and learn as you build.',
+  cta: {label: 'Try Azure Cosmos DB free', href: 'https://aka.ms/trycosmos'},
 };
 
 export const learn = {
