@@ -127,11 +127,32 @@ html {
   }
 }
 
-/* Navbar styled after the community draft: two-line brand, compact semibold links, DP-420 button. */
+/* Navbar styled after the community draft: two-line brand, flat semibold links, DP-420 button. */
+.navbar {
+  --nav-text: #10233d;
+  --nav-muted: #4b6177;
+  --nav-link: #0068b8;
+  border-bottom: 1px solid #d5e2ee;
+}
+
+[data-theme='dark'] .navbar {
+  --nav-text: #f1f7ff;
+  --nav-muted: #bfd0e3;
+  --nav-link: #76d3ff;
+  background-color: #112c47;
+  border-bottom-color: #34506d;
+}
+
+.navbar__logo {
+  height: 2.375rem;
+  width: 2.375rem;
+}
+
 .navbar__title {
   font-size: 1.1875rem;
   letter-spacing: -0.025em;
   line-height: 1.3;
+  color: var(--nav-text);
 }
 
 .navbar__title::after {
@@ -140,7 +161,28 @@ html {
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.035em;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--nav-muted);
+}
+
+.dropdown-mobile-only {
+  display: none;
+}
+
+.dropdown-separator {
+  margin: 0.25rem 0;
+  padding: 0;
+}
+
+.dropdown-separator hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+/* Conf pages listed under the "Azure Cosmos DB Conf" entry. */
+.dropdown-separator ~ li:nth-child(n + 4) > a {
+  padding-left: 1.5rem;
+  font-size: 0.9em;
 }
 
 @media (min-width: 997px) {
@@ -150,27 +192,35 @@ html {
   }
 
   .navbar__items--right {
-    gap: 0.1rem;
+    gap: 0.25rem;
   }
 
   .navbar__link {
-    padding: 4px 8px;
+    padding: 4px 11px;
     font-size: 0.875rem;
     font-weight: 600;
     white-space: nowrap;
+    color: var(--nav-muted);
   }
 
   .navbar__link:hover {
+    color: var(--nav-link);
     text-decoration: underline;
   }
 
+  .navbar__link--active,
+  .navbar__link--active:hover {
+    color: var(--nav-link);
+  }
+
   .navbar__link.navbar-cta {
-    margin-left: 0.6rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    gap: 0.6rem;
+    border-radius: 0.625rem;
     background: #0067b8;
     color: #fff;
-    font-weight: 700;
+    font-weight: 650;
   }
 
   .navbar__link.navbar-cta:hover {
@@ -190,23 +240,9 @@ html {
   }
 }
 
-/* Narrower desktops: drop the brand subtitle, then the whole brand text, before links get cramped. */
-@media (min-width: 997px) and (max-width: 1279px) {
-  .navbar__title::after {
-    display: none;
-  }
-}
-
-@media (min-width: 997px) and (max-width: 1179px) {
-  .navbar__brand .navbar__title {
-    display: none;
-  }
-}
-
-/* The Learn link covers the button when there is no room for it. */
-@media (min-width: 997px) and (max-width: 1119px) {
-  .navbar__link.navbar-cta {
-    display: none;
+@media (max-width: 996px) {
+  .dropdown-mobile-only {
+    display: block;
   }
 }
 

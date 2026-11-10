@@ -110,29 +110,34 @@ const config: Config = {
       items: [
         // Developer hub sections (home page), flat like the community draft. Hash-only routes never
         // mark as active by path; the home page highlights the section in view itself (DevHub/NavSpy).
-        {label: 'Develop', position: 'right', to: '/#develop', activeBaseRegex: '^$'},
-        {label: 'Tools', position: 'right', to: '/#tools', activeBaseRegex: '^$'},
+        {
+          label: 'Develop',
+          type: 'dropdown',
+          position: 'right',
+          to: '/#develop',
+          items: [
+            {label: 'Develop', to: '/#develop', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
+            {label: 'Tools', to: '/#tools', activeBaseRegex: '^$'},
+            {label: 'Sample gallery', href: 'https://azurecosmosdb.github.io/gallery/'},
+          ],
+        },
         {label: 'Watch', position: 'right', to: '/#watch', activeBaseRegex: '^$'},
         {label: 'Learn', position: 'right', to: '/#learn', activeBaseRegex: '^$'},
         {label: 'Cosmonauts', position: 'right', to: '/#cosmonauts', activeBaseRegex: '^$'},
         {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
-        {label: 'Events', position: 'right', to: '/#events', activeBaseRegex: '^$'},
+        // Events also holds the existing Azure Cosmos DB Conf pages, so the bar stays as short as the draft's.
         {
-          label: 'Gallery',
-          position: 'right',
-          href: 'https://azurecosmosdb.github.io/gallery/',
-        },
-        {
-          to: '/conf',
+          to: '/#events',
           type: 'dropdown',
-          label: 'Azure Cosmos DB Conf',
+          label: 'Events',
           position: 'right',
           items: [
+            {label: 'Events & news', to: '/#events', activeBaseRegex: '^$'},
+            {type: 'html', value: '<hr>', className: 'dropdown-separator'},
             {
-              label: 'Conf Home',
+              label: 'Azure Cosmos DB Conf',
               to: '/conf',
               activeBaseRegex: '^/conf/?$',
-              className: 'mobile-only',
             },
             {
               label: 'Cloud Skills Challenge',

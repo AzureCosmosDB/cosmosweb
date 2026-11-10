@@ -51,9 +51,6 @@ export default function Hero(): React.ReactElement {
           </div>
           <ul className={styles.heroTags} aria-label="Jump to">
             <li>
-              <a href="#develop">{languages.length} SDKs</a>
-            </li>
-            <li>
               <a href="#tools-ai">AI apps &amp; agents</a>
             </li>
             <li>
