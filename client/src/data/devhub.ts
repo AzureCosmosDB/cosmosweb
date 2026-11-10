@@ -624,12 +624,6 @@ export interface CommunityItem {
 
 export const communityItems: CommunityItem[] = [
   {
-    id: 'meetup',
-    name: 'Global user group',
-    blurb: 'Meet other Cosmos DB developers and check the latest community event calendar.',
-    href: 'https://www.meetup.com/azure-cosmos-db-global-user-group/',
-  },
-  {
     id: 'discord',
     name: 'Microsoft Open Source Discord',
     blurb: 'Connect in the wider Microsoft developer community. Not a Cosmos-only server.',
