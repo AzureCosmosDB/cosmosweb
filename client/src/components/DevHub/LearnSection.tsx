@@ -25,7 +25,9 @@ export default function LearnSection(): React.ReactElement {
         </ExtLink>
       </p>
 
-      <h3 className={`${styles.subTitle} ${styles.firstSubTitle}`}>Get certified</h3>
+      <h3 id="certify" className={`${styles.subTitle} ${styles.firstSubTitle}`}>
+        Get certified
+      </h3>
       <div className={styles.certPanel}>
         <div className={styles.certStory}>
           <div className={styles.certCode}>

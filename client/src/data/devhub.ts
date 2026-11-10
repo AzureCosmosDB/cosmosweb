@@ -348,14 +348,14 @@ export const toolGroups: ToolGroup[] = [
   {
     id: 'ai',
     title: 'AI-assisted development',
-    blurb: 'Let coding assistants and agents work with Cosmos DB, with the right guardrails.',
+    blurb: 'Let coding assistants and agents work with Azure Cosmos DB, with the right guardrails.',
     tools: [
       {
         id: 'agent-kit',
         icon: 'agentKit',
         name: 'Agent Kit',
         blurb:
-          'Best-practice skills that help AI coding assistants avoid costly Cosmos DB mistakes in modeling, partitioning and queries.',
+          'Best-practice skills that help AI coding assistants avoid costly Azure Cosmos DB mistakes in modeling, partitioning and queries.',
         href: 'https://github.com/AzureCosmosDB/cosmosdb-agent-kit',
         badge: 'GA',
         secondary: {
@@ -375,7 +375,7 @@ export const toolGroups: ToolGroup[] = [
         id: 'mcp-toolkit',
         icon: 'mcpToolkit',
         name: 'MCP toolkit',
-        blurb: 'An open-source Model Context Protocol toolkit that lets AI agents interact with Cosmos DB securely.',
+        blurb: 'An open-source Model Context Protocol toolkit that lets AI agents interact with Azure Cosmos DB securely.',
         href: 'https://learn.microsoft.com/azure/cosmos-db/gen-ai/model-context-protocol-toolkit',
         badge: 'Open source',
         secondary: { label: 'View on GitHub', href: 'https://github.com/AzureCosmosDB/MCPToolKit' },
@@ -511,7 +511,7 @@ export const offers: Offer[] = [
     title: 'Ignite is your launchpad.',
     date: 'November 17-20, 2026 / San Francisco',
     blurb:
-      "Meet the developer community, explore Cosmos DB sessions, and take DP-420 onsite at no charge if you're a registered in-person attendee.",
+      "Meet the developer community, explore Azure Cosmos DB sessions, and take DP-420 onsite at no charge if you're a registered in-person attendee.",
     cta: 'Explore onsite certification',
     href: 'https://learn.microsoft.com/training/topics/ignite/microsoft-ignite-2026-certification-registration',
     fine: 'Testing: November 16-20. One Microsoft or one GitHub exam per eligible attendee. Registration, available seats, and official terms apply.',
@@ -553,7 +553,7 @@ export const events: EventItem[] = [
     day: '17-20',
     title: 'Microsoft Ignite',
     where: 'San Francisco',
-    blurb: 'Explore Cosmos DB sessions and meet the developer community. Onsite exam testing runs November 16-20.',
+    blurb: 'Explore Azure Cosmos DB sessions and meet the developer community. Onsite exam testing runs November 16-20.',
     cta: 'Explore sessions',
     href: 'https://ignite.microsoft.com/sessions',
     start: '2026-11-17',
@@ -632,7 +632,7 @@ export const communityItems: CommunityItem[] = [
   {
     id: 'reddit',
     name: 'r/CosmosDB',
-    blurb: 'Talk with other Cosmos DB users in an independently moderated community.',
+    blurb: 'Talk with other Azure Cosmos DB users in an independently moderated community.',
     href: 'https://www.reddit.com/r/CosmosDB/',
   },
   {
@@ -685,7 +685,7 @@ export const people: Person[] = [
     badge: 'Cosmonaut & MVP',
     name: 'Hasan Savran',
     role: 'Azure Cosmos DB Cosmonaut / Microsoft Data Platform MVP',
-    blurb: 'A community perspective on making better Cosmos DB data-modeling decisions.',
+    blurb: 'A community perspective on making better Azure Cosmos DB data-modeling decisions.',
     cta: "View Hasan's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/20773cee-6250-e911-a987-000d3a1378f6',
     image: '/img/speakers/hasan-savran.jpg',
@@ -695,7 +695,7 @@ export const people: Person[] = [
     badge: 'Cosmonaut & MVP',
     name: 'Eric Boyd',
     role: 'Azure Cosmos DB Cosmonaut / Microsoft Azure & AI MVP',
-    blurb: 'Shares distributed locks, sagas, and coordination patterns with Cosmos DB.',
+    blurb: 'Shares distributed locks, sagas, and coordination patterns with Azure Cosmos DB.',
     cta: "View Eric's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/77e968c6-3c9a-e411-93f2-9cb65495d3c4',
     image: '/img/speakers/eric-boyd.jpg',
@@ -713,14 +713,14 @@ export const growth = {
   steps: [
     {
       title: 'Build real expertise.',
-      text: 'Create with Cosmos DB. DP-420 can validate your skills; it is not a stated requirement for either recognition.',
+      text: 'Create with Azure Cosmos DB. DP-420 can validate your skills; it is not a stated requirement for either recognition.',
     },
     {
       title: 'Contribute consistently.',
       text: 'Share useful projects, explain what you learned, answer questions, speak, and mentor.',
     },
     {
-      title: 'Connect with the Cosmos DB community.',
+      title: 'Connect with the Azure Cosmos DB community.',
       text: 'Participate and share your work. Cosmonauts are nominated, so visible, consistent contributions are how you get noticed.',
     },
     {
@@ -739,7 +739,7 @@ export const closing = {
 
 export const learn = {
   intro: {
-    label: 'New to Cosmos DB? Start small. Run your first NoSQL queries.',
+    label: 'New to Azure Cosmos DB? Start small. Run your first NoSQL queries.',
     cta: 'Try the introductory module on AI Skills Navigator',
     href: 'https://aiskillsnavigator.microsoft.com/explore/search/module-a3cf2b721191d7db562be0dd1d6a5aeaabc63209ae15e69fab96578265b8e100',
   },

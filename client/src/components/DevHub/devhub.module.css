@@ -397,6 +397,7 @@
 
 .firstSubTitle {
   margin-top: 2rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
 }
 
 /* Cosmonauts: a subsection of Community. */

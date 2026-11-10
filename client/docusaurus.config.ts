@@ -216,8 +216,28 @@ const config: Config = {
             {label: 'Sample gallery', href: 'https://azurecosmosdb.github.io/gallery/'},
           ],
         },
-        {label: 'Learn', position: 'right', to: '/#learn', activeBaseRegex: '^$'},
-        {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
+        {
+          label: 'Learn',
+          type: 'dropdown',
+          position: 'right',
+          to: '/#learn',
+          items: [
+            {label: 'Learn', to: '/#learn', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
+            {label: 'Get certified', to: '/#certify', activeBaseRegex: '^$'},
+            {label: 'Watch', to: '/#watch', activeBaseRegex: '^$'},
+            {label: 'From the blog', to: '/#blog', activeBaseRegex: '^$'},
+          ],
+        },
+        {
+          label: 'Community',
+          type: 'dropdown',
+          position: 'right',
+          to: '/#community',
+          items: [
+            {label: 'Community', to: '/#community', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
+            {label: 'Cosmonauts', to: '/#cosmonauts', activeBaseRegex: '^$'},
+          ],
+        },
         // Events also holds the existing Azure Cosmos DB Conf pages, so the bar stays as short as the draft's.
         {
           to: '/#events',

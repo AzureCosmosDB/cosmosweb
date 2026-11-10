@@ -39,7 +39,7 @@ export default function WatchSection(): React.ReactElement {
     <div id="watch" className={styles.subsection}>
       <h3 className={styles.subTitle}>Watch</h3>
       <p className={styles.toolGroupBlurb}>
-        Catch a quick idea, then go behind the build with Cosmos DB experts and community voices.
+        Catch a quick idea, then go behind the build with Azure Cosmos DB experts and community voices.
       </p>
 
       <div className={styles.videoGrid}>
