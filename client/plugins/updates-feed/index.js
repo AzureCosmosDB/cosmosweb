@@ -6,15 +6,12 @@
  */
 const {decodeEntities, stripTags, formatDate, fetchText} = require('../feed-utils');
 
-const API_URL =
-  process.env.UPDATES_FEED_URL ||
-  'https://www.microsoft.com/releasecommunications/api/v2/azure?' +
-    new URLSearchParams({
-      $filter: "products/any(f:f eq 'Azure Cosmos DB')",
-      $orderby: 'modified desc',
-      $top: '12',
-    }).toString();
-const ITEM_URL = 'https://azure.microsoft.com/updates?id=';
+const API_URL = 'https://www.microsoft.com/releasecommunications/api/v2/azure';
+const PRODUCT = 'Azure Cosmos DB';
+// Same query the Azure Updates search box sends for "cosmos".
+const KEYWORD_QUERY = {search: '"cosmos"', $orderby: 'modified desc', $top: '50'};
+const PRODUCT_QUERY = {$filter: `products/any(f:f eq '${PRODUCT}')`, $orderby: 'modified desc', $top: '50'};
+const UPDATE_COUNT = 12;const ITEM_URL = 'https://azure.microsoft.com/updates?id=';
 // The service answers the default fetch agent with a "high demand" page now and then, so look like a browser and retry.
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36',
@@ -61,33 +58,46 @@ module.exports = function updatesFeedPlugin() {
     name: 'updates-feed',
 
     async loadContent() {
-      if (API_URL === 'off') return [];
+      if (process.env.UPDATES_FEED_URL === 'off') return [];
       try {
-        const json = await fetchJson(API_URL);
-        return (json.value ?? [])
-          .filter((item) => item.id && item.title && Array.isArray(item.products) && item.products.includes('Azure Cosmos DB'))
-          .map((item) => {
-            const created = new Date(item.modified || item.created);
-            if (Number.isNaN(created.getTime())) return null;
+        const queries = [KEYWORD_QUERY, PRODUCT_QUERY].map((query) => `${API_URL}?${new URLSearchParams(query)}`);
+        const results = await Promise.allSettled(queries.map(fetchJson));
+        const failures = results.filter((result) => result.status === 'rejected');
+        if (failures.length === results.length) throw failures[0].reason;
+
+        const byId = new Map();
+        for (const result of results) {
+          if (result.status !== 'fulfilled') continue;
+          for (const item of result.value.value ?? []) {
+            if (item.id && item.title && Array.isArray(item.products) && item.products.includes(PRODUCT)) {
+              byId.set(String(item.id), item);
+            }
+          }
+        }
+
+        return [...byId.values()]
+          .map((item) => ({item, changed: new Date(item.modified || item.created)}))
+          .filter(({changed}) => !Number.isNaN(changed.getTime()))
+          .sort((a, b) => b.changed - a.changed)
+          .slice(0, UPDATE_COUNT)
+          .map(({item, changed}) => {
             const {stage, title} = splitTitle(decodeEntities(stripTags(item.title)));
             return {
               id: String(item.id),
-              date: created.toISOString().slice(0, 10),
-              dateLabel: formatDate(created),
+              date: changed.toISOString().slice(0, 10),
+              dateLabel: formatDate(changed),
               stage,
               title,
               blurb: summarize(item.description),
               cta: 'Read the update',
               href: `${ITEM_URL}${encodeURIComponent(item.id)}`,
             };
-          })
-          .filter(Boolean);
+          });
       } catch (error) {
         console.warn(`[updates-feed] Could not read the Azure Updates service: ${error.message}. Hiding Updates.`);
         return [];
       }
     },
-
     async contentLoaded({content, actions}) {
       actions.setGlobalData({updates: content ?? []});
     },
