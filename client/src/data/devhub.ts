@@ -553,16 +553,6 @@ export const events: EventItem[] = [
     start: '2026-11-02',
     end: '2026-12-15',
   },
-  {
-    id: 'user-group',
-    month: 'COMMUNITY',
-    day: 'Live',
-    title: 'Azure Cosmos DB Global User Group',
-    where: 'Check the current schedule',
-    blurb: 'Community-led sessions and meetups. Dates vary; check the group calendar for current announcements.',
-    cta: 'Visit the group',
-    href: 'https://www.meetup.com/azure-cosmos-db-global-user-group/events/',
-  },
 ];
 
 export interface Post {
