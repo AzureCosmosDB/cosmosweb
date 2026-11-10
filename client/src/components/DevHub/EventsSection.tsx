@@ -2,6 +2,7 @@ import React from 'react';
 import {events} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
 import Section from './Section';
+import UpdatesSection from './UpdatesSection';
 import {eventStatus, isExpired, useNow} from './useNow';
 import styles from './devhub.module.css';
 
@@ -12,7 +13,10 @@ export default function EventsSection(): React.ReactElement {
   const activeEvents = events.filter((event) => !isExpired(event.end, now));
 
   return (
-    <Section id="events" title="Events" lead="Get together with the community and the product team, online or in person.">
+    <Section
+      id="events"
+      title="Events & updates"
+      lead="Get together with the community and the product team, and keep up with what's new.">
       <div className={styles.eventList}>
         {activeEvents.map((event) => {
           const status = eventStatus(event.start, now);
@@ -38,6 +42,7 @@ export default function EventsSection(): React.ReactElement {
           );
         })}
       </div>
+      <UpdatesSection />
     </Section>
   );
 }

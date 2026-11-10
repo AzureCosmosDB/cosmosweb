@@ -3,6 +3,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import {posts as curatedPosts, type Post} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
+import Carousel from './Carousel';
 import styles from './devhub.module.css';
 
 function PostCard({post}: {post: Post}): React.ReactElement {
@@ -33,11 +34,11 @@ export default function BlogSection(): React.ReactElement {
   return (
     <div id="blog" className={styles.subsection}>
       <h3 className={styles.subTitle}>From the blog</h3>
-      <div className={styles.postGrid}>
+      <Carousel noun="blog posts" perView={3}>
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
-      </div>
+      </Carousel>
 
       <p className={styles.sectionFoot}>
         <ExtLink href="https://devblogs.microsoft.com/cosmosdb/">Read the Azure Cosmos DB blog</ExtLink>

@@ -38,8 +38,8 @@ function formatDate(date) {
   return date.toLocaleDateString('en-US', {timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric'});
 }
 
-async function fetchText(url) {
-  const response = await fetch(url, {headers: HEADERS, signal: AbortSignal.timeout(TIMEOUT_MS)});
+async function fetchText(url, headers = HEADERS) {
+  const response = await fetch(url, {headers, signal: AbortSignal.timeout(TIMEOUT_MS)});
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   return response.text();
 }

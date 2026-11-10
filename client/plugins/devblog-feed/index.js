@@ -6,7 +6,7 @@
 const {decodeEntities, stripTags, tag, tags, formatDate, fetchText} = require('../feed-utils');
 
 const FEED_URL = process.env.DEVBLOG_FEED_URL || 'https://devblogs.microsoft.com/cosmosdb/feed/';
-const POST_COUNT = 3;
+const POST_COUNT = 9;
 
 /** First paragraph of the excerpt, without the trailing "The post ... appeared first on" line. */
 function summarize(descriptionHtml) {

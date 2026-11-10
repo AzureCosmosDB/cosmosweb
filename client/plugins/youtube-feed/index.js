@@ -8,7 +8,7 @@ const {decodeEntities, tag, formatDate, fetchText, HEADERS, TIMEOUT_MS} = requir
 const CHANNEL_ID = 'UC9OJ32CzooNJNoP6_iIfxRw'; // https://www.youtube.com/@AzureCosmosDB
 const FEED_URL =
   process.env.YOUTUBE_FEED_URL || `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-const VIDEO_COUNT = 4;
+const VIDEO_COUNT = 12;
 
 /** Shorts answer with 200 at /shorts/<id>; regular videos redirect to /watch. */
 async function isShort(id) {

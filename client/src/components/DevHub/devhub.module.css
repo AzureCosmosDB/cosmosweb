@@ -813,12 +813,6 @@
   color: var(--hub-text-muted);
 }
 
-.videoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-  gap: 1.25rem;
-}
-
 .videoCard {
   display: flex;
   flex-direction: column;
@@ -1265,7 +1259,7 @@
   flex: none;
 }
 
-/* Events & news */
+/* Events & updates */
 
 .eventList {
   display: flex;
@@ -1373,6 +1367,162 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--hub-text-muted);
+}
+
+/* Carousel: a row of cards that scrolls sideways, one screenful per click. */
+
+.carousel {
+  position: relative;
+}
+
+.carouselControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin: 0 0 0.7rem;
+  height: 2.2rem;
+}
+
+.carouselButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 1px solid var(--hub-border);
+  border-radius: 999px;
+  background: var(--hub-surface);
+  color: var(--hub-link);
+  cursor: pointer;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.carouselButton:hover:not(:disabled) {
+  border-color: var(--cosmos-blue);
+}
+
+.carouselButton:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+}
+
+.carouselButton:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.carouselTrack {
+  --per-view: 3;
+  --carousel-gap: 1.25rem;
+  /* Containing block for the visually hidden "(opens in new tab)" text, so it scrolls with the cards. */
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per-view) - 1) * var(--carousel-gap)) / var(--per-view));
+  gap: var(--carousel-gap);
+  margin: 0 -6px;
+  padding: 6px;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 6px;
+  scrollbar-width: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.perView4 {
+  --per-view: 4;
+}
+
+.carouselItem {
+  display: flex;
+  min-width: 0;
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.carouselItem > * {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 996px) {
+  .carouselTrack,
+  .perView4 {
+    --per-view: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .carouselTrack,
+  .perView4 {
+    --per-view: 1.12;
+  }
+}
+
+/* Azure Updates cards */
+
+.updateCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+}
+
+.updateCard h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.updateCard p {
+  margin: 0 0 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.updateCard .cardLink {
+  margin-top: auto;
+}
+
+.updateMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.updateMeta .postDate {
+  margin: 0;
+}
+
+.updateStage {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 120, 212, 0.12);
+  color: var(--hub-link);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.updateStageRetire {
+  background: rgba(176, 96, 0, 0.14);
+  color: var(--hub-retire, #8a4b00);
+}
+
+:global([data-theme='dark']) .updateStageRetire {
+  color: #ffb366;
 }
 
 /* ---------- Responsive ---------- */

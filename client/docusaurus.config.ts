@@ -177,7 +177,7 @@ const config: Config = {
     ],
   ],
 
-  plugins: ['./plugins/devblog-feed', './plugins/youtube-feed'],
+  plugins: ['./plugins/devblog-feed', './plugins/youtube-feed', './plugins/updates-feed'],
 
   // Values here are serialized into the client bundle and are safe to read in the browser.
   // Use these for `/conf` feature toggles so we don't rely on `process` being defined client-side.
@@ -242,7 +242,8 @@ const config: Config = {
           label: 'Events',
           position: 'right',
           items: [
-            {label: 'Events & news', to: '/#events', activeBaseRegex: '^$'},
+            {label: 'Events', to: '/#events', activeBaseRegex: '^$'},
+            {label: 'Updates', to: '/#updates', activeBaseRegex: '^$'},
             {type: 'html', value: '<hr>', className: 'dropdown-separator'},
             {
               label: 'Azure Cosmos DB Conf',

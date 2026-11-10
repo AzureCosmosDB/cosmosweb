@@ -3,6 +3,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import {videos as curatedVideos, type Video} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
+import Carousel from './Carousel';
 import {playIcon} from './icons';
 import styles from './devhub.module.css';
 
@@ -42,11 +43,11 @@ export default function WatchSection(): React.ReactElement {
         Catch a quick idea, then go behind the build with Azure Cosmos DB experts and community voices.
       </p>
 
-      <div className={styles.videoGrid}>
+      <Carousel noun="videos" perView={4}>
         {videos.map((video) => (
           <VideoCard key={video.id} video={video} />
         ))}
-      </div>
+      </Carousel>
 
       <p className={styles.sectionFoot}>
         <ExtLink href="https://www.youtube.com/@AzureCosmosDB">Visit Azure Cosmos DB on YouTube</ExtLink>
