@@ -617,28 +617,54 @@ export const communityItems: CommunityItem[] = [
 
 export const growth = {
   eyebrow: 'From learner to community leader',
-  title: 'Plot your path toward Cosmonaut recognition and Microsoft MVP.',
-  blurb: "Start by making a meaningful contribution. Grow expertise, help others, and build a body of work you're proud to share.",
-  cta: { label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/en-US/faq?section=mvp' },
+  title: 'Grow with the community',
+  lead: "Start by making a meaningful contribution. Grow expertise, help others, and build a body of work you're proud to share. Two recognitions can follow, and they are separate.",
   steps: [
     {
-      title: 'Build real expertise.',
+      title: 'Build real expertise',
       text: 'Create with Cosmos DB. DP-420 can validate your skills; it is not a stated requirement for either recognition.',
+      cta: {label: 'Start with the learning paths', href: '#learn'},
     },
     {
-      title: 'Contribute consistently.',
+      title: 'Contribute consistently',
       text: 'Share useful projects, explain what you learned, answer questions, speak, and mentor.',
+      cta: {label: 'Find a place to contribute', href: 'https://github.com/AzureCosmosDB'},
     },
     {
-      title: 'Connect with the Cosmos DB community.',
-      text: 'Participate and share your work. Ask the community team about current Cosmonaut recognition criteria and opportunities.',
+      title: 'Connect with the community',
+      text: 'Participate and share your work with other Cosmos DB developers.',
+      cta: {label: 'Join the global user group', href: 'https://www.meetup.com/azure-cosmos-db-global-user-group/'},
     },
     {
-      title: 'Explore Microsoft MVP nomination.',
-      text: 'Document impactful, verifiable contributions from the last 12 months. A current MVP or Microsoft employee must nominate you before the application and review.',
+      title: 'Document your impact',
+      text: 'Keep a record of your talks, posts, answers and projects, with links. Verifiable work from the last 12 months is what matters.',
     },
   ],
-  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420, participating, or being nominated does not guarantee either. No public Cosmonaut application process was verified.',
+  tracks: [
+    {
+      id: 'cosmonaut',
+      name: 'Azure Cosmos DB Cosmonaut',
+      status: 'No public application',
+      blurb:
+        'Cosmonauts are community members recognized for their work with Azure Cosmos DB. There is no public application process, so the way in is to contribute, connect with the community, and ask the community team about current criteria and opportunities.',
+      links: [
+        {label: 'Join the Microsoft Open Source Discord', href: 'https://aka.ms/open-source-discord'},
+        {label: 'Explore the community channels', href: '#community'},
+      ],
+    },
+    {
+      id: 'mvp',
+      name: 'Microsoft MVP',
+      status: 'Nomination required',
+      blurb:
+        'The Microsoft MVP award recognizes sustained, impactful community contributions. A current MVP or a Microsoft employee must nominate you, then your nomination is reviewed. Document your contributions from the last 12 months.',
+      links: [
+        {label: 'Understand the Microsoft MVP award', href: 'https://mvp.microsoft.com/en-US/faq?section=mvp'},
+        {label: 'Microsoft MVP program', href: 'https://mvp.microsoft.com/'},
+      ],
+    },
+  ],
+  fine: 'Cosmonaut recognition and Microsoft MVP are separate. Passing DP-420, participating, or being nominated does not guarantee either.',
 };
 
 export const learn = {

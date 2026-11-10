@@ -11,7 +11,7 @@ interface ExtLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement
  * tab and says so for screen readers.
  */
 export default function ExtLink({href, children, className, ...rest}: ExtLinkProps): React.ReactElement {
-  const sameTab = href.startsWith('https://learn.microsoft.com');
+  const sameTab = href.startsWith('https://learn.microsoft.com') || href.startsWith('#');
   if (sameTab) {
     return (
       <a href={href} className={className} {...rest}>

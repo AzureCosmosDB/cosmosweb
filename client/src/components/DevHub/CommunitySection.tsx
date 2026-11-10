@@ -1,5 +1,5 @@
 import React from 'react';
-import {communityItems, growth} from '@site/src/data/devhub';
+import {communityItems} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
 import Section from './Section';
 import {communityIcons} from './icons';
@@ -21,28 +21,6 @@ export default function CommunitySection(): React.ReactElement {
             </span>
           </ExtLink>
         ))}
-      </div>
-
-      <div className={styles.growth}>
-        <div>
-          <p className={styles.eyebrowDark}>{growth.eyebrow}</p>
-          <h3>{growth.title}</h3>
-          <p>{growth.blurb}</p>
-          <ExtLink href={growth.cta.href} className={styles.cardLink}>
-            {growth.cta.label}
-            <span aria-hidden="true"> ↗</span>
-          </ExtLink>
-        </div>
-        <div>
-          <ol className={styles.growthSteps}>
-            {growth.steps.map((step) => (
-              <li key={step.title}>
-                <strong>{step.title}</strong> {step.text}
-              </li>
-            ))}
-          </ol>
-          <p className={styles.fine}>{growth.fine}</p>
-        </div>
       </div>
     </Section>
   );

@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import CommunitySection from '@site/src/components/DevHub/CommunitySection';
 import DevelopSection from '@site/src/components/DevHub/DevelopSection';
 import EventsSection from '@site/src/components/DevHub/EventsSection';
+import GrowSection from '@site/src/components/DevHub/GrowSection';
 import Hero from '@site/src/components/DevHub/Hero';
 import {LanguageProvider} from '@site/src/components/DevHub/LanguageContext';
 import LearnSection from '@site/src/components/DevHub/LearnSection';
@@ -30,6 +31,7 @@ export default function Home(): React.ReactElement {
             <WatchSection />
             <LearnSection />
             <CommunitySection />
+            <GrowSection />
             <EventsSection />
           </main>
         </div>
