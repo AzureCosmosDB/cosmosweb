@@ -1231,12 +1231,13 @@
 
 /* Closing band */
 
+/* Try-it banner under the hero: a slimmer band in a brighter blue so it reads as separate from the hero above. */
 .closing {
-  padding: 3.5rem 0;
+  padding: 1.6rem 0;
   color: #fff;
   background:
-    radial-gradient(40rem 18rem at 90% -20%, rgba(80, 230, 255, 0.22), transparent 60%),
-    linear-gradient(135deg, #07182f 0%, #0b2f5c 100%);
+    radial-gradient(30rem 12rem at 8% -40%, rgba(80, 230, 255, 0.3), transparent 60%),
+    linear-gradient(90deg, #0b4f9a 0%, #0078d4 100%);
 }
 
 .closingInner {
@@ -1251,8 +1252,8 @@
 
 .closing h2 {
   max-width: 42rem;
-  margin: 0 0 0.6rem;
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   line-height: 1.2;
   color: #fff;
 }

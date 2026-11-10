@@ -47,6 +47,7 @@ export default function Home(): React.ReactElement {
         <NavSpy />
         <div className={styles.hub}>
           <Hero />
+          <ClosingBand />
           <main>
             <DevelopSection />
             <LearnSection />
@@ -54,7 +55,6 @@ export default function Home(): React.ReactElement {
             <CommunitySection />
             <EventsSection />
           </main>
-          <ClosingBand />
         </div>
       </LanguageProvider>
     </Layout>
