@@ -15,6 +15,7 @@ export default function LearnSection(): React.ReactElement {
   return (
     <Section
       id="learn"
+      alt
       title="Learn"
       lead="From your first query to a credential you can show: watch it, read it, build with it, get certified.">
       <p className={styles.introBar}>
