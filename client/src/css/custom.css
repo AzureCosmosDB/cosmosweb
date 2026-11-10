@@ -127,31 +127,85 @@ html {
   }
 }
 
-/* Desktop nav: compact type so the hub sections, Gallery and Conf fit on one row. */
+/* Navbar styled after the community draft: two-line brand, compact semibold links, DP-420 button. */
+.navbar__title {
+  font-size: 1.1875rem;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.navbar__title::after {
+  content: 'Developer hub';
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  color: var(--ifm-color-emphasis-700);
+}
+
 @media (min-width: 997px) {
   .navbar__items {
     flex-wrap: nowrap;
     min-width: 0;
   }
 
-  .navbar__link,
-  .navbar__title {
-    font-size: 0.875rem;
-    white-space: nowrap;
+  .navbar__items--right {
+    gap: 0.1rem;
   }
 
   .navbar__link {
     padding: 4px 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
   }
 
-  .navbar__title {
+  .navbar__link:hover {
+    text-decoration: underline;
+  }
+
+  .navbar__link.navbar-cta {
+    margin-left: 0.6rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: #0067b8;
+    color: #fff;
     font-weight: 700;
+  }
+
+  .navbar__link.navbar-cta:hover {
+    background: #005a9e;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  [data-theme='dark'] .navbar__link.navbar-cta {
+    background: #50e6ff;
+    color: #04213f;
+  }
+
+  [data-theme='dark'] .navbar__link.navbar-cta:hover {
+    background: #8cf0ff;
+    color: #04213f;
   }
 }
 
-/* Below ~1200px the brand text would crowd out the links; the logo alone is enough. */
-@media (min-width: 997px) and (max-width: 1199px) {
+/* Narrower desktops: drop the brand subtitle, then the whole brand text, before links get cramped. */
+@media (min-width: 997px) and (max-width: 1279px) {
+  .navbar__title::after {
+    display: none;
+  }
+}
+
+@media (min-width: 997px) and (max-width: 1179px) {
   .navbar__brand .navbar__title {
+    display: none;
+  }
+}
+
+/* The Learn link covers the button when there is no room for it. */
+@media (min-width: 997px) and (max-width: 1119px) {
+  .navbar__link.navbar-cta {
     display: none;
   }
 }

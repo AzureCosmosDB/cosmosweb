@@ -10,7 +10,9 @@ const ACTIVE_CLASS = 'navbar__link--active';
 const DROPDOWN_ACTIVE_CLASS = 'dropdown__link--active';
 
 function navLinks(id: string): HTMLAnchorElement[] {
-  return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href="/#${id}"]`));
+  return Array.from(document.querySelectorAll<HTMLAnchorElement>(`.navbar a[href="/#${id}"]`)).filter(
+    (a) => !a.classList.contains('navbar-cta'),
+  );
 }
 
 // Entries inside a dropdown use the dropdown link class, and their menu's trigger shows the group as current.

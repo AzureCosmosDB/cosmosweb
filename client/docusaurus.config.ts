@@ -102,52 +102,31 @@ const config: Config = {
     // Default social preview image (must exist under /static).
     image: 'img/conf/AzureCosmosDBConf2026_Hero_Landscape.png',
     navbar: {
-      title: 'Developer Home',
+      title: 'Azure Cosmos DB',
       logo: {
         alt: 'Azure Cosmos DB Dev Home',
         src: 'img/logo.svg',
       },
       items: [
-        // Developer hub sections (home page), grouped so the bar stays short. Hash-only routes never
+        // Developer hub sections (home page), flat like the community draft. Hash-only routes never
         // mark as active by path; the home page highlights the section in view itself (DevHub/NavSpy).
-        {
-          label: 'Build',
-          type: 'dropdown',
-          position: 'left',
-          items: [
-            {label: 'Develop', to: '/#develop', activeBaseRegex: '^$'},
-            {label: 'Tools', to: '/#tools', activeBaseRegex: '^$'},
-            {label: 'Watch', to: '/#watch', activeBaseRegex: '^$'},
-          ],
-        },
-        {
-          label: 'Learn',
-          type: 'dropdown',
-          position: 'left',
-          items: [
-            {label: 'Learn & certify', to: '/#learn', activeBaseRegex: '^$'},
-            {label: 'Cosmonauts', to: '/#cosmonauts', activeBaseRegex: '^$'},
-          ],
-        },
-        {
-          label: 'Community',
-          type: 'dropdown',
-          position: 'left',
-          items: [
-            {label: 'Community', to: '/#community', activeBaseRegex: '^$'},
-            {label: 'Events & news', to: '/#events', activeBaseRegex: '^$'},
-          ],
-        },
+        {label: 'Develop', position: 'right', to: '/#develop', activeBaseRegex: '^$'},
+        {label: 'Tools', position: 'right', to: '/#tools', activeBaseRegex: '^$'},
+        {label: 'Watch', position: 'right', to: '/#watch', activeBaseRegex: '^$'},
+        {label: 'Learn', position: 'right', to: '/#learn', activeBaseRegex: '^$'},
+        {label: 'Cosmonauts', position: 'right', to: '/#cosmonauts', activeBaseRegex: '^$'},
+        {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
+        {label: 'Events', position: 'right', to: '/#events', activeBaseRegex: '^$'},
         {
           label: 'Gallery',
-          position: 'left',
+          position: 'right',
           href: 'https://azurecosmosdb.github.io/gallery/',
         },
         {
           to: '/conf',
           type: 'dropdown',
           label: 'Azure Cosmos DB Conf',
-          position: 'left',
+          position: 'right',
           items: [
             {
               label: 'Conf Home',
@@ -209,6 +188,14 @@ const config: Config = {
               activeBasePath: '/conf/coc',
             },
           ],
+        },
+        // Call to action, like the draft's "Explore DP-420" button.
+        {
+          label: 'Explore DP-420 →',
+          position: 'right',
+          to: '/#learn',
+          className: 'navbar-cta',
+          activeBaseRegex: '^$',
         },
       ],
     },
