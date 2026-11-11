@@ -754,6 +754,8 @@ export const growth = {
 };
 
 export const closing = {
+  /** The "Ready to try Azure Cosmos DB?" banner at the bottom of the hero. Set to true to bring it back. */
+  show: false,
   title: 'Ready to try Azure Cosmos DB?',
   blurb: 'Get started for free, run your first queries, and learn as you build.',
   cta: {label: 'Try Azure Cosmos DB free', href: 'https://aka.ms/trycosmos'},
