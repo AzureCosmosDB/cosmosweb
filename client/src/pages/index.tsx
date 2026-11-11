@@ -6,6 +6,7 @@ import CommunitySection from '@site/src/components/DevHub/CommunitySection';
 import DevelopSection from '@site/src/components/DevHub/DevelopSection';
 import EventsSection from '@site/src/components/DevHub/EventsSection';
 import Hero from '@site/src/components/DevHub/Hero';
+import HubFooter from '@site/src/components/DevHub/HubFooter';
 import {LanguageProvider} from '@site/src/components/DevHub/LanguageContext';
 import LearnSection from '@site/src/components/DevHub/LearnSection';
 import NavSpy from '@site/src/components/DevHub/NavSpy';
@@ -26,7 +27,7 @@ export default function Home(): React.ReactElement {
   const pageUrl = useBaseUrl('/', {absolute: true});
 
   return (
-    <Layout title={TITLE} description={DESCRIPTION}>
+    <Layout title={TITLE} description={DESCRIPTION} noFooter>
       <Head>
         <meta property="og:type" content="website" />
         <meta property="og:title" content={TITLE} />
@@ -42,7 +43,8 @@ export default function Home(): React.ReactElement {
         <meta name="twitter:description" content={DESCRIPTION} />
         <meta name="twitter:image" content={shareImage} />
         <meta name="twitter:image:alt" content="Azure Cosmos DB Developer Hub" />
-      </Head>      <LanguageProvider>
+      </Head>
+      <LanguageProvider>
         <NavSpy />
         <div className={styles.hub}>
           <Hero />
@@ -53,6 +55,7 @@ export default function Home(): React.ReactElement {
             <CommunitySection />
             <EventsSection />
           </main>
+          <HubFooter />
         </div>
       </LanguageProvider>
     </Layout>

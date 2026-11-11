@@ -34,14 +34,125 @@
   border: 0;
 }
 
+/* ---------- Hub footer (home page only) ---------- */
+
 /*
- * The shared site footer has a long link that overflows phones. Only pages that render the hub
- * get the wrap fix, so other pages keep their current footer exactly as it is.
+ * Aligned to the page content (same 1280px / 2rem container as the sections), set off from the section above
+ * by the tinted surface and a rule, with real icons, even link spacing and 44px touch targets.
  */
-:global(html):has(.hub) :global(.footer__link-item) {
-  max-width: 100%;
-  white-space: normal;
+.hubFooter {
+  border-top: 1px solid var(--hub-border);
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-font-color-base);
+}
+
+.footerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 2.5rem;
+}
+
+.footerTitle {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hub-text-muted);
+}
+
+.footerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footerList li {
+  margin: 0;
+}
+
+.footerLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--hub-link);
+  text-decoration: none;
   overflow-wrap: anywhere;
+}
+
+.footerLink:hover {
+  color: var(--hub-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footerLink:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Fixed-width icon column, so labels line up and a wrapped label hangs under its first line. */
+.footerIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.35em;
+  font-size: 1rem;
+  color: var(--hub-text-muted);
+}
+
+.footerLink:hover .footerIcon {
+  color: var(--hub-link);
+}
+
+.footerCopy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin: 2rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hub-border);
+  font-size: 0.875rem;
+  color: var(--hub-text-muted);
+}
+
+.footerBuilt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footerHeart {
+  display: inline-flex;
+  color: #e5484d;
+}
+
+@media (max-width: 996px) {
+  .footerInner {
+    padding: 2.5rem 1.25rem 1.75rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .footerGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
 }
 
 /* ---------- Hero ---------- */

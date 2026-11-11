@@ -1,17 +1,21 @@
 import React from 'react';
 import {
+  FaBookOpen,
   FaCalculator,
   FaCode,
   FaDatabase,
   FaDesktop,
   FaExchangeAlt,
   FaGlobe,
+  FaHeart,
   FaLinkedin,
   FaPlay,
   FaPlug,
   FaQuestionCircle,
   FaRobot,
+  FaRss,
   FaTools,
+  FaYoutube,
 } from 'react-icons/fa';
 import {
   SiDiscord,
@@ -65,3 +69,18 @@ export const personLinkIcons = {
   linkedin: <FaLinkedin {...iconProps} />,
   website: <FaGlobe {...iconProps} />,
 } as const;
+
+/** One icon per footer link, picked from its label so the footer's content stays defined in the site config. */
+export function footerIcon(label: string): React.ReactElement {
+  if (/linkedin/i.test(label)) return <FaLinkedin {...iconProps} />;
+  if (/youtube/i.test(label)) return <FaYoutube {...iconProps} />;
+  if (/discord/i.test(label)) return <SiDiscord {...iconProps} />;
+  if (/^x$/i.test(label)) return <SiX {...iconProps} />;
+  if (/q&a/i.test(label)) return <FaQuestionCircle {...iconProps} />;
+  if (/blog/i.test(label)) return <FaRss {...iconProps} />;
+  if (/github/i.test(label)) return <SiGithub {...iconProps} />;
+  if (/open source/i.test(label)) return <FaCode {...iconProps} />;
+  return <FaBookOpen {...iconProps} />;
+}
+
+export const heartIcon = <FaHeart {...iconProps} />;
