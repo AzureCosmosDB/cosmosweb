@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - v2  # Trigger deployment when you push to the v2 branch
-  schedule:
-    - cron: '30 6 * * *'  # Rebuild daily so the hub's latest-blog-posts list stays current
-  workflow_dispatch:
 
 permissions:
   id-token: write  # Required for OIDC authentication
