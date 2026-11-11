@@ -218,6 +218,7 @@ const config: Config = {
           to: '/#develop',
           items: [
             {label: 'Develop', to: '/#develop', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
+            {label: 'Try Azure Cosmos DB free', href: 'https://aka.ms/trycosmos'},
             {label: 'Tools', to: '/#tools', activeBaseRegex: '^$'},
             {label: 'Sample gallery', href: 'https://azurecosmosdb.github.io/gallery/'},
           ],

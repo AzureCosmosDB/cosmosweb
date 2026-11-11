@@ -2,7 +2,6 @@ import React from 'react';
 import Head from '@docusaurus/Head';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
-import ClosingBand from '@site/src/components/DevHub/ClosingBand';
 import CommunitySection from '@site/src/components/DevHub/CommunitySection';
 import DevelopSection from '@site/src/components/DevHub/DevelopSection';
 import EventsSection from '@site/src/components/DevHub/EventsSection';
@@ -47,7 +46,6 @@ export default function Home(): React.ReactElement {
         <NavSpy />
         <div className={styles.hub}>
           <Hero />
-          <ClosingBand />
           <main>
             <DevelopSection />
             <LearnSection />

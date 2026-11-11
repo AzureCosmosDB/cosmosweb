@@ -1236,15 +1236,14 @@
 /* Closing band */
 
 /*
- * Try-it banner under the hero: the hero's own gradient (same stops and glows), so the two read as one family.
+ * Try-it banner: lives inside the hero, so it shares the hero's gradient. A soft translucent panel sets it
+ * apart from the hero copy and code card above it.
  */
 .closing {
-  padding: 1.5rem 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem 2.5rem;
   color: #fff;
-  background:
-    radial-gradient(40rem 18rem at 90% -60%, rgba(80, 230, 255, 0.28), transparent 60%),
-    radial-gradient(34rem 18rem at 0% 160%, rgba(0, 120, 212, 0.45), transparent 60%),
-    linear-gradient(135deg, #07182f 0%, #0b2f5c 55%, #0a4f9a 100%);
 }
 
 .closingInner {
@@ -1252,9 +1251,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  padding: 1.4rem 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .closing h2 {
@@ -1274,17 +1274,19 @@
   flex: none;
 }
 
-/* Responsive: stack the button under the text on narrow screens. */
-@media (max-width: 700px) {
+@media (max-width: 996px) {
   .closing {
-    padding: 1.5rem 0 1.6rem;
+    padding: 0 1.25rem 2rem;
   }
+}
 
+/* Stack the button under the text on narrow screens. */
+@media (max-width: 700px) {
   .closingInner {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-    padding: 0 1.25rem;
+    padding: 1.25rem;
   }
 
   .closing .primaryButton {
@@ -1623,12 +1625,6 @@
   .certPanel,
   .leadership {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .closingInner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 1.25rem;
   }
 
   .certStory,

@@ -5,8 +5,8 @@ import styles from './devhub.module.css';
 
 export default function ClosingBand(): React.ReactElement {
   return (
-    <section className={styles.closing} aria-labelledby="try-title">
-      <div className={styles.closingInner}>
+    <div className={styles.closing}>
+      <aside className={styles.closingInner} aria-labelledby="try-title">
         <div>
           <h2 id="try-title">{closing.title}</h2>
           <p>{closing.blurb}</p>
@@ -17,7 +17,7 @@ export default function ClosingBand(): React.ReactElement {
             →
           </span>
         </ExtLink>
-      </div>
-    </section>
+      </aside>
+    </div>
   );
 }

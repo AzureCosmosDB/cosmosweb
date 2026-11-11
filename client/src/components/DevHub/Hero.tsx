@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import {languages} from '@site/src/data/devhub';
+import ClosingBand from './ClosingBand';
 import CodeSnippet from './CodeSnippet';
 import ExtLink from './ExtLink';
 import {useLanguage} from './LanguageContext';
@@ -110,6 +111,7 @@ export default function Hero(): React.ReactElement {
           </div>
         </div>
       </div>
+      <ClosingBand />
     </header>
   );
 }
