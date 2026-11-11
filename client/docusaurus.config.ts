@@ -125,7 +125,7 @@ const config: Config = {
   ],
 
   // Overridable so a preview build can be served from a sub-path (see .github/workflows/pages-preview.yml).
-  url: process.env.DOCUSAURUS_URL || 'https://developer.azurecosmosdb.com',
+  url: process.env.DOCUSAURUS_URL || 'https://cosmosdb.microsoft.com',
   baseUrl: process.env.DOCUSAURUS_BASE_URL || '/',
 
   organizationName: 'azurecosmosdb',
