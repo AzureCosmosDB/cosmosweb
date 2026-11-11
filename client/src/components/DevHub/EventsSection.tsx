@@ -78,7 +78,7 @@ export default function EventsSection(): React.ReactElement {
   const now = useNow();
   const feed = (usePluginData('events-feed') as {events?: FeedEvent[]} | undefined)?.events ?? [];
 
-  // Hand-picked events and the Microsoft data and developer events are one list, soonest first.
+  // Hand-picked events and any Azure Cosmos DB events found in the Microsoft listing are one list, soonest first.
   const picked: EventCardData[] = curatedEvents.map((event) => ({
     id: event.id,
     start: event.start,
@@ -118,18 +118,11 @@ export default function EventsSection(): React.ReactElement {
       title="Events & updates"
       lead="Get together with the community and the product team, and keep up with what's new.">
       {upcoming.length > 0 ? (
-        <>
-          <Carousel noun="events" perView={3}>
-            {upcoming.map((event) => (
-              <EventCard key={event.id} event={event} now={now} />
-            ))}
-          </Carousel>
-          {feed.length > 0 ? (
-            <p className={styles.sectionFoot}>
-              <ExtLink href="https://developer.microsoft.com/en-us/events">See all Microsoft developer events</ExtLink>
-            </p>
-          ) : null}
-        </>
+        <Carousel noun="events" perView={3}>
+          {upcoming.map((event) => (
+            <EventCard key={event.id} event={event} now={now} />
+          ))}
+        </Carousel>
       ) : null}
       <UpdatesSection />
     </Section>

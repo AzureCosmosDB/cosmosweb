@@ -1,17 +1,20 @@
 /**
- * Reads the Microsoft Developer events listing at build time and exposes upcoming data and developer events
- * (Microsoft Reactor livestreams and similar) to the developer hub as global data.
+ * Reads the Microsoft Developer events listing at build time and exposes the upcoming events that are about
+ * Azure Cosmos DB (Microsoft Reactor livestreams and similar) to the developer hub as global data.
  *
  * The listing page has no public feed, but it embeds every event as JSON for its own filters, so that is what
  * is read. It runs as part of the normal site build, so the deploy workflow picks it up with no changes.
- * Events that have ended are dropped here and again in the browser (see EventsFeedSection). If the page
- * cannot be read or its shape changes, the section is hidden and the build still succeeds.
+ * Only events whose title or description names Azure Cosmos DB or NoSQL are kept, so most days there are none
+ * and the hand-picked events carry the section. Events that have ended are dropped here and again in the
+ * browser (see EventsSection). If the page cannot be read or its shape changes, the feed contributes nothing
+ * and the build still succeeds.
  */
 const {decodeEntities, stripTags, fetchText} = require('../feed-utils');
 
 const EVENTS_URL = 'https://developer.microsoft.com/en-us/events';
 const ALLOWED_HOST = 'developer.microsoft.com';
-const TOPICS = new Set(['Data and Analytics', 'Developer Tools', 'Open Source']);
+// An event must be about Azure Cosmos DB itself. Broader database or data-platform topics do not count.
+const RELEVANT = /\bcosmos\s?db\b|\bcosmosdb\b|\bnosql\b|\bchange feed\b/i;
 const LANGUAGE = 'English';
 const EVENT_COUNT = 12;
 const HEADERS = {
@@ -77,7 +80,7 @@ function toEvents(rawEvents, today) {
   const seen = new Map();
   for (const item of rawEvents) {
     if (!Array.isArray(item.languages) || !item.languages.includes(LANGUAGE)) continue;
-    if (!Array.isArray(item.topics) || !item.topics.some((topic) => TOPICS.has(topic))) continue;
+    if (!RELEVANT.test(`${item.title} ${item.description}`)) continue;
 
     const start = isoDate(item.startDateTime);
     const end = lastDay(item.startDateTime, item.endDateTime);
@@ -124,7 +127,7 @@ module.exports = function eventsFeedPlugin() {
         const today = new Date(Date.now() - 8 * 3600 * 1000).toISOString().slice(0, 10);
         return toEvents(extractEvents(html), today);
       } catch (error) {
-        console.warn(`[events-feed] Could not read Microsoft Developer events: ${error.message}. Hiding the events carousel.`);
+        console.warn(`[events-feed] Could not read Microsoft Developer events: ${error.message}. Showing the hand-picked events only.`);
         return [];
       }
     },
