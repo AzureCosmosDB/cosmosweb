@@ -661,9 +661,13 @@ export interface Person {
   badge: string;
   name: string;
   role: string;
+  /** Shown under the role for people who are also Microsoft Regional Directors. */
+  regionalDirector?: boolean;
   blurb: string;
   cta: string;
   href: string;
+  /** Profile, personal site and company links shown at the bottom of the card. */
+  links: Array<{label: string; href: string}>;
   /** Photo already shipped with the site (static/img/speakers). */
   image: string;
 }
@@ -675,9 +679,15 @@ export const people: Person[] = [
     badge: 'Cosmonaut & MVP',
     name: 'Chander Dhall',
     role: 'Azure Cosmos DB Cosmonaut / Microsoft AI MVP',
+    regionalDirector: true,
     blurb: 'Shares practical guidance on AI memory patterns, token usage, and costs with Azure Cosmos DB.',
     cta: "View Chander's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/4dbc70c0-3c9a-e411-93f2-9cb65495d3c4',
+    links: [
+      {label: 'LinkedIn', href: 'https://linkedin.com/in/csdhall'},
+      {label: 'Website', href: 'https://chanderdhall.com/'},
+      {label: 'Cazton', href: 'https://cazton.com/'},
+    ],
     image: '/img/speakers/chander-dhall.jpg',
   },
   {
@@ -688,6 +698,10 @@ export const people: Person[] = [
     blurb: 'A community perspective on making better Azure Cosmos DB data-modeling decisions.',
     cta: "View Hasan's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/20773cee-6250-e911-a987-000d3a1378f6',
+    links: [
+      {label: 'LinkedIn', href: 'https://www.linkedin.com/in/hasansavran/'},
+      {label: 'Website', href: 'https://www.savranweb.com/'},
+    ],
     image: '/img/speakers/hasan-savran.jpg',
   },
   {
@@ -695,9 +709,15 @@ export const people: Person[] = [
     badge: 'Cosmonaut & MVP',
     name: 'Eric Boyd',
     role: 'Azure Cosmos DB Cosmonaut / Microsoft Azure & AI MVP',
+    regionalDirector: true,
     blurb: 'Shares distributed locks, sagas, and coordination patterns with Azure Cosmos DB.',
     cta: "View Eric's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/77e968c6-3c9a-e411-93f2-9cb65495d3c4',
+    links: [
+      {label: 'LinkedIn', href: 'https://www.linkedin.com/in/EricDBoyd'},
+      {label: 'Website', href: 'https://www.ericdboyd.com/'},
+      {label: 'responsiveX', href: 'https://responsivex.com/'},
+    ],
     image: '/img/speakers/eric-boyd.jpg',
   },
 ];

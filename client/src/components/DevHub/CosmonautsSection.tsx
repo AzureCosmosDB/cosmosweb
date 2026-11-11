@@ -13,7 +13,15 @@ function PersonCard({person}: {person: Person}): React.ReactElement {
         <span className={styles.pathBadge}>{person.badge}</span>
         <h4>{person.name}</h4>
         <p className={styles.personRole}>{person.role}</p>
+        {person.regionalDirector ? <p className={styles.personRegional}>Microsoft Regional Director</p> : null}
         <p>{person.blurb}</p>
+        <div className={styles.personLinks} role="group" aria-label={`${person.name} links`}>
+          {person.links.map((link) => (
+            <ExtLink key={link.href} href={link.href}>
+              {link.label}
+            </ExtLink>
+          ))}
+        </div>
         <ExtLink href={person.href} className={styles.cardLink}>
           {person.cta}
           <span aria-hidden="true"> ↗</span>
