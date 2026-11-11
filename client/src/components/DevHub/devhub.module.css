@@ -1442,78 +1442,6 @@
 
 /* Events & updates */
 
-.eventList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.eventList + .subTitle,
-.eventList + h3 {
-  margin-top: 2.5rem;
-}
-
-.eventRow {
-  display: grid;
-  grid-template-columns: 110px minmax(0, 1fr);
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 1.4rem;
-  border: 1px solid var(--hub-border);
-  border-radius: 12px;
-  background: var(--hub-surface);
-  box-shadow: var(--hub-shadow);
-}
-
-.eventDate {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.eventMonth {
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--hub-link);
-}
-
-.eventDay {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.eventBody h3 {
-  margin: 0 0 0.2rem;
-  font-size: 1.1rem;
-}
-
-.eventBody p {
-  margin: 0;
-  color: var(--hub-text-muted);
-}
-
-.eventBody .eventWhere {
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.eventStatus {
-  margin-left: 0.7rem;
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(0, 120, 212, 0.12);
-  color: var(--hub-link);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  vertical-align: middle;
-}
-
 .postCard {
   display: flex;
   flex-direction: column;
@@ -1549,15 +1477,13 @@
 .toolCard,
 .scenarioCard,
 .offerCard,
-.updateCard,
-.eventBody {
+.updateCard {
   display: flex;
   flex-direction: column;
 }
 
 .scenarioCard .cardLink,
 .offerCard .cardLink,
-.eventBody .cardLink,
 .updateCard .cardLink {
   align-self: flex-start;
   margin-top: auto;
@@ -1572,10 +1498,6 @@
 .toolCard > p:last-of-type,
 .updateCard > p:last-of-type {
   margin-bottom: 0.9rem;
-}
-
-.eventBody .cardLink {
-  margin-top: 0.7rem;
 }
 
 .postDate {
@@ -1775,16 +1697,6 @@
   .certStory,
   .certPath {
     padding: 1.6rem;
-  }
-
-  .eventRow {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.6rem;
-  }
-
-  .eventDate {
-    flex-direction: row;
-    gap: 0.6rem;
   }
 }
 
