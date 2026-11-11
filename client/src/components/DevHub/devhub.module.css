@@ -1,6 +1,9 @@
 /* Scoped to the developer hub landing page (CSS module: no global selectors). */
 
 .hub {
+  /* Nothing on the page may widen it sideways; `clip` (unlike `hidden`) keeps sticky positioning working. */
+  overflow-x: hidden;
+  overflow-x: clip;
   --cosmos-blue: #0078d4;
   --cosmos-blue-strong: #005a9e;
   --cosmos-cyan: #50e6ff;
@@ -283,6 +286,7 @@
   padding: 0.9rem 1rem;
   border-radius: 8px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.8rem;
   line-height: 1.5;
@@ -489,7 +493,7 @@
 
 .guideGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 1.25rem;
 }
 
@@ -544,7 +548,7 @@
 
 .communityGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
   gap: 1rem;
 }
 
@@ -676,7 +680,7 @@
 .pathGrid,
 .offerGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 1.25rem;
 }
 
@@ -1105,7 +1109,7 @@
 }
 
 .offerGrid {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 }
 
 .offerCard {
@@ -1232,17 +1236,15 @@
 /* Closing band */
 
 /*
- * Try-it banner under the hero: a slim band in the page's own surface colour with a soft Azure Cosmos DB blue
- * tint (the same tint as the featured guide card), so it sits between the dark hero and the page content
- * instead of competing with either.
+ * Try-it banner under the hero: the hero's own gradient (same stops and glows), so the two read as one family.
  */
 .closing {
   padding: 1.5rem 0;
-  color: var(--ifm-font-color-base);
-  border-bottom: 1px solid var(--hub-border);
+  color: #fff;
   background:
-    linear-gradient(90deg, rgba(0, 120, 212, 0.12), rgba(80, 230, 255, 0.1)),
-    var(--hub-surface);
+    radial-gradient(40rem 18rem at 90% -60%, rgba(80, 230, 255, 0.28), transparent 60%),
+    radial-gradient(34rem 18rem at 0% 160%, rgba(0, 120, 212, 0.45), transparent 60%),
+    linear-gradient(135deg, #07182f 0%, #0b2f5c 55%, #0a4f9a 100%);
 }
 
 .closingInner {
@@ -1260,41 +1262,35 @@
   margin: 0 0 0.3rem;
   font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   line-height: 1.2;
-  color: inherit;
+  color: #fff;
 }
 
 .closing p {
   margin: 0;
-  color: var(--hub-text-muted);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .closing .primaryButton {
   flex: none;
-  border-color: #0067b8;
-  background: #0067b8;
-  color: #fff;
 }
 
-.closing .primaryButton:hover {
-  border-color: #005a9e;
-  background: #005a9e;
-  color: #fff;
-}
+/* Responsive: stack the button under the text on narrow screens. */
+@media (max-width: 700px) {
+  .closing {
+    padding: 1.5rem 0 1.6rem;
+  }
 
-.closing .primaryButton:focus-visible {
-  outline-color: var(--cosmos-blue);
-}
+  .closingInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 1.25rem;
+  }
 
-[data-theme='dark'] .closing .primaryButton {
-  border-color: var(--cosmos-cyan);
-  background: var(--cosmos-cyan);
-  color: #04213f;
-}
-
-[data-theme='dark'] .closing .primaryButton:hover {
-  border-color: #8cf0ff;
-  background: #8cf0ff;
-  color: #04213f;
+  .closing .primaryButton {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 /* Events & updates */
