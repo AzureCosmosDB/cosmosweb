@@ -1,6 +1,7 @@
 import React from 'react';
 import {events} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
+import EventsFeedSection from './EventsFeedSection';
 import Section from './Section';
 import UpdatesSection from './UpdatesSection';
 import {eventStatus, isExpired, useNow} from './useNow';
@@ -42,6 +43,7 @@ export default function EventsSection(): React.ReactElement {
           );
         })}
       </div>
+      <EventsFeedSection />
       <UpdatesSection />
     </Section>
   );
