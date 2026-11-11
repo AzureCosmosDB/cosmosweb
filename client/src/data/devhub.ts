@@ -642,10 +642,10 @@ export const communityItems: CommunityItem[] = [
     href: 'https://github.com/AzureCosmosDB',
   },
   {
-    id: 'stackoverflow',
-    name: 'Stack Overflow',
-    blurb: 'Find technical questions and answers under the Azure Cosmos DB tag.',
-    href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
+    id: 'qna',
+    name: 'Microsoft Q&A',
+    blurb: 'Ask a technical question or browse answers under the Azure Cosmos DB tag.',
+    href: 'https://learn.microsoft.com/en-us/answers/tags/187/azure-cosmos-db',
   },
   { id: 'x', name: 'X', blurb: 'Follow @AzureCosmosDB.', href: 'https://x.com/AzureCosmosDB' },
   {

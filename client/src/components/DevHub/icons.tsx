@@ -9,6 +9,7 @@ import {
   FaLinkedin,
   FaPlay,
   FaPlug,
+  FaQuestionCircle,
   FaRobot,
   FaTools,
 } from 'react-icons/fa';
@@ -22,7 +23,6 @@ import {
   SiPython,
   SiReddit,
   SiRust,
-  SiStackoverflow,
   SiX,
 } from 'react-icons/si';
 
@@ -41,7 +41,7 @@ export const communityIcons: Record<string, React.ReactElement> = {
   discord: <SiDiscord {...iconProps} />,
   github: <SiGithub {...iconProps} />,
   reddit: <SiReddit {...iconProps} />,
-  stackoverflow: <SiStackoverflow {...iconProps} />,
+  qna: <FaQuestionCircle {...iconProps} />,
   x: <SiX {...iconProps} />,
   linkedin: <FaLinkedin {...iconProps} />,
 };

@@ -303,8 +303,8 @@ const config: Config = {
               href: 'https://x.com/azurecosmosdb',
             },
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
+              label: 'Microsoft Q&A',
+              href: 'https://learn.microsoft.com/en-us/answers/tags/187/azure-cosmos-db',
             },
           ],
         },
