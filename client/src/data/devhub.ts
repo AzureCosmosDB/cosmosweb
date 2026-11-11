@@ -666,8 +666,8 @@ export interface Person {
   blurb: string;
   cta: string;
   href: string;
-  /** Profile, personal site and company links shown at the bottom of the card. */
-  links: Array<{label: string; href: string}>;
+  /** Profile and personal-site links shown at the bottom of the card. */
+  links: Array<{label: string; href: string; icon: 'linkedin' | 'website'}>;
   /** Photo already shipped with the site (static/img/speakers). */
   image: string;
 }
@@ -684,8 +684,8 @@ export const people: Person[] = [
     cta: "View Chander's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/4dbc70c0-3c9a-e411-93f2-9cb65495d3c4',
     links: [
-      {label: 'LinkedIn', href: 'https://linkedin.com/in/csdhall'},
-      {label: 'Website', href: 'https://chanderdhall.com/'},
+      {label: 'LinkedIn', icon: 'linkedin', href: 'https://linkedin.com/in/csdhall'},
+      {label: 'Website', icon: 'website', href: 'https://chanderdhall.com/'},
     ],
     image: '/img/speakers/chander-dhall.jpg',
   },
@@ -698,8 +698,8 @@ export const people: Person[] = [
     cta: "View Hasan's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/20773cee-6250-e911-a987-000d3a1378f6',
     links: [
-      {label: 'LinkedIn', href: 'https://www.linkedin.com/in/hasansavran/'},
-      {label: 'Website', href: 'https://savranweb.com/'},
+      {label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/in/hasansavran/'},
+      {label: 'Website', icon: 'website', href: 'https://savranweb.com/'},
     ],
     image: '/img/speakers/hasan-savran.jpg',
   },
@@ -713,8 +713,8 @@ export const people: Person[] = [
     cta: "View Eric's MVP profile",
     href: 'https://mvp.microsoft.com/MVP/profile/77e968c6-3c9a-e411-93f2-9cb65495d3c4',
     links: [
-      {label: 'LinkedIn', href: 'https://www.linkedin.com/in/EricDBoyd'},
-      {label: 'Website', href: 'https://responsivex.com/'},
+      {label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/in/EricDBoyd'},
+      {label: 'Website', icon: 'website', href: 'https://responsivex.com/'},
     ],
     image: '/img/speakers/eric-boyd.jpg',
   },

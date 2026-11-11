@@ -2,6 +2,7 @@ import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import {growth, people, type Person} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
+import {personLinkIcons} from './icons';
 import styles from './devhub.module.css';
 
 function PersonCard({person}: {person: Person}): React.ReactElement {
@@ -18,6 +19,7 @@ function PersonCard({person}: {person: Person}): React.ReactElement {
         <div className={styles.personLinks} role="group" aria-label={`${person.name} links`}>
           {person.links.map((link) => (
             <ExtLink key={link.href} href={link.href}>
+              <span className={styles.personLinkIcon}>{personLinkIcons[link.icon]}</span>
               {link.label}
             </ExtLink>
           ))}

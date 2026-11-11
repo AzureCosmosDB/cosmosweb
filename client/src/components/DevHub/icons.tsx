@@ -5,6 +5,7 @@ import {
   FaDatabase,
   FaDesktop,
   FaExchangeAlt,
+  FaGlobe,
   FaLinkedin,
   FaPlay,
   FaPlug,
@@ -58,3 +59,9 @@ export const toolIcons: Record<string, React.ReactElement> = {
 };
 
 export const playIcon = <FaPlay {...iconProps} />;
+
+/** Icons for the profile and website links on the Cosmonaut cards. */
+export const personLinkIcons = {
+  linkedin: <FaLinkedin {...iconProps} />,
+  website: <FaGlobe {...iconProps} />,
+} as const;
