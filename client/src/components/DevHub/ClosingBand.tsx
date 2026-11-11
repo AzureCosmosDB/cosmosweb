@@ -3,7 +3,8 @@ import {closing} from '@site/src/data/devhub';
 import ExtLink from './ExtLink';
 import styles from './devhub.module.css';
 
-export default function ClosingBand(): React.ReactElement {
+export default function ClosingBand(): React.ReactElement | null {
+  if (!closing.show) return null;
   return (
     <div className={styles.closing}>
       <aside className={styles.closingInner} aria-labelledby="try-title">
