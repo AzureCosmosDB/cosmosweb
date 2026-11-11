@@ -27,6 +27,8 @@ interface Speaker {
   blog?: string;
   youtube?: string;
   website?: string;
+  personalWebsite?: string;
+  regionalDirector?: boolean;
   mvp?: string;
   session?: Session;
 }
@@ -122,51 +124,70 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
           <div className={styles.speakersCard}>
             <div className={styles.speakersGrid}>
               {speakers.map((speaker) => (
-                <button
+                <article
                   key={speaker.slug}
                   className={styles.speakerCard}
-                  aria-label={`View ${speaker.name}`}
-                  onClick={() => openSpeaker(speaker)}
                 >
-                  <div className={styles.speakerCardImgWrap}>
-                    <img
-                      src={speaker.img ? withBaseUrl(speaker.img) : placeholderImg}
-                      alt={speaker.name}
-                      className={styles.speakerCardImg}
-                      loading="lazy"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = placeholderImg;
-                      }}
-                    />
-                  </div>
-                  <div className={styles.speakerCardBody}>
-                    <div className={styles.speakerCardNameRow}>
-                      <span className={styles.speakerCardName}>{speaker.name}</span>
-                      {speaker.mvp && (
-                        <img
-                          src="https://mvp.microsoft.com/Assets/UserProfile/MVP/Badge.svg"
-                          alt="Microsoft MVP"
-                          className={styles.mvpBadge}
-                        />
+                  <button
+                    type="button"
+                    className={styles.speakerCardDetails}
+                    aria-label={`View ${speaker.name}`}
+                    onClick={() => openSpeaker(speaker)}
+                  >
+                    <div className={styles.speakerCardImgWrap}>
+                      <img
+                        src={speaker.img ? withBaseUrl(speaker.img) : placeholderImg}
+                        alt={speaker.name}
+                        className={styles.speakerCardImg}
+                        loading="lazy"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = placeholderImg;
+                        }}
+                      />
+                    </div>
+                    <div className={styles.speakerCardBody}>
+                      <div className={styles.speakerCardNameRow}>
+                        <span className={styles.speakerCardName}>{speaker.name}</span>
+                        {speaker.mvp && (
+                          <img
+                            src="https://mvp.microsoft.com/Assets/UserProfile/MVP/Badge.svg"
+                            alt="Microsoft MVP"
+                            className={styles.mvpBadge}
+                          />
+                        )}
+                        {speaker.company === "Microsoft" && (
+                          <img
+                            src={microsoftIcon}
+                            alt="Microsoft"
+                            className={styles.msBadge}
+                          />
+                        )}
+                      </div>
+                      {(speaker.role || speaker.company) && (
+                        <span className={styles.speakerCardMeta}>
+                          {[speaker.role, speaker.company].filter(Boolean).join(" · ")}
+                        </span>
                       )}
-                      {speaker.company === "Microsoft" && (
-                        <img
-                          src={microsoftIcon}
-                          alt="Microsoft"
-                          className={styles.msBadge}
-                        />
+                      {speaker.regionalDirector && (
+                        <span className={styles.speakerCardMeta}>Microsoft Regional Director</span>
+                      )}
+                      {speaker.session?.title && (
+                        <span className={styles.speakerCardSession}>{speaker.session.title}</span>
                       )}
                     </div>
-                    {(speaker.role || speaker.company) && (
-                      <span className={styles.speakerCardMeta}>
-                        {[speaker.role, speaker.company].filter(Boolean).join(" · ")}
-                      </span>
-                    )}
-                    {speaker.session?.title && (
-                      <span className={styles.speakerCardSession}>{speaker.session.title}</span>
-                    )}
-                  </div>
-                </button>
+                  </button>
+                  {speaker.personalWebsite && (
+                    <div className={styles.speakerCardLinks} aria-label={`${speaker.name} links`}>
+                      {speaker.linkedin && (
+                        <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                      )}
+                      <a href={speaker.personalWebsite} target="_blank" rel="noopener noreferrer">Website</a>
+                      {speaker.website && (
+                        <a href={speaker.website} target="_blank" rel="noopener noreferrer">{speaker.company}</a>
+                      )}
+                    </div>
+                  )}
+                </article>
               ))}
             </div>
           </div>
