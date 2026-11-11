@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "../conf.module.css";
 
 interface StreamSectionProps {
@@ -48,7 +47,6 @@ const toWatchUrl = (embedUrl: string | null): string | null => {
 };
 
 const StreamSection = ({ confYear, streamEmbedUrl, live = false }: StreamSectionProps) => {
-  const thankYou = useBaseUrl("/img/thank_you_closing.png");
   // Start with a stable value for SSR; update on the client after mount.
   const [countdown, setCountdown] = useState<Countdown>(() => computeCountdown());
 
@@ -81,14 +79,14 @@ const StreamSection = ({ confYear, streamEmbedUrl, live = false }: StreamSection
                 >
                   <img
                     className={styles.streamThankYouImage}
-                    src={thankYou}
+                    src="/img/thank_you_closing.png"
                     alt={`Thank you for joining Azure Cosmos DB Conf ${confYear}`}
                   />
                 </a>
               ) : (
                 <img
                   className={styles.streamThankYouImage}
-                  src={thankYou}
+                  src="/img/thank_you_closing.png"
                   alt={`Thank you for joining Azure Cosmos DB Conf ${confYear}`}
                 />
               )}

@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './cfp.module.css';
 import ConfFooter from './ConfFooter';
 
@@ -94,7 +93,6 @@ const sections: CfpSection[] = [
 ];
 
 const CfpPage: React.FC = () => {
-  const planet = useBaseUrl('/img/planet-1.png');
   return (
     <Layout
       title="Call for Proposals"
@@ -109,7 +107,7 @@ const CfpPage: React.FC = () => {
 
         <div className={styles.container}>
           <h1 className={styles.title}>
-            <img src={planet} alt="" aria-hidden="true" className={styles.icon} />
+            <img src="/img/planet-1.png" alt="" aria-hidden="true" className={styles.icon} />
             Call for Proposals
           </h1>
 
@@ -136,7 +134,7 @@ const CfpPage: React.FC = () => {
                     <li key={`${section.title}-${item.title}`} className={styles.listItem}>
                       <div className={styles.linkRow}>
                         <img
-                          src={planet}
+                          src="/img/planet-1.png"
                           alt=""
                           aria-hidden="true"
                           className={styles.bulletIcon}

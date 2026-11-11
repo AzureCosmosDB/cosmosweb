@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import resourcesData from './resources.json';
 import styles from './resources.module.css';
 import ConfFooter from './ConfFooter';
@@ -18,7 +17,6 @@ interface ResourceSection {
 }
 
 const Resources: React.FC = () => {
-  const planet = useBaseUrl('/img/planet-1.png');
   return (
     <Layout
       title="Resources"
@@ -32,7 +30,7 @@ const Resources: React.FC = () => {
         </header>
         <div className={styles.container}>
           <h1 className={styles.title}>
-            <img src={planet} alt="" aria-hidden="true" className={styles.icon} />
+            <img src="/img/planet-1.png" alt="" aria-hidden="true" className={styles.icon} />
             Resources
           </h1>
 
@@ -53,7 +51,7 @@ const Resources: React.FC = () => {
                     <li key={res.url} className={styles.listItem}>
                       <div className={styles.linkRow}>
                         <img
-                          src={planet}
+                          src="/img/planet-1.png"
                           alt=""
                           aria-hidden="true"
                           className={styles.bulletIcon}

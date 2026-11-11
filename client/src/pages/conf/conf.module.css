@@ -1970,7 +1970,7 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.18);
-  background-image: url('../../../static/img/conf/about_bg.png');
+  background-image: url('/img/conf/about_bg.png');
   background-color: #0d2e42;
   background-size: cover;
   background-position: center;
@@ -1984,7 +1984,7 @@
 
 /* Dark mode override (so we can clearly differentiate later). */
 [data-theme='dark'] .aboutCard {
-  background-image: url('../../../static/img/conf/about_bg_dark.png');
+  background-image: url('/img/conf/about_bg_dark.png');
   background-color: #0d2e42;
   background-size: cover;
   background-position: center;
@@ -3326,47 +3326,17 @@
 /* Speaker card — horizontal layout */
 .speakerCard {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 14px;
   padding: 14px;
   text-align: left;
+  cursor: pointer;
   color: inherit;
   width: 100%;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-}
-
-.speakerCardDetails {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  flex: 1;
-  width: 100%;
-  min-width: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.speakerCardLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-top: auto;
-  padding-top: 14px;
-  font-size: 13px;
-}
-
-.speakerCardLinks a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  overflow-wrap: anywhere;
 }
 
 [data-theme='dark'] .speakerCard {

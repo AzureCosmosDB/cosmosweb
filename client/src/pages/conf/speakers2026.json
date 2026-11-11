@@ -50,12 +50,10 @@
   {
     "slug": "eric-boyd",
     "name": "Eric Boyd",
-    "regionalDirector": true,
-    "personalWebsite": "https://www.ericdboyd.com/",
     "role": "Founder & CEO",
     "company": "responsiveX",
     "img": "/img/speakers/eric-boyd.jpg",
-    "linkedin": "https://www.linkedin.com/in/EricDBoyd",
+    "linkedin": "http://www.linkedin.com/in/EricDBoyd",
     "x": "EricDBoyd",
     "blog": "http://www.EricDBoyd.com",
     "website": "https://responsivex.com/",
@@ -101,8 +99,6 @@
   {
     "slug": "chander-dhall",
     "name": "Chander Dhall",
-    "regionalDirector": true,
-    "personalWebsite": "https://chanderdhall.com/",
     "role": "CEO",
     "company": "Cazton",
     "img": "/img/speakers/chander-dhall.jpg",

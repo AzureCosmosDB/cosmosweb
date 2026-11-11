@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import styles from "../conf.module.css";
 import speakersData from "../speakers2026.json";
 import {
@@ -27,8 +26,6 @@ interface Speaker {
   blog?: string;
   youtube?: string;
   website?: string;
-  personalWebsite?: string;
-  regionalDirector?: boolean;
   mvp?: string;
   session?: Session;
 }
@@ -62,9 +59,6 @@ const getTopicEmoji = (title: string | undefined): string => {
 };
 
 const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
-  const { withBaseUrl } = useBaseUrlUtils();
-  const placeholderImg = withBaseUrl("/img/speakers/placeholder.avif");
-  const microsoftIcon = withBaseUrl("/assets/icons/microsoft.svg");
   const allSpeakers: Speaker[] = speakersData as unknown as Speaker[];
   const speakers = allSpeakers.filter((s) => s.confirmed !== false);
   const [selected, setSelected] = useState<Speaker | null>(null);
@@ -124,70 +118,51 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
           <div className={styles.speakersCard}>
             <div className={styles.speakersGrid}>
               {speakers.map((speaker) => (
-                <article
+                <button
                   key={speaker.slug}
                   className={styles.speakerCard}
+                  aria-label={`View ${speaker.name}`}
+                  onClick={() => openSpeaker(speaker)}
                 >
-                  <button
-                    type="button"
-                    className={styles.speakerCardDetails}
-                    aria-label={`View ${speaker.name}`}
-                    onClick={() => openSpeaker(speaker)}
-                  >
-                    <div className={styles.speakerCardImgWrap}>
-                      <img
-                        src={speaker.img ? withBaseUrl(speaker.img) : placeholderImg}
-                        alt={speaker.name}
-                        className={styles.speakerCardImg}
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src = placeholderImg;
-                        }}
-                      />
-                    </div>
-                    <div className={styles.speakerCardBody}>
-                      <div className={styles.speakerCardNameRow}>
-                        <span className={styles.speakerCardName}>{speaker.name}</span>
-                        {speaker.mvp && (
-                          <img
-                            src="https://mvp.microsoft.com/Assets/UserProfile/MVP/Badge.svg"
-                            alt="Microsoft MVP"
-                            className={styles.mvpBadge}
-                          />
-                        )}
-                        {speaker.company === "Microsoft" && (
-                          <img
-                            src={microsoftIcon}
-                            alt="Microsoft"
-                            className={styles.msBadge}
-                          />
-                        )}
-                      </div>
-                      {(speaker.role || speaker.company) && (
-                        <span className={styles.speakerCardMeta}>
-                          {[speaker.role, speaker.company].filter(Boolean).join(" · ")}
-                        </span>
+                  <div className={styles.speakerCardImgWrap}>
+                    <img
+                      src={speaker.img || "/img/speakers/placeholder.avif"}
+                      alt={speaker.name}
+                      className={styles.speakerCardImg}
+                      loading="lazy"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = "/img/speakers/placeholder.avif";
+                      }}
+                    />
+                  </div>
+                  <div className={styles.speakerCardBody}>
+                    <div className={styles.speakerCardNameRow}>
+                      <span className={styles.speakerCardName}>{speaker.name}</span>
+                      {speaker.mvp && (
+                        <img
+                          src="https://mvp.microsoft.com/Assets/UserProfile/MVP/Badge.svg"
+                          alt="Microsoft MVP"
+                          className={styles.mvpBadge}
+                        />
                       )}
-                      {speaker.regionalDirector && (
-                        <span className={styles.speakerCardMeta}>Microsoft Regional Director</span>
-                      )}
-                      {speaker.session?.title && (
-                        <span className={styles.speakerCardSession}>{speaker.session.title}</span>
+                      {speaker.company === "Microsoft" && (
+                        <img
+                          src="/assets/icons/microsoft.svg"
+                          alt="Microsoft"
+                          className={styles.msBadge}
+                        />
                       )}
                     </div>
-                  </button>
-                  {speaker.personalWebsite && (
-                    <div className={styles.speakerCardLinks} aria-label={`${speaker.name} links`}>
-                      {speaker.linkedin && (
-                        <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                      )}
-                      <a href={speaker.personalWebsite} target="_blank" rel="noopener noreferrer">Website</a>
-                      {speaker.website && (
-                        <a href={speaker.website} target="_blank" rel="noopener noreferrer">{speaker.company}</a>
-                      )}
-                    </div>
-                  )}
-                </article>
+                    {(speaker.role || speaker.company) && (
+                      <span className={styles.speakerCardMeta}>
+                        {[speaker.role, speaker.company].filter(Boolean).join(" · ")}
+                      </span>
+                    )}
+                    {speaker.session?.title && (
+                      <span className={styles.speakerCardSession}>{speaker.session.title}</span>
+                    )}
+                  </div>
+                </button>
               ))}
             </div>
           </div>
@@ -214,11 +189,11 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
             <div className={styles.speakerModalProfile}>
               <div className={styles.speakerModalImgWrap}>
                 <img
-                  src={selected.img ? withBaseUrl(selected.img) : placeholderImg}
+                  src={selected.img || "/img/speakers/placeholder.avif"}
                   alt={selected.name}
                   className={styles.speakerModalImg}
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = placeholderImg;
+                    (e.currentTarget as HTMLImageElement).src = "/img/speakers/placeholder.avif";
                   }}
                 />
               </div>
@@ -240,7 +215,7 @@ const SpeakersSection = ({ confYear }: SpeakersSectionProps) => {
                     )}
                     {selected.company === "Microsoft" && (
                       <img
-                        src={microsoftIcon}
+                        src="/assets/icons/microsoft.svg"
                         alt="Microsoft"
                         className={styles.msBadgeModal}
                         title="Microsoft"

@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './archive.module.css';
 
 const timelineData = [
@@ -37,7 +36,6 @@ const timelineData = [
 ];
 
 export default function TimelinePage() {
-  const planet = useBaseUrl('/img/planet-1.png');
   return (
     <Layout title="Archive" description="Azure Cosmos DB Conf playlists from 2021 to 2025">
       <div className={styles.pageWrapper}>
@@ -46,7 +44,7 @@ export default function TimelinePage() {
         </header>
         <div className={styles.container}>
           <h1 className={styles.title}>
-            <img src={planet} alt="" aria-hidden="true" className={styles.icon} />
+            <img src="/img/planet-1.png" alt="" aria-hidden="true" className={styles.icon} />
             Azure Cosmos DB Conf Archive
           </h1>
           <div className={styles.archiveIntro}>

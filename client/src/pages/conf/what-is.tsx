@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./what-is.module.css";
 import ConfFooter from "./ConfFooter";
 
@@ -10,7 +9,6 @@ const CONF_DATE_LONG = "April 28, 2026";
 const CONF_DATE_DISPLAY = "April 28 - 9:00 AM - 2:00 PM PDT";
 
 const WhatIsConfPage: React.FC = () => {
-  const planet = useBaseUrl("/img/planet-1.png");
   return (
     <Layout
       title={`What is Azure Cosmos DB Conf ${CONF_YEAR}?`}
@@ -27,7 +25,7 @@ const WhatIsConfPage: React.FC = () => {
         <div className={styles.container}
 >
           <h1 className={styles.title}>
-            <img src={planet} alt="" aria-hidden="true" className={styles.icon} />
+            <img src="/img/planet-1.png" alt="" aria-hidden="true" className={styles.icon} />
             What is Azure Cosmos DB Conf?
           </h1>
 
