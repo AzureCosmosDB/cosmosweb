@@ -1,84 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import Layout from '@theme/Layout';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
+import React from 'react';
+import Head from '@docusaurus/Head';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Layout from '@theme/Layout';
+import CommunitySection from '@site/src/components/DevHub/CommunitySection';
+import DevelopSection from '@site/src/components/DevHub/DevelopSection';
+import EventsSection from '@site/src/components/DevHub/EventsSection';
+import Hero from '@site/src/components/DevHub/Hero';
+import HubFooter from '@site/src/components/DevHub/HubFooter';
+import {LanguageProvider} from '@site/src/components/DevHub/LanguageContext';
+import LearnSection from '@site/src/components/DevHub/LearnSection';
+import NavSpy from '@site/src/components/DevHub/NavSpy';
+import ToolsSection from '@site/src/components/DevHub/ToolsSection';
+import styles from '@site/src/components/DevHub/devhub.module.css';
 
-const title = "Azure Cosmos DB Samples Gallery";
-const description = "Your best source for patterns and content for Azure Cosmos DB";
-const subtitle = "Featured Resources";
-const developerCommunityData = [
-  {
-    name: 'Discover Templates',
-    imageUrl: '../img/logo.svg',
-    link: 'https://azurecosmosdb.github.io/gallery/',
-  },
-  {
-    name: 'Learn more about Azure Cosmos DB',
-    imageUrl: '../img/icons/msft.png',
-    link: 'https://learn.microsoft.com/azure/cosmos-db/',
-  },
-  {
-    name: 'Azure Cosmos DB community',
-    imageUrl: '../img/logo.svg',
-    link: '/community',
-  }
-];
+// Legacy landing-page stylesheet. Its global rules are shared site-wide, so it stays imported
+// until the rest of the site no longer depends on them.
+import './index.module.css';
 
+const TITLE = 'Azure Cosmos DB Developer Hub';
+const DESCRIPTION =
+  'SDKs, tools, developer guides, community and certification for building applications with Azure Cosmos DB.';
 
-
-const DeveloperCard = ({ name, imageUrl, link }) => {
-  return (
-    <div className="developer-card">
-      <img src={imageUrl} alt={name} className="developer-card-image" />
-      <h3>{name}</h3>
-      <a href={link} target="_blank" rel="noopener noreferrer" className="developer-card-link">
-        Learn More <span className="arrow">→</span>
-      </a>
-    </div>
-  );
-};
-
-
-export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const theme = document.documentElement.getAttribute('data-theme');
-    setIsDarkMode(theme === 'dark');
-    const observer = new MutationObserver(() => {
-      const newTheme = document.documentElement.getAttribute('data-theme');
-      setIsDarkMode(newTheme === 'dark');
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    return () => observer.disconnect();
-  }, []);
+export default function Home(): React.ReactElement {
+  // Link-preview image for social networks and chat apps; they need an absolute URL.
+  const shareImage = useBaseUrl('/img/social/cosmos-dev-hub.png', {absolute: true});
+  const pageUrl = useBaseUrl('/', {absolute: true});
 
   return (
-    <Layout title="Azure Cosmos DB Dev Home" description="Azure Cosmos DB Dev Home">
-      <main className={styles.mainContainer}>
-        <div className={styles.coverPageContainer}>
-          <img
-            src={isDarkMode ? useBaseUrl("/img/backgroundDark.png") : useBaseUrl("/img/backgroundLight.png")}
-            className={styles.cover}
-            onError={({ currentTarget }) => { currentTarget.style.display = "none"; }}
-            alt=""
-          />
+    <Layout title={TITLE} description={DESCRIPTION} noFooter>
+      <Head>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={shareImage} />
+        <meta property="og:image:alt" content="Azure Cosmos DB Developer Hub" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        <meta name="twitter:image" content={shareImage} />
+        <meta name="twitter:image:alt" content="Azure Cosmos DB Developer Hub" />
+      </Head>
+      <LanguageProvider>
+        <NavSpy />
+        <div className={styles.hub}>
+          <Hero />
+          <main>
+            <DevelopSection />
+            <LearnSection />
+            <ToolsSection />
+            <CommunitySection />
+            <EventsSection />
+          </main>
+          <HubFooter />
         </div>
-        <div className={styles.content}>
-          <div className={styles.textContainer}>
-            <h2>Azure Cosmos DB</h2>
-            <p>Your best source for patterns and content for Azure Cosmos DB</p>
-          </div>
-        </div>
-        <div className="developer-cards">
-          {developerCommunityData.map((developer, index) => (
-            <DeveloperCard key={index} {...developer} />
-          ))}
-        </div>
-
-      </main>
+      </LanguageProvider>
     </Layout>
   );
 }

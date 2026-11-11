@@ -11,6 +11,7 @@ social-media-posts.md
 *.sln.docstates
 *appsettings.json
 *appsettings.Development.json
+.local
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

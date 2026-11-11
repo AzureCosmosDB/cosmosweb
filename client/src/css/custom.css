@@ -127,6 +127,126 @@ html {
   }
 }
 
+/* Developer hub navbar, styled after the community draft: two-line brand, flat semibold links, DP-420
+   button. Scoped to `.hub-nav` (set by src/theme/Root.tsx) so the /conf pages keep the original navbar. */
+.hub-nav .navbar {
+  --nav-text: #10233d;
+  --nav-muted: #4b6177;
+  --nav-link: #0068b8;
+  border-bottom: 1px solid #d5e2ee;
+}
+
+[data-theme='dark'] .hub-nav .navbar {
+  --nav-text: #f1f7ff;
+  --nav-muted: #bfd0e3;
+  --nav-link: #76d3ff;
+  background-color: #112c47;
+  border-bottom-color: #34506d;
+}
+
+.hub-nav .navbar__logo {
+  height: 2.375rem;
+  width: 2.375rem;
+}
+
+.hub-nav .navbar__title {
+  font-size: 1.1875rem;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  color: var(--nav-text);
+}
+
+.hub-nav .navbar__title::after {
+  content: 'Developer hub';
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  color: var(--nav-muted);
+}
+
+.dropdown-mobile-only {
+  display: none;
+}
+
+.dropdown-separator {
+  margin: 0.25rem 0;
+  padding: 0;
+}
+
+.dropdown-separator hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+/* Conf pages listed under the "Azure Cosmos DB Conf" entry. */
+.dropdown-separator ~ li:nth-child(n + 4) > a {
+  padding-left: 1.5rem;
+  font-size: 0.9em;
+}
+
+@media (min-width: 997px) {
+  .hub-nav .navbar__items {
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .hub-nav .navbar__items--right {
+    gap: 0.25rem;
+  }
+
+  .hub-nav .navbar__link {
+    padding: 4px 11px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--nav-muted);
+  }
+
+  .hub-nav .navbar__link:hover {
+    color: var(--nav-link);
+    text-decoration: underline;
+  }
+
+  .hub-nav .navbar__link--active,
+  .hub-nav .navbar__link--active:hover {
+    color: var(--nav-link);
+  }
+
+  .hub-nav .navbar__link.navbar-cta {
+    margin-left: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    gap: 0.6rem;
+    border-radius: 0.625rem;
+    background: #0067b8;
+    color: #fff;
+    font-weight: 650;
+  }
+
+  .hub-nav .navbar__link.navbar-cta:hover {
+    background: #005a9e;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  [data-theme='dark'] .hub-nav .navbar__link.navbar-cta {
+    background: #50e6ff;
+    color: #04213f;
+  }
+
+  [data-theme='dark'] .hub-nav .navbar__link.navbar-cta:hover {
+    background: #8cf0ff;
+    color: #04213f;
+  }
+}
+
+@media (max-width: 996px) {
+  .dropdown-mobile-only {
+    display: block;
+  }
+}
+
 /* Mobile nav: only the active link should change color. */
 @media (max-width: 996px) {
   .menu__link:hover,

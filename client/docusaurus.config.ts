@@ -19,6 +19,100 @@ function readString(envValue: string | undefined): string | null {
 
 const showAgendaNav = readBool(process.env.CONF_SHOW_AGENDA, true);
 
+// Pages of the Azure Cosmos DB Conf site. Used by the conf navbar and by the hub's Events menu.
+const confPageItems = [
+  {
+    label: 'Cloud Skills Challenge',
+    to: '/conf#cloud-skills',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'News',
+    to: '/conf#news',
+    // Prevent double-highlighting (e.g. Conf Home + News) in the mobile menu.
+    // Docusaurus' active matching is path-based and doesn't handle hash-only routes well.
+    activeBaseRegex: '^$',
+  },
+  ...(showAgendaNav
+    ? [
+        {
+          label: 'Agenda',
+          to: '/conf#agenda',
+          activeBaseRegex: '^$',
+        },
+      ]
+    : []),
+  {
+    label: 'Speakers',
+    to: '/conf#speakers',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Resources',
+    to: '/conf#resources',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Archive',
+    to: '/conf#archive',
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'FAQ',
+    to: '/conf#faq-section',
+    // Hash-only routes: never mark as active to avoid multiple active links.
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Socials',
+    to: '/conf#socials',
+    // Hash-only routes: never mark as active to avoid multiple active links.
+    activeBaseRegex: '^$',
+  },
+  {
+    label: 'Code Of Conduct',
+    to: '/conf/coc',
+    activeBasePath: '/conf/coc',
+  },
+];
+
+// The original site navbar. `src/theme/Root.tsx` swaps it in on every /conf page; the rest of the
+// site uses `themeConfig.navbar` (the developer hub navbar).
+const confNavbar = {
+  title: 'Developer Home',
+  logo: {
+    alt: 'Azure Cosmos DB Dev Home',
+    src: 'img/logo.svg',
+  },
+  items: [
+    {
+      label: 'Gallery',
+      position: 'left',
+      href: 'https://azurecosmosdb.github.io/gallery/',
+    },
+    {
+      to: '/conf',
+      type: 'dropdown',
+      label: 'Azure Cosmos DB Conf',
+      position: 'left',
+      items: [
+        {
+          label: 'Conf Home',
+          to: '/conf',
+          activeBaseRegex: '^/conf/?$',
+          className: 'mobile-only',
+        },
+        ...confPageItems,
+      ],
+    },
+    {
+      label: 'Community',
+      position: 'left',
+      to: '/community',
+    },
+  ],
+};
+
 const config: Config = {
   title: 'Azure Cosmos DB Dev Home',
   tagline: 'Infinite Scale, Instant Impact!',
@@ -27,10 +121,12 @@ const config: Config = {
   clientModules: [
     './src/clientModules/confMobileHashActive.ts',
     './src/clientModules/clientErrorLogger.ts',
+    './src/clientModules/gtagGuard.ts',
   ],
 
-  url: 'https://developer.azurecosmosdb.com',
-  baseUrl: '/',
+  // Overridable so a preview build can be served from a sub-path (see .github/workflows/pages-preview.yml).
+  url: process.env.DOCUSAURUS_URL || 'https://cosmosdb.microsoft.com',
+  baseUrl: process.env.DOCUSAURUS_BASE_URL || '/',
 
   organizationName: 'azurecosmosdb',
   projectName: 'azurecosmosdbconf',
@@ -50,10 +146,15 @@ const config: Config = {
     [
       'classic',
       {
-        gtag: {
-          trackingID: 'G-06VJPSGDCQ',
-          anonymizeIP: true,
-        },
+        // Preview builds set DISABLE_ANALYTICS so they don't report to the production Google Analytics property.
+        ...(process.env.DISABLE_ANALYTICS
+          ? {}
+          : {
+              gtag: {
+                trackingID: 'G-06VJPSGDCQ',
+                anonymizeIP: true,
+              },
+            }),
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl:
@@ -76,7 +177,7 @@ const config: Config = {
     ],
   ],
 
-  plugins: [],
+  plugins: ['./plugins/devblog-feed', './plugins/youtube-feed', './plugins/updates-feed', './plugins/events-feed'],
 
   // Values here are serialized into the client bundle and are safe to read in the browser.
   // Use these for `/conf` feature toggles so we don't rely on `process` being defined client-side.
@@ -95,95 +196,71 @@ const config: Config = {
       conf.streamEmbedUrl = readString(process.env.CONF_STREAM_EMBED_URL);
     }
 
-    return { conf };
+    return {conf, confNavbar};
   })(),
 
   themeConfig: {
     // Default social preview image (must exist under /static).
     image: 'img/conf/AzureCosmosDBConf2026_Hero_Landscape.png',
     navbar: {
-      title: 'Developer Home',
+      title: 'Azure Cosmos DB',
       logo: {
         alt: 'Azure Cosmos DB Dev Home',
         src: 'img/logo.svg',
       },
       items: [
+        // Developer hub sections (home page), flat like the community draft. Hash-only routes never
+        // mark as active by path; the home page highlights the section in view itself (DevHub/NavSpy).
         {
-          label: 'Gallery',
-          position: 'left',
-          href: 'https://azurecosmosdb.github.io/gallery/',
-        },
-        {
-          to: '/conf',
+          label: 'Develop',
           type: 'dropdown',
-          label: 'Azure Cosmos DB Conf',
-          position: 'left',
+          position: 'right',
+          to: '/#develop',
           items: [
-            {
-              label: 'Conf Home',
-              to: '/conf',
-              activeBaseRegex: '^/conf/?$',
-              className: 'mobile-only',
-            },
-            {
-              label: 'Cloud Skills Challenge',
-              to: '/conf#cloud-skills',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'News',
-              to: '/conf#news',
-              // Prevent double-highlighting (e.g. Conf Home + News) in the mobile menu.
-              // Docusaurus' active matching is path-based and doesn't handle hash-only routes well.
-              activeBaseRegex: '^$',
-            },
-            ...(showAgendaNav
-              ? [
-                  {
-                    label: 'Agenda',
-                    to: '/conf#agenda',
-                    activeBaseRegex: '^$',
-                  },
-                ]
-              : []),
-            {
-              label: 'Speakers',
-              to: '/conf#speakers',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Resources',
-              to: '/conf#resources',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Archive',
-              to: '/conf#archive',
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'FAQ',
-              to: '/conf#faq-section',
-              // Hash-only routes: never mark as active to avoid multiple active links.
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Socials',
-              to: '/conf#socials',
-              // Hash-only routes: never mark as active to avoid multiple active links.
-              activeBaseRegex: '^$',
-            },
-            {
-              label: 'Code Of Conduct',
-              to: '/conf/coc',
-              activeBasePath: '/conf/coc',
-            },
+            {label: 'Develop', to: '/#develop', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
+            {label: 'Try Azure Cosmos DB free', href: 'https://aka.ms/trycosmos'},
+            {label: 'Tools', to: '/#tools', activeBaseRegex: '^$'},
+            {label: 'Sample gallery', href: 'https://azurecosmosdb.github.io/gallery/'},
           ],
         },
         {
-          label: 'Community',
-          position: 'left',
-          to: '/community',
+          label: 'Learn',
+          type: 'dropdown',
+          position: 'right',
+          to: '/#learn',
+          items: [
+            {label: 'Learn', to: '/#learn', activeBaseRegex: '^$', className: 'dropdown-mobile-only'},
+            {label: 'Get certified', to: '/#certify', activeBaseRegex: '^$'},
+            {label: 'Watch', to: '/#watch', activeBaseRegex: '^$'},
+            {label: 'From the blog', to: '/#blog', activeBaseRegex: '^$'},
+          ],
+        },
+        {label: 'Community', position: 'right', to: '/#community', activeBaseRegex: '^$'},
+        // Events also holds the existing Azure Cosmos DB Conf pages, so the bar stays as short as the draft's.
+        {
+          to: '/#events',
+          type: 'dropdown',
+          label: 'Events',
+          position: 'right',
+          items: [
+            {label: 'Events', to: '/#events', activeBaseRegex: '^$'},
+            {label: 'Updates', to: '/#updates', activeBaseRegex: '^$'},
+            {type: 'html', value: '<hr>', className: 'dropdown-separator'},
+            {
+              label: 'Azure Cosmos DB Conf',
+              to: '/conf',
+              activeBaseRegex: '^/conf/?$',
+            },
+            ...confPageItems,
+          ],
+        },
+        // Call to action, like the draft's "Explore DP-420" button.
+        {
+          label: 'Explore DP-420 →',
+          position: 'right',
+          to: '/#learn',
+          className: 'navbar-cta',
+          activeBaseRegex: '^$',
         },
       ],
     },
@@ -226,8 +303,8 @@ const config: Config = {
               href: 'https://x.com/azurecosmosdb',
             },
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/tags/azure-cosmosdb/info',
+              label: 'Microsoft Q&A',
+              href: 'https://learn.microsoft.com/en-us/answers/tags/187/azure-cosmos-db',
             },
           ],
         },
@@ -250,6 +327,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'csharp', 'java'],
     },
     colorMode: {
       defaultMode: 'light',

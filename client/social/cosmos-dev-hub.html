@@ -1,0 +1,125 @@
+<!doctype html>
+<!--
+  Source for static/img/social/cosmos-dev-hub.png (1200x630), the link-preview image for the Azure Cosmos DB
+  Developer Hub. To regenerate: serve this folder's parent (client/), open /social/cosmos-dev-hub.html in a
+  1200x630 viewport at scale 1 and screenshot the page.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Azure Cosmos DB Developer Hub - social card</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      body {
+        position: relative;
+        font-family: 'Segoe UI', 'Segoe UI Variable Text', system-ui, -apple-system, Arial, sans-serif;
+        color: #fff;
+        background:
+          radial-gradient(760px 420px at 88% -8%, rgba(80, 230, 255, 0.3), transparent 62%),
+          radial-gradient(620px 380px at 0% 112%, rgba(0, 120, 212, 0.5), transparent 62%),
+          linear-gradient(135deg, #07182f 0%, #0b2f5c 55%, #0a4f9a 100%);
+      }
+      .stars {
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(2px 2px at 8% 18%, rgba(255, 255, 255, 0.8), transparent 60%),
+          radial-gradient(1.5px 1.5px at 22% 72%, rgba(255, 255, 255, 0.55), transparent 60%),
+          radial-gradient(2px 2px at 47% 12%, rgba(255, 255, 255, 0.65), transparent 60%),
+          radial-gradient(1.5px 1.5px at 61% 86%, rgba(255, 255, 255, 0.5), transparent 60%),
+          radial-gradient(2px 2px at 73% 30%, rgba(255, 255, 255, 0.7), transparent 60%),
+          radial-gradient(1.5px 1.5px at 93% 64%, rgba(255, 255, 255, 0.55), transparent 60%),
+          radial-gradient(1.5px 1.5px at 35% 40%, rgba(255, 255, 255, 0.4), transparent 60%);
+      }
+      .planet {
+        position: absolute;
+        right: 70px;
+        top: 112px;
+        width: 400px;
+        height: 400px;
+        filter: drop-shadow(0 0 60px rgba(80, 230, 255, 0.35));
+      }
+      .content {
+        position: absolute;
+        left: 80px;
+        top: 0;
+        bottom: 0;
+        width: 640px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+      .brand img {
+        width: 44px;
+        height: 44px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 92px;
+        line-height: 1.02;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      h1 span {
+        color: #50e6ff;
+      }
+      .lead {
+        margin: 26px 0 34px;
+        max-width: 560px;
+        font-size: 30px;
+        line-height: 1.35;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chips b {
+        padding: 7px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 21px;
+        font-weight: 600;
+      }
+      .url {
+        position: absolute;
+        left: 80px;
+        bottom: 42px;
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <img class="planet" src="../static/img/logo.svg" alt="" />
+    <div class="content">
+      <div class="brand"><img src="../static/img/logo.svg" alt="" />Azure Cosmos DB</div>
+      <h1>Developer <span>Hub</span></h1>
+      <p class="lead">SDKs, tools, learning paths and community for building with Azure Cosmos DB.</p>
+      <div class="chips"><b>Python</b><b>.NET</b><b>Java</b><b>JavaScript</b><b>Go</b><b>Rust</b></div>
+    </div>
+    <div class="url">cosmosdb.microsoft.com</div>
+  </body>
+</html>

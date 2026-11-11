@@ -1,0 +1,1729 @@
+/* Scoped to the developer hub landing page (CSS module: no global selectors). */
+
+.hub {
+  /* Nothing on the page may widen it sideways; `clip` (unlike `hidden`) keeps sticky positioning working. */
+  overflow-x: hidden;
+  overflow-x: clip;
+  --cosmos-blue: #0078d4;
+  --cosmos-blue-strong: #005a9e;
+  --cosmos-cyan: #50e6ff;
+  --cosmos-navy: #0b2545;
+  --hub-surface: var(--ifm-background-surface-color);
+  --hub-border: var(--ifm-color-emphasis-300);
+  --hub-text-muted: var(--ifm-color-emphasis-700);
+  --hub-link: #0067b8;
+  --hub-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 14px rgba(11, 37, 69, 0.08);
+}
+
+[data-theme='dark'] .hub {
+  --cosmos-blue: #4cc2ff;
+  --hub-link: #6cb8ff;
+  --hub-border: rgba(255, 255, 255, 0.14);
+  --hub-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Hub footer (home page only) ---------- */
+
+/*
+ * Aligned to the page content (same 1280px / 2rem container as the sections), set off from the section above
+ * by the tinted surface and a rule, with real icons, even link spacing and 44px touch targets.
+ */
+.hubFooter {
+  border-top: 1px solid var(--hub-border);
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-font-color-base);
+}
+
+.footerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 2.5rem;
+}
+
+.footerTitle {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hub-text-muted);
+}
+
+.footerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footerList li {
+  margin: 0;
+}
+
+.footerLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--hub-link);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.footerLink:hover {
+  color: var(--hub-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footerLink:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Fixed-width icon column, so labels line up and a wrapped label hangs under its first line. */
+.footerIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.35em;
+  font-size: 1rem;
+  color: var(--hub-text-muted);
+}
+
+.footerLink:hover .footerIcon {
+  color: var(--hub-link);
+}
+
+.footerCopy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin: 2rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hub-border);
+  font-size: 0.875rem;
+  color: var(--hub-text-muted);
+}
+
+.footerBuilt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footerHeart {
+  display: inline-flex;
+  color: #e5484d;
+}
+
+@media (max-width: 996px) {
+  .footerInner {
+    padding: 2.5rem 1.25rem 1.75rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .footerGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  color: #fff;
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(80, 230, 255, 0.28), transparent 60%),
+    radial-gradient(40rem 24rem at 0% 110%, rgba(0, 120, 212, 0.45), transparent 60%),
+    linear-gradient(135deg, #07182f 0%, #0b2f5c 55%, #0a4f9a 100%);
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.75rem 2rem 2.5rem;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cosmos-cyan);
+}
+
+.eyebrowLogo {
+  width: 28px;
+  height: 28px;
+}
+
+.heroTitle {
+  margin: 0 0 0.8rem;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.heroLead {
+  max-width: 34rem;
+  margin: 0 0 1.4rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.primaryButton {
+  background: var(--cosmos-cyan);
+  color: #04213f;
+  border: 1px solid var(--cosmos-cyan);
+}
+
+.primaryButton:hover {
+  background: #8cf0ff;
+  color: #04213f;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.secondaryButton {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.secondaryButton:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.arrow {
+  margin-left: 0.45rem;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.heroTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.heroTags li {
+  margin: 0;
+}
+
+.heroTags a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.3rem 0.62rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.heroTags a:hover {
+  border-color: var(--cosmos-cyan);
+  background: rgba(80, 230, 255, 0.16);
+  color: #fff;
+  text-decoration: none;
+}
+
+.heroTags a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.heroTags a::after {
+  content: '↓';
+  font-size: 0.8em;
+  color: var(--cosmos-cyan);
+}
+
+.codeCaption {
+  margin: 0;
+  padding: 0.6rem 0.9rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cosmos-cyan);
+}
+
+/* Code card */
+
+.codeCard {
+  min-width: 0;
+  border-radius: 14px;
+  background: rgba(4, 18, 38, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.6rem 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--cosmos-cyan);
+  outline-offset: -2px;
+}
+
+.tabActive {
+  color: #04213f;
+  background: var(--cosmos-cyan);
+}
+
+.tabActive:hover {
+  color: #04213f;
+  background: var(--cosmos-cyan);
+}
+
+.tabIcon {
+  display: inline-flex;
+  font-size: 1rem;
+}
+
+.install {
+  padding: 0.55rem 0.8rem 0;
+}
+
+/* The install command is a single slim row; the pre carries its own accessible name. */
+.install .snippetPre {
+  padding: 0.4rem 4.5rem 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.install .copyButton {
+  top: 0.28rem;
+}
+
+.snippet {
+  position: relative;
+}
+
+.snippetPre {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  tab-size: 4;
+}
+
+.snippetPre:focus-visible {
+  outline: 2px solid var(--cosmos-cyan);
+  outline-offset: 2px;
+}
+
+.copyButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 6px;
+  background: rgba(7, 24, 47, 0.85);
+  color: #fff;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.copyButton:hover {
+  border-color: var(--cosmos-cyan);
+  color: var(--cosmos-cyan);
+}
+
+.copyButton:focus-visible {
+  outline: 2px solid var(--cosmos-cyan);
+  outline-offset: 2px;
+}
+
+.panelStack {
+  display: grid;
+}
+
+.panelItem {
+  grid-area: 1 / 1;
+  min-width: 0;
+  visibility: hidden;
+}
+
+.panelItemActive {
+  visibility: visible;
+}
+
+.example {
+  padding: 0.55rem 0.8rem 0.8rem;
+}
+
+/*
+ * The example scrolls inside a fixed-height window, so the hero stays compact however long the
+ * snippet is. The pre is focusable (tabindex) so keyboard users can scroll it too.
+ */
+.example .snippetPre {
+  max-height: 19rem;
+  overflow-y: auto;
+  padding-right: 4.5rem;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
+  padding: 4rem 0;
+  background: var(--ifm-background-color);
+}
+
+.sectionAlt {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.sectionInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sectionTitle {
+  margin: 0 0 0.6rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.sectionLead {
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--hub-text-muted);
+}
+
+.subTitle {
+  margin: 3rem 0 1rem;
+  font-size: 1.5rem;
+}
+
+/* Subsections inside a section (Learn > Watch, From the blog; Community > Cosmonauts). */
+.subsection {
+  margin-top: 3.5rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.subsection > .subTitle {
+  margin-top: 0;
+}
+
+.firstSubTitle {
+  margin-top: 2rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+/* Cosmonauts: a subsection of Community. */
+.cosmonauts {
+  margin-top: 3.5rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.cosmonauts .subTitle {
+  margin-top: 0;
+}
+
+/* Language cards */
+
+.langGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 996px) {
+  .langGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .langGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.langCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+  overflow: hidden;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.langCardActive {
+  border-color: var(--cosmos-blue);
+  box-shadow: 0 0 0 2px var(--cosmos-blue), var(--hub-shadow);
+}
+
+.langSelect {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.langSelect:focus-visible {
+  outline: 2px solid var(--cosmos-blue);
+  outline-offset: -3px;
+}
+
+.langIcon {
+  display: inline-flex;
+  font-size: 1.6rem;
+  color: var(--cosmos-blue);
+}
+
+.langName {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.version {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-200);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ifm-font-color-base);
+}
+
+/* Guide groups */
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 1.25rem;
+}
+
+.guideCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+}
+
+.guideCardFeatured {
+  border-color: var(--cosmos-blue);
+  background:
+    linear-gradient(135deg, rgba(0, 120, 212, 0.1), rgba(80, 230, 255, 0.08)),
+    var(--hub-surface);
+}
+
+.guideCard h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.guideCard p {
+  margin: 0 0 0.8rem;
+  color: var(--hub-text-muted);
+  font-size: 0.95rem;
+}
+
+.guideCard ul {
+  margin: auto 0 0;
+  padding-left: 1.1rem;
+}
+
+.guideCard li:last-child {
+  margin-bottom: 0;
+}
+
+.guideCard li {
+  margin: 0.3rem 0;
+  line-height: 1.2;
+}
+
+.guideCard a {
+  color: var(--hub-link);
+  font-weight: 600;
+}
+
+/* Community */
+
+.communityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: 1rem;
+}
+
+.communityCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.communityCard:hover {
+  color: inherit;
+  text-decoration: none;
+  border-color: var(--cosmos-blue);
+  transform: translateY(-2px);
+}
+
+.communityCard:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+}
+
+.communityIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 10px;
+  background: rgba(0, 120, 212, 0.12);
+  color: var(--cosmos-blue);
+  font-size: 1.4rem;
+}
+
+.communityText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.communityName {
+  font-weight: 700;
+}
+
+.communityBlurb {
+  color: var(--hub-text-muted);
+  font-size: 0.92rem;
+}
+
+/* Shared bits */
+
+.cardLink {
+  color: var(--hub-link);
+  font-weight: 600;
+}
+
+.fine {
+  margin: 0.9rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--hub-text-muted);
+}
+
+.eyebrowDark,
+.eyebrowLight {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrowDark {
+  color: var(--hub-link);
+}
+
+.eyebrowLight {
+  color: var(--cosmos-cyan);
+}
+
+.sectionFoot {
+  margin: 1.5rem 0 0;
+  font-weight: 600;
+}
+
+.sectionFoot a,
+.certMeta a,
+.introBar a,
+.fine a {
+  color: var(--hub-link);
+  font-weight: 600;
+}
+
+/* Tools */
+
+.toolGroup {
+  margin-top: 2.5rem;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.toolCard {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1.5rem);
+}
+
+.toolGroup:first-of-type {
+  margin-top: 0;
+}
+
+.toolGroup .subTitle {
+  margin: 0 0 0.25rem;
+}
+
+.toolGroupBlurb {
+  margin: 0 0 1.2rem;
+  color: var(--hub-text-muted);
+}
+
+.toolGrid,
+.scenarioGrid,
+.postGrid,
+.pathGrid,
+.offerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 1.25rem;
+}
+
+.toolCard,
+.scenarioCard,
+.postCard,
+.pathCard,
+.offerCard {
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+}
+
+.toolHead {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.toolIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 10px;
+  background: rgba(0, 120, 212, 0.12);
+  color: var(--cosmos-blue);
+  font-size: 1.1rem;
+}
+
+.toolName {
+  flex: 1;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.toolBadge {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-200);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.toolCard p,
+.scenarioCard p,
+.postCard p,
+.pathCard p,
+.offerCard p {
+  margin: 0 0 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.toolLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  font-weight: 600;
+}
+
+.toolLinks a {
+  color: var(--hub-link);
+}
+
+/* Scenarios */
+
+.scenarioTags {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hub-link);
+}
+
+.scenarioCard h4,
+.postCard h4,
+.pathCard h4,
+.offerCard h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+}
+
+/* Watch */
+
+.videoToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 999px;
+  background: var(--hub-surface);
+  color: var(--ifm-font-color-base);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter:hover {
+  border-color: var(--cosmos-blue);
+}
+
+.filter:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+}
+
+.filterActive {
+  border-color: var(--cosmos-blue);
+  background: var(--cosmos-blue);
+  color: #fff;
+}
+
+[data-theme='dark'] .filterActive {
+  color: #04213f;
+}
+
+.videoStatus {
+  font-size: 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.videoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.videoCard:hover {
+  color: inherit;
+  text-decoration: none;
+  border-color: var(--cosmos-blue);
+  transform: translateY(-2px);
+}
+
+.videoCard:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+}
+
+.videoThumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.videoThumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.16);
+}
+
+/* Shorts are portrait video inside a 4:3 frame; show the whole frame instead of cropping it. */
+.videoThumbShort img {
+  object-fit: contain;
+  transform: none;
+}
+
+/* YouTube thumbnails from the channel feed: cropping to 16:9 already trims the black bars. */
+.videoThumbFeed img {
+  transform: none;
+}
+
+.videoBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.2rem 1.2rem;
+}
+
+.videoPlay {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--cosmos-navy);
+  color: var(--cosmos-cyan);
+  font-size: 0.85rem;
+}
+
+.videoType {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--cosmos-navy);
+  color: var(--cosmos-cyan);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.videoSource {
+  font-size: 0.85rem;
+  color: var(--hub-text-muted);
+}
+
+.videoTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.videoBlurb,
+.videoNote {
+  font-size: 0.92rem;
+  color: var(--hub-text-muted);
+}
+
+.videoNote {
+  font-style: italic;
+}
+
+/* Learn & certify */
+
+.introBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.2rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+}
+
+.introBar span {
+  font-weight: 600;
+}
+
+.galleryBar {
+  margin: 1.5rem 0 0;
+}
+
+.certPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  border: 1px solid var(--hub-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--hub-shadow);
+}
+
+.certStory {
+  padding: 2.2rem;
+  color: #fff;
+  background:
+    radial-gradient(30rem 16rem at 90% -10%, rgba(80, 230, 255, 0.28), transparent 60%),
+    linear-gradient(135deg, #07182f 0%, #0b2f5c 100%);
+}
+
+.certStory p {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.certCode {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.certCode strong {
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--cosmos-cyan);
+}
+
+.certCode small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.certTitle {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  line-height: 1.15;
+  color: #fff;
+}
+
+.certStory .primaryButton {
+  margin-top: 0.4rem;
+}
+
+.certStory p.certFine {
+  margin: 1rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.certPath {
+  padding: 2rem;
+  background: var(--hub-surface);
+}
+
+.certPath h4 {
+  margin: 0 0 0.4rem;
+}
+
+.certPath > p {
+  margin: 0;
+  color: var(--hub-text-muted);
+}
+
+.launchSteps {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.launchSteps li {
+  margin: 0 0 0.7rem;
+}
+
+.launchStep {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.12s ease;
+}
+
+.launchStep:hover {
+  color: inherit;
+  text-decoration: none;
+  border-color: var(--cosmos-blue);
+}
+
+.launchStep:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+}
+
+.launchNumber {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--cosmos-blue);
+  color: #fff;
+  font-weight: 700;
+}
+
+[data-theme='dark'] .launchNumber {
+  color: #04213f;
+}
+
+.launchText {
+  display: flex;
+  flex-direction: column;
+}
+
+.launchText small {
+  color: var(--hub-text-muted);
+}
+
+.certMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin: 1.1rem 0 0;
+}
+
+.pathGrid {
+  margin-top: 1.25rem;
+}
+
+.pathBadge {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(0, 120, 212, 0.12);
+  color: var(--hub-link);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.offerGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+}
+
+.offerCard {
+  border-top: 4px solid var(--cosmos-blue);
+}
+
+.offerDate {
+  margin: 0 0 0.4rem !important;
+  font-weight: 700;
+  color: var(--ifm-font-color-base) !important;
+}
+
+/* Cosmonauts: people */
+
+.peopleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Every person gets the same card, border and photo size. */
+.personCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+}
+
+.personPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* A ratio, not a fixed height, so the crop scales with the card and a head is not cut off on narrow screens. */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 25%;
+  background: var(--ifm-color-emphasis-200);
+}
+
+.personBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.25rem 1.4rem;
+}
+
+.personBody h4 {
+  margin: 0.2rem 0 0;
+  font-size: 1.3rem;
+}
+
+.personBody p {
+  margin: 0 0 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.personBody .personRole {
+  margin: 0.4rem 0 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--hub-link);
+}
+
+/*
+ * Link row sits just above the call to action; the row takes the free space so the call to action stays on the
+ * same baseline across cards of different text length. Links wrap on narrow cards and keep a 44px touch target.
+ */
+.personBody .personRegional {
+  margin: 0 0 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--hub-text-muted);
+}
+
+.personLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  margin-top: auto;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.personLinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  overflow-wrap: anywhere;
+  color: var(--hub-link);
+}
+
+.personLinkIcon {
+  display: inline-flex;
+  flex: none;
+  font-size: 1rem;
+}
+
+.personBody .cardLink {
+  margin-top: 0.2rem;
+}
+
+/* Cosmonauts: leadership card (matches the community draft) */
+
+.leadership {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 16px;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.leadership h4 {
+  margin: 0 0 0.6rem;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.leadership p {
+  margin: 0 0 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.leadershipSteps {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.leadershipSteps li {
+  margin: 0 0 0.9rem;
+  padding-left: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--hub-text-muted);
+}
+
+.leadershipSteps li::marker {
+  color: var(--hub-link);
+  font-weight: 700;
+}
+
+.leadershipSteps strong {
+  color: var(--ifm-font-color-base);
+}
+
+.leadership .leadershipFine {
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--hub-border);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* Closing band */
+
+/*
+ * Try-it banner: lives inside the hero, so it shares the hero's gradient. A soft translucent panel sets it
+ * apart from the hero copy and code card above it.
+ */
+.closing {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem 2.5rem;
+  color: #fff;
+}
+
+.closingInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.4rem 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.closing h2 {
+  max-width: 42rem;
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.2;
+  color: #fff;
+}
+
+.closing p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.closing .primaryButton {
+  flex: none;
+}
+
+@media (max-width: 996px) {
+  .closing {
+    padding: 0 1.25rem 2rem;
+  }
+}
+
+/* Stack the button under the text on narrow screens. */
+@media (max-width: 700px) {
+  .closingInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .closing .primaryButton {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Events & updates */
+
+.postCard {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.postImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--cosmos-navy);
+}
+
+.postBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.25rem 1.4rem;
+}
+
+.postBody .cardLink {
+  margin-top: auto;
+}
+
+/*
+ * Uniform CTA placement: in every card, the call to action sits bottom-left, the same distance from the
+ * card edge (the card padding), whatever the text length above it.
+ */
+.toolCard,
+.scenarioCard,
+.offerCard,
+.updateCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.scenarioCard .cardLink,
+.offerCard .cardLink,
+.updateCard .cardLink {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.toolLinks {
+  margin-top: auto;
+}
+
+.scenarioCard > p:last-of-type,
+.offerCard > p:last-of-type,
+.toolCard > p:last-of-type,
+.updateCard > p:last-of-type {
+  margin-bottom: 0.9rem;
+}
+
+.postDate {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--hub-text-muted);
+}
+
+/* Carousel: a row of cards that scrolls sideways, one screenful per click. */
+
+.carousel {
+  position: relative;
+}
+
+.carouselControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin: 0 0 0.7rem;
+  height: 2.2rem;
+}
+
+.carouselButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 1px solid var(--hub-border);
+  border-radius: 999px;
+  background: var(--hub-surface);
+  color: var(--hub-link);
+  cursor: pointer;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.carouselButton:hover:not(:disabled) {
+  border-color: var(--cosmos-blue);
+}
+
+.carouselButton:focus-visible {
+  outline: 3px solid var(--cosmos-blue);
+  outline-offset: 2px;
+}
+
+.carouselButton:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.carouselTrack {
+  --per-view: 3;
+  --carousel-gap: 1.25rem;
+  /* Containing block for the visually hidden "(opens in new tab)" text, so it scrolls with the cards. */
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per-view) - 1) * var(--carousel-gap)) / var(--per-view));
+  gap: var(--carousel-gap);
+  margin: 0 -6px;
+  padding: 6px;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 6px;
+  scrollbar-width: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.perView4 {
+  --per-view: 4;
+}
+
+.carouselItem {
+  display: flex;
+  min-width: 0;
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.carouselItem > * {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 996px) {
+  .carouselTrack,
+  .perView4 {
+    --per-view: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .carouselTrack,
+  .perView4 {
+    --per-view: 1.12;
+  }
+}
+
+/* Azure Updates cards */
+
+.updateCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  background: var(--hub-surface);
+  box-shadow: var(--hub-shadow);
+}
+
+.updateCard h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.updateCard p {
+  margin: 0 0 0.9rem;
+  color: var(--hub-text-muted);
+}
+
+.updateCard .cardLink {
+  margin-top: auto;
+}
+
+.updateMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.updateMeta .postDate {
+  margin: 0;
+}
+
+.updateStage {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 120, 212, 0.12);
+  color: var(--hub-link);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.updateStageRetire {
+  background: rgba(176, 96, 0, 0.14);
+  color: var(--hub-retire, #8a4b00);
+}
+
+:global([data-theme='dark']) .updateStageRetire {
+  color: #ffb366;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 996px) {
+  .peopleGrid {
+    gap: 1rem;
+  }
+
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding: 3rem 1.25rem 2.5rem;
+  }
+
+  .sectionInner {
+    padding: 0 1.25rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .certPanel,
+  .leadership {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .certStory,
+  .certPath {
+    padding: 1.6rem;
+  }
+}
+
+@media (max-width: 700px) {
+  /* One column; every card keeps the same layout and size. */
+  .peopleGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .leadership {
+    padding: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .secondaryButton,
+  .communityCard,
+  .videoCard,
+  .launchStep,
+  .langCard {
+    transition: none;
+  }
+
+  .primaryButton:hover,
+  .communityCard:hover,
+  .videoCard:hover {
+    transform: none;
+  }
+}
