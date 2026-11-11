@@ -3326,17 +3326,47 @@
 /* Speaker card — horizontal layout */
 .speakerCard {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  flex-direction: column;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 14px;
   padding: 14px;
   text-align: left;
-  cursor: pointer;
   color: inherit;
   width: 100%;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.speakerCardDetails {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.speakerCardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 13px;
+}
+
+.speakerCardLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  overflow-wrap: anywhere;
 }
 
 [data-theme='dark'] .speakerCard {
