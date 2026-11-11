@@ -1,0 +1,60 @@
+name: Nightly refresh and deploy
+
+# Rebuilds the site every night so build-time content stays current: the Microsoft events carousel,
+# the Azure Updates list, the developer blog and the YouTube feed. Events that have ended also drop
+# out in the browser, but new ones only appear when the site is rebuilt.
+# Run it by hand from the Actions tab with "Run workflow".
+on:
+  schedule:
+    # 08:30 UTC is 00:30 Pacific (or 01:30 during standard time), just after the Pacific date rolls over.
+    - cron: '30 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  id-token: write  # Required for OIDC authentication
+  contents: read   # Needed for checking out the repo
+
+# One refresh at a time. A deploy that runs because of a push to v2 is a separate workflow.
+concurrency:
+  group: nightly-refresh-deploy
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-deploy:
+    # Forks do not have the Azure secrets, so only run in the main repository.
+    if: github.repository == 'AzureCosmosDB/cosmosweb'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        ref: v2  # Always the production branch, whatever started the run
+
+    - name: Set up Node.js
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version: '22'
+
+    - name: Install Dependencies
+      run: |
+        cd client
+        npm install --legacy-peer-deps
+
+    - name: Build Docusaurus
+      run: |
+        cd client
+        npm run build  # Builds the static site, output is in client/build
+
+    - name: Login to Azure using OIDC
+      uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@02a81bead70021f5284939794bcec79c271ab383 # v3.0.8
+      with:
+        app-name: cosmos-web
+        package: ./client/build
