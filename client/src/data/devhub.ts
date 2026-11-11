@@ -686,7 +686,6 @@ export const people: Person[] = [
     links: [
       {label: 'LinkedIn', href: 'https://linkedin.com/in/csdhall'},
       {label: 'Website', href: 'https://chanderdhall.com/'},
-      {label: 'Cazton', href: 'https://cazton.com/'},
     ],
     image: '/img/speakers/chander-dhall.jpg',
   },
@@ -700,7 +699,7 @@ export const people: Person[] = [
     href: 'https://mvp.microsoft.com/MVP/profile/20773cee-6250-e911-a987-000d3a1378f6',
     links: [
       {label: 'LinkedIn', href: 'https://www.linkedin.com/in/hasansavran/'},
-      {label: 'Website', href: 'https://www.savranweb.com/'},
+      {label: 'Website', href: 'https://savranweb.com/'},
     ],
     image: '/img/speakers/hasan-savran.jpg',
   },
@@ -715,8 +714,7 @@ export const people: Person[] = [
     href: 'https://mvp.microsoft.com/MVP/profile/77e968c6-3c9a-e411-93f2-9cb65495d3c4',
     links: [
       {label: 'LinkedIn', href: 'https://www.linkedin.com/in/EricDBoyd'},
-      {label: 'Website', href: 'https://www.ericdboyd.com/'},
-      {label: 'responsiveX', href: 'https://responsivex.com/'},
+      {label: 'Website', href: 'https://responsivex.com/'},
     ],
     image: '/img/speakers/eric-boyd.jpg',
   },
