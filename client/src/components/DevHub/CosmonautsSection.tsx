@@ -9,7 +9,15 @@ function PersonCard({person}: {person: Person}): React.ReactElement {
   const photo = useBaseUrl(person.image);
   return (
     <article className={styles.personCard}>
-      <img className={styles.personPhoto} src={photo} alt={person.name} width={400} height={400} loading="lazy" />
+      <img
+        className={styles.personPhoto}
+        src={photo}
+        alt={person.name}
+        width={400}
+        height={400}
+        loading="lazy"
+        style={person.imagePosition ? {objectPosition: person.imagePosition} : undefined}
+      />
       <div className={styles.personBody}>
         <span className={styles.pathBadge}>{person.badge}</span>
         <h4>{person.name}</h4>

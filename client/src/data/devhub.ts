@@ -670,6 +670,8 @@ export interface Person {
   links: Array<{label: string; href: string; icon: 'linkedin' | 'website'}>;
   /** Photo already shipped with the site (static/img/speakers). */
   image: string;
+  /** Which part of the photo stays in view when it is cropped to the card (CSS object-position). */
+  imagePosition?: string;
 }
 
 /* All three are Azure Cosmos DB Cosmonauts and Microsoft MVPs; each card links to their MVP profile. */
@@ -717,6 +719,8 @@ export const people: Person[] = [
       {label: 'Website', icon: 'website', href: 'https://responsivex.com/'},
     ],
     image: '/img/speakers/eric-boyd.jpg',
+    // His head fills most of the frame and sits near the top, so keep the top of the photo in view.
+    imagePosition: 'center 6%',
   },
 ];
 

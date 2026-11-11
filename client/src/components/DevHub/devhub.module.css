@@ -1256,7 +1256,9 @@
 .personPhoto {
   display: block;
   width: 100%;
-  height: 248px;
+  height: auto;
+  /* A ratio, not a fixed height, so the crop scales with the card and a head is not cut off on narrow screens. */
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center 25%;
   background: var(--ifm-color-emphasis-200);
@@ -1669,10 +1671,6 @@
 @media (max-width: 996px) {
   .peopleGrid {
     gap: 1rem;
-  }
-
-  .personPhoto {
-    height: 200px;
   }
 
   .heroInner {
