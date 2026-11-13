@@ -127,6 +127,10 @@ const config: Config = {
   // Overridable so a preview build can be served from a sub-path (see .github/workflows/pages-preview.yml).
   url: process.env.DOCUSAURUS_URL || 'https://cosmosdb.microsoft.com',
   baseUrl: process.env.DOCUSAURUS_BASE_URL || '/',
+  // The pages are static folders (/conf/cfp/index.html), and IIS answers /conf/cfp with a 301 to /conf/cfp/.
+  // Using the trailing-slash form everywhere keeps canonical links, the sitemap and internal links on the
+  // address the server actually serves, so none of them redirect.
+  trailingSlash: true,
 
   organizationName: 'azurecosmosdb',
   projectName: 'azurecosmosdbconf',
@@ -182,6 +186,7 @@ const config: Config = {
             '/block/**',
             '/conf/sections/**',
             '/conf/ConfFooter',
+            '/conf/ConfFooter/**',
             // The bare speaker template. Individual speaker pages are /conf/speakers/Speaker/?slug=... (query based).
             '/conf/speakers/Speaker',
             '/conf/speakers/Speaker/**',
