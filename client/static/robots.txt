@@ -1,0 +1,15 @@
+# https://cosmosdb.microsoft.com
+# Docusaurus copies client/static to the site root, so this file is served at /robots.txt.
+
+User-agent: *
+Allow: /
+
+# Internal component files, template pages and the empty blog. They are also left out of the sitemap.
+# /conf/speakers/Speaker is deliberately not listed: speaker pages are /conf/speakers/Speaker/?slug=...
+Disallow: /blog
+Disallow: /docs/
+Disallow: /block/
+Disallow: /conf/sections/
+Disallow: /conf/ConfFooter
+
+Sitemap: https://cosmosdb.microsoft.com/sitemap.xml

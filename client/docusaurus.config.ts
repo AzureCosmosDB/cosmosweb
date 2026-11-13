@@ -173,6 +173,20 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        // Keep internal component files, template pages and the empty blog out of the sitemap. The pages still
+        // exist; robots.txt (static/robots.txt) also asks crawlers to skip them.
+        sitemap: {
+          ignorePatterns: [
+            '/blog/**',
+            '/docs/**',
+            '/block/**',
+            '/conf/sections/**',
+            '/conf/ConfFooter',
+            // The bare speaker template. Individual speaker pages are /conf/speakers/Speaker/?slug=... (query based).
+            '/conf/speakers/Speaker',
+            '/conf/speakers/Speaker/**',
+          ],
+        },
       } satisfies Preset.Options,
     ],
   ],
