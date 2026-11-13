@@ -10,7 +10,7 @@ function PostCard({post}: {post: Post}): React.ReactElement {
   const image = useBaseUrl(post.image ?? '/img/hub/post-placeholder.svg');
   return (
     <article className={styles.postCard}>
-      <img className={styles.postImage} src={image} alt="" width={960} height={540} loading="lazy" />
+      <img className={styles.postImage} src={image} alt={`Cover image for ${post.title}`} width={960} height={540} loading="lazy" />
       <div className={styles.postBody}>
         <time dateTime={post.date} className={styles.postDate}>
           {post.topic ? `${post.dateLabel} / ${post.topic}` : post.dateLabel}
