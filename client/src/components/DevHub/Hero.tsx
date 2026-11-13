@@ -31,7 +31,7 @@ export default function Hero(): React.ReactElement {
       <div className={styles.heroInner}>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>
-            <img src={planet} alt="" className={styles.eyebrowLogo} width={28} height={28} />
+            <img src={planet} alt="Azure Cosmos DB logo" className={styles.eyebrowLogo} width={28} height={28} />
             Azure Cosmos DB developer hub
           </p>
           <h1 className={styles.heroTitle}>Build with Azure Cosmos DB</h1>
