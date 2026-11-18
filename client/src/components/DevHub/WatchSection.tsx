@@ -18,7 +18,7 @@ function VideoCard({video}: {video: Video}): React.ReactElement {
   return (
     <ExtLink href={video.href} className={styles.videoCard}>
       <span className={thumbClass}>
-        <img src={image} alt="" width={480} height={360} loading="lazy" />
+        <img src={image} alt={`Video thumbnail: ${video.title}`} width={480} height={360} loading="lazy" />
         <span className={styles.videoType}>{video.label}</span>
         <span className={styles.videoPlay}>{playIcon}</span>
       </span>

@@ -1,0 +1,81 @@
+name: Submit URLs to IndexNow
+
+# Tells Bing, Yandex and the other IndexNow search engines about new and changed pages right after a deploy,
+# instead of waiting for them to re-crawl. Google does not use IndexNow; it relies on its sitemap and crawl.
+#
+# - After a deploy from a push to v2: every URL in the live sitemap is submitted.
+# - After the nightly rebuild: only the home page, because the nightly feeds (blog, videos, events, updates)
+#   change nothing else, and resubmitting unchanged URLs every night is discouraged.
+# - Manually ("Run workflow"): all sitemap URLs, or the ones listed in the `urls` input.
+#
+# The key is public by design: it is the name and content of https://cosmosdb.microsoft.com/<key>.txt
+# (client/static), which search engines fetch to confirm that we own the site.
+on:
+  workflow_run:
+    workflows: ["Deploy Docusaurus to App Service Slot", "Nightly refresh and deploy"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Optional: space-separated URLs to submit instead of the whole sitemap"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+env:
+  HOST: cosmosdb.microsoft.com
+  KEY: c1f87ba9f1074783905ac76d2ff6da71
+
+jobs:
+  submit:
+    # Only in the main repository, and only after a deploy that succeeded.
+    if: github.repository == 'AzureCosmosDB/cosmosweb' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Wait for the key file to be served
+      run: |
+        for attempt in 1 2 3 4 5 6 7 8; do
+          body="$(curl -fsS --max-time 20 "https://${HOST}/${KEY}.txt" || true)"
+          if [ "${body}" = "${KEY}" ]; then echo "Key file is live."; exit 0; fi
+          echo "Key file not ready yet (attempt ${attempt}); waiting..."
+          sleep 15
+        done
+        echo "::error::https://${HOST}/${KEY}.txt did not return the key."
+        exit 1
+
+    - name: Collect URLs
+      id: urls
+      env:
+        TRIGGER_WORKFLOW: ${{ github.event.workflow_run.name }}
+        MANUAL_URLS: ${{ github.event.inputs.urls }}
+      run: |
+        if [ -n "${MANUAL_URLS}" ]; then
+          printf '%s\n' ${MANUAL_URLS} > urls.txt
+        elif [ "${TRIGGER_WORKFLOW}" = "Nightly refresh and deploy" ]; then
+          echo "https://${HOST}/" > urls.txt
+        else
+          curl -fsS --max-time 30 "https://${HOST}/sitemap.xml" | grep -oP '(?<=<loc>)[^<]+(?=</loc>)' > urls.txt
+        fi
+        # Only URLs on our own host, once each.
+        grep -E "^https://${HOST}/" urls.txt | sort -u > urls.clean
+        count="$(wc -l < urls.clean)"
+        echo "Submitting ${count} URL(s):"; cat urls.clean
+        if [ "${count}" -eq 0 ]; then echo "::error::No URLs to submit."; exit 1; fi
+
+    - name: Submit to IndexNow
+      run: |
+        jq -Rn --arg host "${HOST}" --arg key "${KEY}" --arg keyLocation "https://${HOST}/${KEY}.txt" \
+          '{host: $host, key: $key, keyLocation: $keyLocation, urlList: [inputs]}' urls.clean > payload.json
+        status="$(curl -sS -o response.txt -w '%{http_code}' --max-time 60 \
+          -H 'Content-Type: application/json; charset=utf-8' \
+          --data @payload.json https://api.indexnow.org/indexnow)"
+        echo "IndexNow responded HTTP ${status}"; cat response.txt || true
+        # 200 = received, 202 = received and the key check is still pending. Anything else is a problem.
+        case "${status}" in 200|202) exit 0 ;; *) echo "::error::IndexNow returned HTTP ${status}"; exit 1 ;; esac
