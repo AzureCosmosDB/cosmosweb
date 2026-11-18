@@ -2,6 +2,7 @@ import React, {useMemo, type ReactNode} from 'react';
 import {Context} from '@docusaurus/core/lib/client/docusaurusContext';
 import {useLocation} from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import UhfShell from '@site/src/components/UhfShell';
 
 /**
  * The developer hub has its own navbar (`themeConfig.navbar`); the Azure Cosmos DB Conf pages keep the
@@ -29,10 +30,12 @@ export default function Root({children}: {children: ReactNode}): React.ReactElem
 
   return (
     <Context.Provider value={value}>
-      {/* `display: contents` keeps this wrapper out of the page layout; it only scopes the hub navbar styles. */}
-      <div className={isConf ? undefined : 'hub-nav'} style={{display: 'contents'}}>
-        {children}
-      </div>
+      <UhfShell>
+        {/* `display: contents` keeps this wrapper out of the page layout; it only scopes the hub navbar styles. */}
+        <div className={isConf ? undefined : 'hub-nav'} style={{display: 'contents'}}>
+          {children}
+        </div>
+      </UhfShell>
     </Context.Provider>
   );
 }
