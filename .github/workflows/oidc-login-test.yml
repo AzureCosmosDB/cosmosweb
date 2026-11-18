@@ -1,4 +1,4 @@
-name: OIDC login-only test
+name: OIDC managed identity login-only test
 
 on:
   workflow_dispatch:
@@ -22,16 +22,17 @@ jobs:
           exit 1
         fi
 
-    - name: Login to Azure using OIDC v2
+    - name: Login with isolated managed identity
       uses: azure/login@7184910d9eb2b1c5e48f7073824a90609bb9b6d6 # v2
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        client-id: 64ed969b-4830-4d7c-851a-f55947c942b9
+        tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+        allow-no-subscriptions: true
 
-    - name: Confirm authenticated subscription
+    - name: Confirm token issuance without resource access
       run: >-
-        az account show
-        --subscription 220fc532-6091-423c-8ba0-66c2397d591b
-        --query '{subscriptionId:id,tenantId:tenantId}'
+        az account get-access-token
+        --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
+        --resource https://management.azure.com/
+        --query '{tenant:tenant,expiresOn:expiresOn}'
         --output json
