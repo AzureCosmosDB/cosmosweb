@@ -2,10 +2,16 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    groups:
-      npm:
-        patterns: ["*"]
     schedule:
       interval: "weekly"
+      day: "monday"
     cooldown:
       default-days: 7
+    open-pull-requests-limit: 5
+    groups:
+      # All Docusaurus packages move together (minor, patch and major)
+      docusaurus:
+        patterns: ["@docusaurus/*"]
+      # Everything else: routine updates in one weekly PR; majors come as separate PRs
+      minor-and-patch:
+        update-types: ["minor", "patch"]
