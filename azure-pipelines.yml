@@ -1,0 +1,105 @@
+# Deploys https://cosmosdb.microsoft.com (Docusaurus) to the cosmos-web App Service.
+# Replaces .github/workflows/deploy.yml, nightly-deploy.yml and indexnow.yml.
+# Code stays on GitHub (AzureCosmosDB/cosmosweb). The pipeline runs in
+# dev.azure.com/devrel/AzureCosmosDB-GH-WFs and signs in to Azure through the
+# 'cosmosweb-deploy' service connection (workload identity federation to the
+# id-cosmosweb-ado-deploy managed identity, Website Contributor on cosmos-web only).
+
+name: cosmosweb-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  branches:
+    include: [ main ]
+
+pr: none   # no deploys from pull requests or forks
+
+schedules:
+- cron: '30 8 * * *'   # 08:30 UTC, just after the Pacific date rolls over
+  displayName: Nightly refresh (events, Azure Updates, blog, YouTube feeds)
+  branches:
+    include: [ main ]
+  always: true          # rebuild even when nothing changed, so build-time feeds stay current
+
+parameters:
+- name: indexNowUrls
+  displayName: 'Optional: space-separated URLs to submit to IndexNow (default: whole sitemap)'
+  type: string
+  default: ' '
+
+variables:
+  webAppResourceGroup: cosmosweb
+  webAppName: cosmos-web
+  indexNowHost: cosmosdb.microsoft.com
+  indexNowKey: c1f87ba9f1074783905ac76d2ff6da71   # public by design: served at /<key>.txt
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self
+  fetchDepth: 1
+
+- task: NodeTool@0
+  displayName: Use Node.js 22
+  inputs:
+    versionSpec: '22.x'
+
+- script: |
+    set -euo pipefail
+    # the site lives at the repo root
+    npm install --legacy-peer-deps
+    npm run build
+  displayName: Build Docusaurus site
+
+- script: |
+    set -euo pipefail
+    cd build
+    zip -qr "$(Build.ArtifactStagingDirectory)/site.zip" .
+  displayName: Package site
+
+- task: AzureCLI@2
+  displayName: Deploy to App Service
+  inputs:
+    azureSubscription: cosmosweb-deploy
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      set -euo pipefail
+      az webapp deploy \
+        --resource-group "$(webAppResourceGroup)" \
+        --name "$(webAppName)" \
+        --src-path "$(Build.ArtifactStagingDirectory)/site.zip" \
+        --type zip \
+        --async false
+
+# Tells Bing and the other IndexNow engines about new and changed pages.
+# Push to main or manual run: every sitemap URL (or the URLs given at queue time).
+# Nightly run: home page only, since the nightly feeds change nothing else.
+- script: |
+    set -euo pipefail
+    HOST="$(indexNowHost)"; KEY="$(indexNowKey)"
+    for attempt in 1 2 3 4 5 6 7 8; do
+      body="$(curl -fsS --max-time 20 "https://${HOST}/${KEY}.txt" || true)"
+      if [ "${body}" = "${KEY}" ]; then echo "Key file is live."; break; fi
+      if [ "${attempt}" = 8 ]; then echo "##vso[task.logissue type=error]Key file not served"; exit 1; fi
+      echo "Key file not ready yet (attempt ${attempt}); waiting..."; sleep 15
+    done
+    MANUAL_URLS="$(echo '${{ parameters.indexNowUrls }}' | xargs)"
+    if [ -n "${MANUAL_URLS}" ]; then
+      printf '%s\n' ${MANUAL_URLS} > urls.txt
+    elif [ "$(Build.Reason)" = "Schedule" ]; then
+      echo "https://${HOST}/" > urls.txt
+    else
+      curl -fsS --max-time 30 "https://${HOST}/sitemap.xml" | grep -oP '(?<=<loc>)[^<]+(?=</loc>)' > urls.txt
+    fi
+    grep -E "^https://${HOST}/" urls.txt | sort -u > urls.clean
+    count="$(wc -l < urls.clean)"; echo "Submitting ${count} URL(s)"; cat urls.clean
+    [ "${count}" -gt 0 ] || { echo "##vso[task.logissue type=error]No URLs to submit"; exit 1; }
+    jq -Rn --arg host "${HOST}" --arg key "${KEY}" --arg keyLocation "https://${HOST}/${KEY}.txt" \
+      '{host: $host, key: $key, keyLocation: $keyLocation, urlList: [inputs]}' urls.clean > payload.json
+    status="$(curl -sS -o response.txt -w '%{http_code}' --max-time 60 \
+      -H 'Content-Type: application/json; charset=utf-8' --data @payload.json https://api.indexnow.org/indexnow)"
+    echo "IndexNow responded HTTP ${status}"; cat response.txt || true
+    case "${status}" in 200|202) ;; *) echo "##vso[task.logissue type=error]IndexNow returned HTTP ${status}"; exit 1 ;; esac
+  displayName: Submit URLs to IndexNow
+  continueOnError: true   # a search-engine ping should never mark a good deploy as failed
