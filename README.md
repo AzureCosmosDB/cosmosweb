@@ -1,70 +1,42 @@
 # Azure Cosmos DB Developer Website
 
-Site is hosted at https://cosmosdb.microsoft.com
+Source for https://cosmosdb.microsoft.com, built with [Docusaurus](https://docusaurus.io/).
 
-Content updates can be made against the `main` branch. Once merged, changes will auto-deploy to the live site.
+Content updates go to the `main` branch. Once merged, Azure Pipelines (`azure-pipelines.yml`) deploys them to the live site. The site also rebuilds nightly to refresh the blog, video and event feeds.
 
-If you are working on bigger changes, setup a feature branch and we can create a staging slot to review/verify the rendered site.
-
+For bigger changes, use a feature branch and we can set up a staging slot to review the rendered site.
 
 ## Working on the site
 
-Azure Cosmos DB developer home.
+Requires Node.js 22 (see `.nvmrc`) and npm. Yarn is not used.
 
-### Installation
-
-```
-$ yarn
-```
-
-### Local Development
-
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+~~~
+npm install      # install dependencies
+npm start        # local dev server with live reload
+npm run build    # production build into build/
+npm run serve    # preview the production build
+~~~
 
 ### Cosmos DB Conf toggles (Stream + Agenda)
 
-The `/conf` page reads defaults from `src/pages/conf/confSettings.json` so you can hide/show the Stream and Agenda sections without editing React code.
+The `/conf` page reads defaults from `src/pages/conf/confSettings.json`, so you can hide or show the Stream and Agenda sections without editing React code.
 
-You can also override those JSON values via environment variables (useful for local dev / CI). Note: changing env vars requires restarting the dev server.
+You can override those values with environment variables (restart the dev server after changing them):
 
 - `CONF_SHOW_STREAM`
 - `CONF_SHOW_AGENDA`
 - `CONF_STREAM_EMBED_URL` (optional; when unset the page shows a placeholder)
 
-Examples:
+bash:
 
-```sh
-# Hide Stream + Agenda
-CONF_SHOW_STREAM=false CONF_SHOW_AGENDA=false yarn start
+~~~sh
+CONF_SHOW_STREAM=false CONF_SHOW_AGENDA=false npm start
+CONF_SHOW_STREAM=true CONF_STREAM_EMBED_URL="https://..." npm start
+~~~
 
-# Show Stream and set the live embed URL
-CONF_SHOW_STREAM=true CONF_STREAM_EMBED_URL="https://..." yarn start
-```
+PowerShell:
 
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+~~~powershell
+$env:CONF_SHOW_STREAM='false'; $env:CONF_SHOW_AGENDA='false'; npm start
+$env:CONF_SHOW_STREAM='true'; $env:CONF_STREAM_EMBED_URL='https://...'; npm start
+~~~
