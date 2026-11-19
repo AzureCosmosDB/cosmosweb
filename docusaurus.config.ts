@@ -124,7 +124,7 @@ const config: Config = {
     './src/clientModules/gtagGuard.ts',
   ],
 
-  // Overridable so a preview build can be served from a sub-path (see .github/workflows/pages-preview.yml).
+  // Overridable so a preview build can be served from a sub-path
   url: process.env.DOCUSAURUS_URL || 'https://cosmosdb.microsoft.com',
   baseUrl: process.env.DOCUSAURUS_BASE_URL || '/',
   // The pages are static folders (/conf/cfp/index.html), and IIS answers /conf/cfp with a 301 to /conf/cfp/.
@@ -136,7 +136,11 @@ const config: Config = {
   projectName: 'azurecosmosdbconf',
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
   // `/conf` is a custom TSX page; Docusaurus' anchor checker can't statically detect
   // anchors rendered by React components, so these are false positives.
   onBrokenAnchors: 'ignore',
