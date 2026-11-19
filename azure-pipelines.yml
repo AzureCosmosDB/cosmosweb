@@ -39,10 +39,10 @@ steps:
 - checkout: self
   fetchDepth: 1
 
-- task: NodeTool@0
+- task: UseNode@1
   displayName: Use Node.js 22
   inputs:
-    versionSpec: '22.x'
+    version: '22.x'
 
 - script: |
     set -euo pipefail
